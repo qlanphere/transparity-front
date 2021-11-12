@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
+import axios from 'axios';
+const host = 'https://transparity.herokuapp.com'
+const cors = require('cors')
 
 const Feedback = () => {
   const [formData, setFormData] = useState({
@@ -8,86 +11,52 @@ const Feedback = () => {
     punctuality_rating: "",
     comeback_rating: "",
   });
-  const [TRating, setTrating] = useState(1);
-  const [PRating, setPrating] = useState(1);
+  const [TRating, setTrating] = useState(2);
+  const [PRating, setPrating] = useState(4);
   const [CRating, setCrating] = useState(1);
+
+  const charity_id = "Cancer research"
 
   function handleSubmit(e) {
     e.preventDefault();
+    setFormData([TRating,PRating,CRating])
+    sendFeedback(formData,charity_id)
   }
+
+  const sendFeedback = (formData, charity_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const options = {
+                headers: { 'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*"},
+                mode: 'cors'
+            }
+            console.log(formData)
+            const { data } = await axios.patch(`${host}/feedback/charity`, formData, charity_id, options)
+            if (data.err){
+                throw Error(data.err)
+            }
+            resolve('Registration successful')
+        } catch (err) {
+            reject(`Registration Error: ${err}`);
+        }
+    })
+}
+
   return (
     <div>
       <h1>Feedback form</h1><h4>Please select the rating for each areas.</h4>
-      
-      {/* <form onSubmit={handleSubmit} aria-label="feedback">
-        <div className="m-5 areas">
-          <div className="area1">
-          <label>
-            Did you receive an email from the charity to tell you how your
-            donation was used?</label><br/>
-            <div className="radio-btn-cont">
-                <div className="radio-btn">
-                    <input
-                        type="radio"
-                        value={formData.transparency}
-                        name="rating"
-                        checked={rating == 1}
-                    />
-                     1
-                </div>  
-                <div className="radio-btn">
-                    <input
-                        type="radio"
-                        value={formData.transparency}
-                        name="rating"
-                        checked={rating == 2}
-                    />
-                     2
-                </div>  
-                <div className="radio-btn">
-                    <input
-                        type="radio"
-                        value={formData.transparency}
-                        name="rating"
-                        checked={rating == 3}
-                    />
-                     3
-                </div> 
-                <div className="radio-btn">
-                    <input
-                        type="radio"
-                        value={formData.transparency}
-                        name="rating"
-                        checked={rating == 4}
-                    />
-                     4
-                </div>  
-                <div className="radio-btn">
-                    <input
-                        type="radio"
-                        value={formData.transparency}
-                        name="rating"
-                        checked={rating == 5}
-                    />
-                     5
-                </div>   
-          </div>
-        </div>
-      
-          
-        </div>
-      </form> */}
       <h3> transparency rating is {TRating}</h3>
       <h3   > punctuality rating is {PRating}</h3>
       <h3> Comeback rating is {CRating}</h3>
 
-      <form class="rating-form">
+      <form class="rating-form" onSubmit={handleSubmit}>
         <div className="mt-5 card">
           <p >
            1.  Did you receive an email from the charity to tell you how your
             donation was used?
           </p>
-        </div>
+        <div className="d-flex justify-content-center">
         <label htmlFor="super-happy">
           <input
             type="radio"
@@ -183,12 +152,14 @@ const Feedback = () => {
             <path d="M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M16.18,7.76L15.12,8.82L14.06,7.76L13,8.82L14.06,9.88L13,10.94L14.06,12L15.12,10.94L16.18,12L17.24,10.94L16.18,9.88L17.24,8.82L16.18,7.76M7.82,12L8.88,10.94L9.94,12L11,10.94L9.94,9.88L11,8.82L9.94,7.76L8.88,8.82L7.82,7.76L6.76,8.82L7.82,9.88L6.76,10.94L7.82,12M12,14C9.67,14 7.69,15.46 6.89,17.5H17.11C16.31,15.46 14.33,14 12,14Z" />
           </svg>
         </label>
-
+        </div>
+        </div>
+        {/* Second question */}
         <div className="mt-5 card">
           <p >
            2. Does the charity always inform you back about your donations?    
           </p>
-        </div>
+        <div className="d-flex justify-content-center">
         <label htmlFor="super-happy1">
           <input
             type="radio"
@@ -283,12 +254,15 @@ const Feedback = () => {
             <path d="M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M16.18,7.76L15.12,8.82L14.06,7.76L13,8.82L14.06,9.88L13,10.94L14.06,12L15.12,10.94L16.18,12L17.24,10.94L16.18,9.88L17.24,8.82L16.18,7.76M7.82,12L8.88,10.94L9.94,12L11,10.94L9.94,9.88L11,8.82L9.94,7.76L8.88,8.82L7.82,7.76L6.76,8.82L7.82,9.88L6.76,10.94L7.82,12M12,14C9.67,14 7.69,15.46 6.89,17.5H17.11C16.31,15.46 14.33,14 12,14Z" />
           </svg>
         </label>
-
+        </div>
+        </div>
+      
+        {/* Third Question */}
         <div className="mt-5 card">
           <p>
            3. How do you feel about donating back to this charity? 
           </p>
-        </div>
+        <div className="d-flex justify-content-center">
         <label htmlFor="super-happy2">
           <input
             type="radio"
@@ -383,9 +357,74 @@ const Feedback = () => {
             <path d="M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M16.18,7.76L15.12,8.82L14.06,7.76L13,8.82L14.06,9.88L13,10.94L14.06,12L15.12,10.94L16.18,12L17.24,10.94L16.18,9.88L17.24,8.82L16.18,7.76M7.82,12L8.88,10.94L9.94,12L11,10.94L9.94,9.88L11,8.82L9.94,7.76L8.88,8.82L7.82,7.76L6.76,8.82L7.82,9.88L6.76,10.94L7.82,12M12,14C9.67,14 7.69,15.46 6.89,17.5H17.11C16.31,15.46 14.33,14 12,14Z" />
           </svg>
         </label>
+        </div>
+        </div>
+        <input className="mt-5" type="submit" value="Submit Feedback"/>
       </form>
     </div>
   );
 };
 
 export default Feedback;
+
+
+
+
+{/* <form onSubmit={handleSubmit} aria-label="feedback">
+        <div className="m-5 areas">
+          <div className="area1">
+          <label>
+            Did you receive an email from the charity to tell you how your
+            donation was used?</label><br/>
+            <div className="radio-btn-cont">
+                <div className="radio-btn">
+                    <input
+                        type="radio"
+                        value={formData.transparency}
+                        name="rating"
+                        checked={rating == 1}
+                    />
+                     1
+                </div>  
+                <div className="radio-btn">
+                    <input
+                        type="radio"
+                        value={formData.transparency}
+                        name="rating"
+                        checked={rating == 2}
+                    />
+                     2
+                </div>  
+                <div className="radio-btn">
+                    <input
+                        type="radio"
+                        value={formData.transparency}
+                        name="rating"
+                        checked={rating == 3}
+                    />
+                     3
+                </div> 
+                <div className="radio-btn">
+                    <input
+                        type="radio"
+                        value={formData.transparency}
+                        name="rating"
+                        checked={rating == 4}
+                    />
+                     4
+                </div>  
+                <div className="radio-btn">
+                    <input
+                        type="radio"
+                        value={formData.transparency}
+                        name="rating"
+                        checked={rating == 5}
+                    />
+                     5
+                </div>   
+          </div>
+        </div>
+      
+          
+        </div>
+      </form> */}
