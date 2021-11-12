@@ -12,8 +12,8 @@
 } */
 
 .bar {
-  margin: 0;
-  height: 100vh;
+  position: absolute;
+  height: 100%;
   color: #353535;
   font-family: 'Roboto', sans-serif;
 }

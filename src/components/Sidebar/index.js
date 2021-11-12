@@ -20,10 +20,10 @@ const Sidebar = () => {
         letterSpacing: '1px',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
+        // whiteSpace: 'nowrap',
       }}
       >
-        Transpirity
+        Transparity
   </SidebarHeader> 
   <SidebarContent>
           <Menu iconShape="circle">
