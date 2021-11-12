@@ -5,11 +5,20 @@ import './Home.css'
 const host = "http://localhost:5000"
 
 let dummyData = [{
-    title: "Title 1", description: "some stuff here 1", image: "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg", creation_date: '10/10/20'
+    name: "Red Cross",
+    posts: {
+        title: "Title 1", description: "some stuff here 1", image: "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg", creation_date: '10/10/20'
+    }
 }, {
-    title: "Title 2", description: "some stuff here 2", image: "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg", creation_date: '10/11/20'
+    name: "Other Charity",
+    posts: {
+        title: "Title 2", description: "some stuff here 2", image: "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg", creation_date: '10/11/20'
+    }
 }, {
-    title: "Title 3", description: "some stuff here 3", image: "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg", creation_date: '10/12/20'
+    name: "Salvation Army",
+    posts: {
+        title: "Title 3", description: "some stuff here 3", image: "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg", creation_date: '10/12/20'
+    }
 }]
 
 const Home = () => {
@@ -19,14 +28,15 @@ const Home = () => {
     useEffect(() => {
 
         const getPosts = async () => {
-            //const response = await fetch(host)
+            //const response = await fetch(`${host}/home`)
             //let data = await response.json()
             // need to sort posts by most recent 
             let postArray = dummyData.map(post =>
-                <Post title={post.title}
-                    description={post.description}
-                    image={post.image}
-                    date={post.creation_date} />)
+                <Post title={post.posts.title}
+                    description={post.posts.description}
+                    image={post.posts.image}
+                    date={post.posts.creation_date}
+                    name={post.name} />)
             setPosts(postArray)
         }
 

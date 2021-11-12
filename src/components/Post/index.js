@@ -5,7 +5,20 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 
+import { useCharityContext } from '../../contexts/charityContext';
+import { useHistory } from 'react-router-dom';
+
 const Post = (props) => {
+
+    const {setCharityName} = useCharityContext()
+    const history = useHistory();
+
+    const handleClick = (name) => {
+        setCharityName(name)
+        history.push(`/charities/${name}`)
+
+    }
+
     return (
         <>
             <Card sx={{ maxWidth: 2000 }} className = "mb-3">
@@ -22,7 +35,7 @@ const Post = (props) => {
                         <p>{props.date}</p>
                         <CardActions className = "justify-content-center">
                             <Button size="small" className = "mt-auto">Donate</Button>
-                            <Button size="small">Learn More</Button>
+                            <Button size="small" onClick = {()=> handleClick(props.name)}>Learn More</Button>
                         </CardActions>
                     </CardContent>
 
