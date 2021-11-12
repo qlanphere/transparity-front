@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
-const host = 'https://quizioback.herokuapp.com/'
+const host = 'http://localhost:5000/'
 const cors = require('cors')
 
 const AuthContext = React.createContext();

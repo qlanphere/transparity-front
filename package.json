@@ -3,10 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.5",
+    "@mui/material": "^5.0.6",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+<<<<<<< HEAD
     "font-awesome": "^4.7.0",
+=======
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "jwt-decode": "^3.1.2",
+>>>>>>> 809f3deb6a866305a50186202b6b33c9b913d34b
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-pro-sidebar": "^0.7.1",
