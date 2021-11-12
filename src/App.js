@@ -1,11 +1,13 @@
 
 import './App.css';
 import Sidebar from './components/Sidebar';
-import { Login, Register, Feedback} from './pages'
+import { Login, Register, Home, Feedback} from './pages'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Link, Route, Switch, useParams
 } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
         <Sidebar/>
       <Router>
         <Switch>
+          <Route exact path = "/home">
+              <Home />
+          </Route>
           <Route exact path="/login">
             <Login />
           </Route>
@@ -21,6 +26,9 @@ function App() {
           </Route>
           <Route exact path = "/feedbackForm">
             <Feedback />
+          </Route> 
+          <Route exact path = "/charities/:name">
+
           </Route>
         </Switch>
       </Router>
