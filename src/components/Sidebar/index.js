@@ -5,6 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import './Sidebar.css'
 import {NavLink, Link } from 'react-router-dom';
+import { Nav, Navbar, Container } from 'react-bootstrap'
 
 const Sidebar = () => {
   return (
@@ -26,11 +27,11 @@ const Sidebar = () => {
   </SidebarHeader> 
   <SidebarContent>
           <Menu iconShape="circle">
-          <MenuItem icon={<FaTachometerAlt />}>Home</MenuItem>
+          <MenuItem icon={<FaTachometerAlt />}><Nav.Link href = "/home">Home</Nav.Link></MenuItem>
           <MenuItem icon={<FaGem />}>About</MenuItem>
           <SubMenu icon={<FaHeart />} title="Charities" >
             <MenuItem>Upcoming Events</MenuItem>
-            <MenuItem>Feedback Page <NavLink to="/feedbackForm"></NavLink></MenuItem>
+            <MenuItem> <Nav.Link href="/feedbackForm">Feedback Page</Nav.Link></MenuItem>
           </SubMenu>
         </Menu>
     </SidebarContent>
