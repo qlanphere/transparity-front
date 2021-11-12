@@ -24,6 +24,9 @@ function App() {
           <Route exact path = "/register">
             <Register />
           </Route>
+          <Route exact path = "/charities/:name">
+
+          </Route>
         </Switch>
       </Router>
     </div>

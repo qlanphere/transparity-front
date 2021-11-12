@@ -4,12 +4,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
 const Post = (props) => {
     return (
         <>
-            <Card sx={{ maxWidth: 1000 }} className = "mb-3">
+            <Card sx={{ maxWidth: 2000 }} className = "mb-3">
                 <div className="d-flex align-items">
                     <CardMedia
                         style={{ height: "400px", width: "400px" }}
@@ -20,7 +19,7 @@ const Post = (props) => {
                     <CardContent className="col">
                         <h1>{props.title}</h1>
                         <p>{props.descriptions}</p>
-                        <p>{props.creation_date}</p>
+                        <p>{props.date}</p>
                         <CardActions className = "justify-content-center">
                             <Button size="small" className = "mt-auto">Donate</Button>
                             <Button size="small">Learn More</Button>
