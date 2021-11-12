@@ -8,12 +8,17 @@ const CharityPage = () => {
 
     const [posts, setPosts] = useState([])
     const [reviews, setReviews] = useState([])
+    const [charityName, setCharityName] = useState('')
     const { currentUser } = useAuthContext();
     console.log(currentUser)
 
     useEffect(() => {
         
         const getPosts = async () => {
+
+            setCharityName(window.location.href.split('/')[-1])
+            console.log(charityName)
+
             const response = await fetch(`${host}/charity/${currentUser.id}`)
             let data = await response.json()
             // need to sort posts by most recent 
@@ -25,13 +30,16 @@ const CharityPage = () => {
             setPosts(postArray)
         }
 
+        const getReviews = async () => {
+            const response = await fetch(`${host}/feedback/${currentUser.id}`)
+        }
+
         getPosts()
 
     }, [])
 
     return (
         <div className = 'd-flex justify-content-center align-items-center flex-column'>
-                <h1> Home </h1>
                 {posts}
                 {reviews}
             
