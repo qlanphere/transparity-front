@@ -5,19 +5,25 @@ import { AccountCircle } from '@mui/icons-material'
 import PasswordIcon from '@mui/icons-material/Password'
 import EmailIcon from '@mui/icons-material/Email'
 import styles from './Register.module.css'
+import Button from '@mui/material/Button';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const Register = () => {
     const { register, login } = useAuthContext();
     const history = useHistory();
 
     const [formData, setFormData] = useState({
-        username: "",
+        name: "",
         email: "",
         password: "",
-        passwordConfirmation: ""
+        passwordConfirmation: "",
     })
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState(true)
+    const [charity, setCharity] = useState(false)
 
     const handleInput = e => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     const formIncomplete = () => Object.values(formData).some(v => !v) || passwordNoMatch();
@@ -27,13 +33,25 @@ const Register = () => {
         e.preventDefault();
         try {
             setLoading(true)
-            await register(formData)
-            await login(formData)
-            history.push('/room')
+            await register(formData, user)
+            history.push('/login')
         } catch (err) {
             setLoading(false)
             setError(err)
         }
+    }
+
+    function handleUser() {
+        if (charity) {
+            setUser(true)
+            setCharity(false)
+        } else return
+    }
+    function handleCharity() {
+        if (user) {
+            setCharity(true)
+            setUser(false)
+        } else return
     }
 
     return (
@@ -41,11 +59,11 @@ const Register = () => {
             <form onSubmit={handleSubmit} aria-label="register">
                 <div className="m-5">
                     <div className="m-2">
-                        <AccountCircle color="primary"/>
-                        <input className={styles.input} type="text" name="username" value={formData.username} onChange={handleInput} placeholder="Username" />
+                        <AccountCircle color="primary" />
+                        <input className={styles.input} type="text" name="name" value={formData.name} onChange={handleInput} placeholder="name" />
                     </div>
-                    <div  className="m-2">
-                        <EmailIcon color="primary"/>
+                    <div className="m-2">
+                        <EmailIcon color="primary" />
                         <input className={styles.input} type="email" name="email" value={formData.email} onChange={handleInput} placeholder="Email" />
                     </div>
                     <div className="m-2">
@@ -55,9 +73,27 @@ const Register = () => {
                     <div className="m-2">
                         <PasswordIcon color="primary" />
                         <input className={styles.input} type="password" name="passwordConfirmation" value={formData.passwordConfirmation} onChange={handleInput} placeholder="Confirm Password" />
-                    </div>
-                    <input type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} value="Create Account" />
+                        <div className="box">
+                    <span>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox checked={user} onChange={handleUser} name="user" />
+                                }
+                                label="User"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox checked={charity} onChange={handleCharity} name="charity" />
+                                }
+                                label="Charity"
+                            />
+
+                    </span>
                 </div>
+                    </div>
+                    <Button type="submit" variant="contained" size="large" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} >{user ? "Create User Account" : "Create Charity Account"}</Button>
+                </div>
+                
             </form>
             {error && <div id="error">{error}</div>}
             {loading && <div id="loading">Creating account . . .</div>}
