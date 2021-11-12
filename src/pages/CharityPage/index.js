@@ -15,8 +15,8 @@ const CharityPage = () => {
     useEffect(() => {
         
         const getPosts = async () => {
-
-            setCharityName(window.location.href.split('/')[-1])
+            
+            setCharityName(window.location)
             console.log(charityName)
 
             const response = await fetch(`${host}/charity/${currentUser.id}`)
