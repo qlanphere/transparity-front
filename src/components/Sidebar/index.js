@@ -1,21 +1,38 @@
 import React from "react";
-import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent, SidebarHeader } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import 'font-awesome/css/font-awesome.min.css';
+import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import './Sidebar.css'
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className="app">
       <ProSidebar>
-        <Menu iconShape="square">
-          <MenuItem className="far fa-gem">Dashboard</MenuItem>
-          <SubMenu title="Components" >
-            <MenuItem>Home</MenuItem>
-            <MenuItem>About</MenuItem>
-            <MenuItem>Charities</MenuItem>
+      <SidebarHeader 
+       style={{
+        padding: '24px',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        fontSize: 14,
+        letterSpacing: '1px',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}
+      >
+        Transpirity
+  </SidebarHeader> 
+  <SidebarContent>
+          <Menu iconShape="circle">
+          <MenuItem icon={<FaTachometerAlt />}>Home</MenuItem>
+          <MenuItem icon={<FaGem />}>About</MenuItem>
+          <SubMenu icon={<FaHeart />} title="Charities" >
             <MenuItem>Upcoming Events</MenuItem>
+            <MenuItem>Feedback Page</MenuItem>
           </SubMenu>
         </Menu>
+    </SidebarContent>
       </ProSidebar>
     </div>
   );
