@@ -11,10 +11,10 @@ const Register = () => {
     const history = useHistory();
 
     const [formData, setFormData] = useState({
-        username: "",
+        name: "",
         email: "",
         password: "",
-        passwordConfirmation: ""
+        passwordConfirmation: "",
     })
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
@@ -28,8 +28,7 @@ const Register = () => {
         try {
             setLoading(true)
             await register(formData)
-            await login(formData)
-            history.push('/room')
+            history.push('/login')
         } catch (err) {
             setLoading(false)
             setError(err)
@@ -42,7 +41,7 @@ const Register = () => {
                 <div className="m-5">
                     <div className="m-2">
                         <AccountCircle color="primary"/>
-                        <input className={styles.input} type="text" name="username" value={formData.username} onChange={handleInput} placeholder="Username" />
+                        <input className={styles.input} type="text" name="name" value={formData.name} onChange={handleInput} placeholder="name" />
                     </div>
                     <div  className="m-2">
                         <EmailIcon color="primary"/>

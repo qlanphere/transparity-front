@@ -20,7 +20,7 @@ const Login = () => {
         try {
             setLoading(true)
             await login(formData)
-            history.push('/room')
+            history.push('/home')
         } catch (err) {
             setLoading(false)
             setError(err)
@@ -37,7 +37,7 @@ const Login = () => {
                     </div>
                     <div className="m-2">
                         <PasswordIcon color="primary"/>
-                        <input className ={styles.input} stype="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
+                        <input className ={styles.input} type="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
                     </div>
                     <div className="m-2">
                         <input type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} value="Login" />

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
-const host = 'http://localhost:5000/'
+const host = 'http://localhost:5000'
 const cors = require('cors')
 
 const AuthContext = React.createContext();
@@ -28,11 +28,11 @@ export const AuthProvider = ({ children }) => {
                     "Access-Control-Allow-Origin": "*"},
                     mode: 'cors'
                 }
-                const { data } = await axios.post(`${host}/auth/register`, userData, options)
+                console.log(userData)
+                const { data } = await axios.post(`${host}/register/user`, userData, options)
                 if (data.err){
                     throw Error(data.err)
                 }
-                await login(userData);
                 resolve('Registration successful')
             } catch (err) {
                 reject(`Registration Error: ${err}`);
@@ -48,12 +48,15 @@ export const AuthProvider = ({ children }) => {
                     "Access-Control-Allow-Origin": "*"},
                     mode: 'cors'
                 }
-                const { data } = await axios.post(`${host}/auth/login`, userData, options)
-                if (!data.success) { 
+                console.log(userData)
+                const { data } = await axios.post(`${host}/login/`, userData, options)
+                console.log(data)
+                if (!data) { 
                     throw new Error('Login not authorised');
                 }
-                localStorage.setItem("token", data.token);
-                const user = jwt_decode(data.token);
+                console.log(data)
+                localStorage.setItem("token", data.access_token);
+                const user = jwt_decode(data.access_token);
 
                 setCurrentUser(user);
                 console.log(currentUser)
