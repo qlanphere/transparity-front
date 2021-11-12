@@ -4,10 +4,11 @@ import "react-pro-sidebar/dist/css/styles.css";
 import 'font-awesome/css/font-awesome.min.css';
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import './Sidebar.css'
+import {NavLink, Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className="app">
+    <div className="bar">
       <ProSidebar>
       <SidebarHeader 
        style={{
@@ -29,7 +30,7 @@ const Sidebar = () => {
           <MenuItem icon={<FaGem />}>About</MenuItem>
           <SubMenu icon={<FaHeart />} title="Charities" >
             <MenuItem>Upcoming Events</MenuItem>
-            <MenuItem>Feedback Page</MenuItem>
+            <MenuItem>Feedback Page <NavLink to="/feedbackForm"></NavLink></MenuItem>
           </SubMenu>
         </Menu>
     </SidebarContent>
