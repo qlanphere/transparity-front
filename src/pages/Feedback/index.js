@@ -82,8 +82,8 @@ const Feedback = () => {
       <h3> Comeback rating is {CRating}</h3>
 
       <form class="rating-form">
-        <div className="mt-5">
-          <p>
+        <div className="mt-5 card">
+          <p >
            1.  Did you receive an email from the charity to tell you how your
             donation was used?
           </p>
@@ -184,8 +184,8 @@ const Feedback = () => {
           </svg>
         </label>
 
-        <div className="mt-5">
-          <p>
+        <div className="mt-5 card">
+          <p >
            2. Does the charity always inform you back about your donations?    
           </p>
         </div>
@@ -284,7 +284,7 @@ const Feedback = () => {
           </svg>
         </label>
 
-        <div className="mt-5">
+        <div className="mt-5 card">
           <p>
            3. How do you feel about donating back to this charity? 
           </p>
