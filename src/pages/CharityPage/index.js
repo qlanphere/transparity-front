@@ -7,6 +7,7 @@ const host = "https://transparity.herokuapp.com"
 const CharityPage = () => {
 
     const [posts, setPosts] = useState([])
+    const [reviews, setReviews] = useState([])
     const { currentUser } = useAuthContext();
     console.log(currentUser)
 
