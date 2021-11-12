@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
 const cors = require('cors')
 
 const AuthContext = React.createContext();
