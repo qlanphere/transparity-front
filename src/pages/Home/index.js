@@ -1,5 +1,6 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Post from '../../components/Post'
+import './Home.css'
 
 const host = "http://localhost:5000"
 
@@ -16,16 +17,16 @@ const Home = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        
+
         const getPosts = async () => {
             //const response = await fetch(host)
             //let data = await response.json()
             // need to sort posts by most recent 
-            let postArray = dummyData.map(post => 
-                                    <Post title = {post.title}
-                                        description = {post.description}
-                                        image = {post.image}
-                                        date = {post.creation_date} />)
+            let postArray = dummyData.map(post =>
+                <Post title={post.title}
+                    description={post.description}
+                    image={post.image}
+                    date={post.creation_date} />)
             setPosts(postArray)
         }
 
@@ -37,7 +38,7 @@ const Home = () => {
     return (
         <>
 
-            <div className = 'd-flex justify-content-center align-items-center flex-column'>
+            <div id="home-page" className='d-flex justify-content-end align-items-center flex-column mr-auto'>
                 <h1> Home </h1>
                 {posts}
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
