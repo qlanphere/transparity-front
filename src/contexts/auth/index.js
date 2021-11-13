@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
                     mode: 'cors'
                 }
                 console.log(userData)
-                const { data } = await axios.post(`${host}/login/`, userData, options)
+                const { data } = await axios.post(`${host}/login`, userData, options)
                 console.log(data)
                 if (!data) { 
                     throw new Error('Login not authorised');
