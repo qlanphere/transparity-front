@@ -18,7 +18,7 @@ const Post = (props) => {
                     />
                     <CardContent className="col">
                         <h1>{props.title}</h1>
-                        <p>{props.descriptions}</p>
+                        <p>{props.description}</p>
                         <p>{props.date}</p>
                         <CardActions className = "justify-content-center">
                             <Button size="small" className = "mt-auto">Donate</Button>
