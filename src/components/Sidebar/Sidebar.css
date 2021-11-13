@@ -69,7 +69,6 @@
   border-bottom: red;
 }
 
-
 .pro-sidebar .pro-menu a{
   color: #fff;
 }
@@ -77,3 +76,45 @@
 #root > div > div.bar > div > div.pro-sidebar-inner > div > div.pro-sidebar-content > nav > ul > li > div > span.pro-item-content > a{
   padding: 0;
 }
+
+
+@media only screen and (max-width: 800px) {
+  .bar{
+      width: 250px;
+  }
+
+  .pro-sidebar{
+    width: 200px;
+  }
+
+  .pro-sidebar-inner{
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .bar{
+      width: 80px;
+  }
+
+  .pro-sidebar{
+    width: 80px;
+  }
+
+  .pro-sidebar-inner{
+    width: 80px;
+  }
+
+  #root > div > div.bar > div > div.pro-sidebar-inner > div > div.pro-sidebar-content > nav > ul > li:nth-child(1) > div > span.pro-item-content > a{
+    font-size: 0;
+    color: transparent;
+  }
+
+  #root > div > div.bar > div > div.pro-sidebar-inner > div > div.pro-sidebar-header{
+    font-size: 0;
+    color: transparent;
+  }
+}
+
+
+

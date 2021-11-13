@@ -30,9 +30,11 @@ const Home = () => {
     useEffect(() => {
 
         const options = {
-            headers: { 'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Authorization": `Bearer ${localStorage.getItem("token")}`},
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
             mode: 'cors'
         }
 
@@ -60,7 +62,7 @@ const Home = () => {
         <>
 
             <div id="home-page" className='d-flex justify-content-end align-items-center flex-column mr-auto'>
-                <h1 className="dashboard-title"> Connect With <span className="charity-mode">Your Charity</span> </h1>
+                <h1 className="dashboard-title"> Connect With Your <span className="charity-mode">Charity</span> </h1>
                 {posts}
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
                 <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" /> */}
