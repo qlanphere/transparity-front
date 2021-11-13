@@ -66,10 +66,10 @@ const Tickets = () => {
         <>
         <div>
             <h1>Create New Ticket</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input type = "text" name="name" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
                 <input type = "text" name="description" value={ticketFormData.description} onChange={handleInput} placeholder="description" />
-                <input type="submit" onClick={handleSubmit} className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()}/>
+                <input type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()}/>
             </form>
 
         </div>
