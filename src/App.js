@@ -1,7 +1,11 @@
 
 import './App.css';
 import Sidebar from './components/Sidebar';
+<<<<<<< HEAD
 import { Login, Register, Home, Feedback, CharityPage, DonationsPage, CharityPost} from './pages'
+=======
+import { Login, Register, Home, Feedback, CharityPage, DonationsPage, Tickets, TicketId} from './pages'
+>>>>>>> 42bfef72a1e2c6ed9aab49d06cb990f3cf44c807
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
 import {
@@ -39,6 +43,12 @@ function App() {
           </CustomRoutes.LoggedOutRoute>
           <CustomRoutes.LoggedOutRoute exact path = "/charitypost">
             <CharityPost />
+          </CustomRoutes.LoggedOutRoute>
+          <CustomRoutes.LoggedOutRoute exact path = "/tickets">
+            <Tickets />
+          </CustomRoutes.LoggedOutRoute>
+          <CustomRoutes.LoggedOutRoute exact path = "/tickets/:id">
+              <TicketId />
           </CustomRoutes.LoggedOutRoute>
         </Switch>
       </Router>

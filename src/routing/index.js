@@ -21,7 +21,7 @@ export const PrivateRoute = ({ children }) => {
 
     return (
         <Route> { 
-            currentUser.user_type == 'charity'
+            currentUser.sub.user == 'charity'
                 ? children
                 : <Redirect to='/home' /> }
         </Route> )
