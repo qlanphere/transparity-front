@@ -10,17 +10,23 @@ const Feedback = () => {
     transparency: "",
     punctuality: "",
     comeback: "",
+    description:""
   });
   const [TRating, setTrating] = useState(2);
   const [PRating, setPrating] = useState(4);
   const [CRating, setCrating] = useState(1);
+  const [desciption,setDescription] = useState("")
 
   const charity_id = "Cancer research"
 
   function handleSubmit(e) {
     e.preventDefault();
-    setFormData([TRating,PRating,CRating])
+    setFormData([TRating,PRating,CRating,desciption])
     sendFeedback(formData,charity_id)
+  }
+
+  function handleChange(e){
+    setDescription(e.target.value)
   }
 
   const sendFeedback = (formData, charity_id) => {
@@ -32,7 +38,7 @@ const Feedback = () => {
                 mode: 'cors'
             }
             console.log(formData)
-            const { data } = await axios.patch(`${host}/feedback/charity`, formData, charity_id, options)
+            const { data } = await axios.patch(`${host}/feedback/${charity_id}`, formData, charity_id, options)
             if (data.err){
                 throw Error(data.err)
             }
@@ -46,9 +52,9 @@ const Feedback = () => {
   return (
     <div>
       <h1>Feedback form</h1><h4>Please select the rating for each areas.</h4>
-      <h3> transparency rating is {TRating}</h3>
+      {/* <h3> transparency rating is {TRating}</h3>
       <h3   > punctuality rating is {PRating}</h3>
-      <h3> Comeback rating is {CRating}</h3>
+      <h3> Comeback rating is {CRating}</h3> */}
 
       <form class="rating-form" onSubmit={handleSubmit}>
         <div className="mt-5 card">
@@ -359,7 +365,11 @@ const Feedback = () => {
         </label>
         </div>
         </div>
-        <input className="mt-5" type="submit" value="Submit Feedback"/>
+        <div className="mt-5 card">
+        <label>Do you like to add more to the feedback:</label>
+        <textarea id="text-area" name="textarea" rows="5" value={desciption} onChange={handleChange} /><br/>
+        </div>
+        <input className="mt-3" type="submit" value="Submit Feedback"/>
       </form>
     </div>
   );

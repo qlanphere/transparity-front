@@ -2,7 +2,7 @@ import React from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent, SidebarHeader } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import 'font-awesome/css/font-awesome.min.css';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaSignOutAlt, FaSignInAlt, FaUserCircle } from 'react-icons/fa';
 import { IoHome } from "react-icons/io5";
 import { BiDonateHeart } from "react-icons/bi";
 import { BsBook } from "react-icons/bs";
@@ -10,8 +10,12 @@ import { HiCubeTransparent } from "react-icons/hi";
 import './Sidebar.css'
 import { NavLink, Link } from 'react-router-dom';
 import { Nav, Navbar, Container } from 'react-bootstrap'
+import { useAuthContext } from "../../contexts/auth";
 
 const Sidebar = () => {
+
+  const {currentUser, logout} = useAuthContext()
+
   return (
     <div className="bar">
       <ProSidebar>
@@ -33,6 +37,9 @@ const Sidebar = () => {
           <Menu iconShape="circle">
             <MenuItem icon={<IoHome />}><Nav.Link href="/home">Home</Nav.Link></MenuItem>
             <MenuItem icon={<BsBook />}>About</MenuItem>
+            {currentUser && <MenuItem icon = {<FaSignOutAlt />}><Nav.Link href = "/home" onClick = {logout}>Logout</Nav.Link></MenuItem>}
+            {!currentUser && <MenuItem icon = {<FaSignInAlt />}><Nav.Link href = "/login">Sign in</Nav.Link></MenuItem>}
+            {!currentUser && <MenuItem icon = {<FaUserCircle />}><Nav.Link href = "/register">Register</Nav.Link></MenuItem>}
             <SubMenu icon={<FaHeart />} title="Charities" >
               <MenuItem>Upcoming Events</MenuItem>
               <MenuItem> <Nav.Link href="/feedbackForm">Feedback Page</Nav.Link></MenuItem>
