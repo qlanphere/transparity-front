@@ -26,7 +26,7 @@ const Tickets = () => {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`},
                 mode: 'cors'
             }
-        await axios.patch(`${host}/ticket/${currentUser.sub.id}`, options)
+        const { data } = await axios.patch(`${host}/ticket/${currentUser.sub.id}`, options)
         resolve('Ticket created succesful')
         } catch (err) {
             reject(`Ticket Error: ${err}`);
