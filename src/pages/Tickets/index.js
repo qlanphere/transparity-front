@@ -11,28 +11,30 @@ const Tickets = () => {
     const {currentUser} = useAuthContext()
     const [openTickets, setOpenTickets] = useState([])
     const [closedTickets, setClosedTickets] = useState([])
-    const [ticketFormData, setTicketFormData] = useState({name: "", description: "", status: true, res: []})
+    const [ticketFormData, setTicketFormData] = useState({name: "", description: "", res: [], status: true})
 
     const handleInput = e => setTicketFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     const formIncomplete = () => Object.values(ticketFormData).some(v => !v)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        return new Promise(async (resolve, reject) => {
         try {
             const options = {
+                method: 'PATCH',
                 headers: { 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "*",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`},
-                mode: 'cors'
+                mode: 'cors',
+                body: JSON.stringify(ticketFormData)
             }
-        const { data } = await axios.patch(`${host}/ticket/${currentUser.sub.id}`, options)
-        resolve('Ticket created succesful')
+            console.log(ticketFormData)
+        await fetch(`${host}/ticket/${currentUser.sub.id}`, options)
+        // resolve('Ticket created succesful')
         } catch (err) {
-            reject(`Ticket Error: ${err}`);
+            // reject(`Ticket Error: ${err}`);
+            console.log(err)
         }
 
-    })
     }
 
     useEffect(() => {
@@ -67,7 +69,7 @@ const Tickets = () => {
             <form>
                 <input type = "text" name="name" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
                 <input type = "text" name="description" value={ticketFormData.description} onChange={handleInput} placeholder="description" />
-                <input type="submit" onSubmit={handleSubmit} className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()}/>
+                <input type="submit" onClick={handleSubmit} className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()}/>
             </form>
 
         </div>
