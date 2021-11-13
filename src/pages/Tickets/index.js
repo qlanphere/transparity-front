@@ -16,8 +16,7 @@ const Tickets = () => {
     const handleInput = e => setTicketFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     const formIncomplete = () => Object.values(ticketFormData).some(v => !v)
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const handleSubmit = async () => {
         try {
             const options = {
                 method: 'PATCH',
