@@ -1,7 +1,7 @@
 
 import './App.css';
 import Sidebar from './components/Sidebar';
-import { Login, Register, Home, Feedback, CharityPage, DonationsPage, Tickets} from './pages'
+import { Login, Register, Home, Feedback, CharityPage, DonationsPage, Tickets, TicketId} from './pages'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
 import {
@@ -41,7 +41,7 @@ function App() {
             <Tickets />
           </CustomRoutes.LoggedOutRoute>
           <CustomRoutes.LoggedOutRoute exact path = "/tickets/:id">
-
+              <TicketId />
           </CustomRoutes.LoggedOutRoute>
         </Switch>
       </Router>
