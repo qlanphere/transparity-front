@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import PasswordIcon from '@mui/icons-material/Password'
 import EmailIcon from '@mui/icons-material/Email'
 import styles from './Login.module.css'
+import './Login.css'
+
 const Login = () => {
     const { login } = useAuthContext();
     const history = useHistory();
@@ -28,21 +30,21 @@ const Login = () => {
     }
     return (
         <>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit} aria-label="login">
-                <div className="mt-5">
-                    <div className="m-2">
-                        <EmailIcon color="primary"/>
-                        <input className ={styles.input} type="email" name="email" value={formData.email} onChange={handleInput} placeholder="Email" />
+            <h1 className="login-page-title">Login</h1>
+            <form className="login-form" onSubmit={handleSubmit} aria-label="login">
+                <div className="p-2">
+                    <div className="p-2">
+                        {/* <EmailIcon color="primary" /> */}
+                        <input className={styles.input} type="email" name="email" value={formData.email} onChange={handleInput} placeholder="Email" />
                     </div>
-                    <div className="m-2">
-                        <PasswordIcon color="primary"/>
-                        <input className ={styles.input} type="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
+                    <div className="p-2">
+                        {/* <PasswordIcon color="primary" /> */}
+                        <input className={styles.input} type="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
                     </div>
-                    <div className="m-2">
-                        <input type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} value="Login" />
+                    <div className="p-2">
+                        <input className="login-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} value="Login" />
                     </div>
-                    <p>Not register yet? <a className={styles.a} href="/register">Create an Account</a></p>
+                    <p className="p-2">Not registered yet? <a className={styles.a} href="/register">Create an Account</a></p>
                 </div>
 
             </form>

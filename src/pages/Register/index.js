@@ -5,6 +5,7 @@ import { AccountCircle } from '@mui/icons-material'
 import PasswordIcon from '@mui/icons-material/Password'
 import EmailIcon from '@mui/icons-material/Email'
 import styles from './Register.module.css'
+import './Register.css'
 import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -56,44 +57,45 @@ const Register = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit} aria-label="register">
-                <div className="m-5">
-                    <div className="m-2">
-                        <AccountCircle color="primary" />
+            <h1 className="register-title">Register</h1>
+            <form className="register-form" onSubmit={handleSubmit} aria-label="register">
+                <div className="form-fields-container">
+                    <div className="p-2">
+                        <AccountCircle />
                         <input className={styles.input} type="text" name="name" value={formData.name} onChange={handleInput} placeholder="name" />
                     </div>
-                    <div className="m-2">
-                        <EmailIcon color="primary" />
+                    <div className="p-2">
+                        <EmailIcon />
                         <input className={styles.input} type="email" name="email" value={formData.email} onChange={handleInput} placeholder="Email" />
                     </div>
-                    <div className="m-2">
-                        <PasswordIcon color="primary" />
+                    <div className="p-2">
+                        <PasswordIcon />
                         <input className={styles.input} type="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
                     </div>
-                    <div className="m-2">
-                        <PasswordIcon color="primary" />
+                    <div className="p-2">
+                        <PasswordIcon />
                         <input className={styles.input} type="password" name="passwordConfirmation" value={formData.passwordConfirmation} onChange={handleInput} placeholder="Confirm Password" />
                         <div className="box">
-                    <span>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox checked={user} onChange={handleUser} name="user" />
-                                }
-                                label="User"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox checked={charity} onChange={handleCharity} name="charity" />
-                                }
-                                label="Charity"
-                            />
+                            <span>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox checked={user} onChange={handleUser} name="user" />
+                                    }
+                                    label="User"
+                                />
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox checked={charity} onChange={handleCharity} name="charity" />
+                                    }
+                                    label="Charity"
+                                />
 
-                    </span>
-                </div>
+                            </span>
+                        </div>
                     </div>
                     <Button type="submit" variant="contained" size="large" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} >{user ? "Create User Account" : "Create Charity Account"}</Button>
                 </div>
-                
+
             </form>
             {error && <div id="error">{error}</div>}
             {loading && <div id="loading">Creating account . . .</div>}
