@@ -73,11 +73,11 @@ const Tickets = () => {
         </div>
             <div>
                 <h1>Open Tickets</h1>
-                    {openTickets}
+                    {/* {openTickets} */}
             </div>
             <div>
                 <h1>Closed Tickets</h1>
-                    {closedTickets}
+                    {/* {closedTickets} */}
             </div>
         </>
     )
