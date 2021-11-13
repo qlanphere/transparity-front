@@ -10,3 +10,40 @@
 .charity-mode{
     color: #9ACD32;
 }
+
+
+@media only screen and (max-width: 800px){
+    #home-page{
+        margin-left: 200px;
+    }
+
+    .card-container{
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #home-page{
+        margin: 0 auto;
+        margin-left: 80px;
+    }
+
+    .card-container{
+        width: 300px;
+        flex-direction: column;
+    }
+
+    .card-img{
+        display: none;
+        width: 80px;
+        height: 20px;
+    }
+  }
+
+@media only screen and (max-width: 400px){
+    .card-container{
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 90%;
+    }
+}
