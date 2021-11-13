@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Post from '../../components/Post'
+import { useAuthContext } from '../../contexts/auth'
 import './Home.css'
 
 const host = "http://localhost:5000"
@@ -24,6 +25,7 @@ let dummyData = [{
 const Home = () => {
 
     const [posts, setPosts] = useState([])
+    const {currentUser} = useAuthContext()
 
     useEffect(() => {
 
@@ -41,6 +43,7 @@ const Home = () => {
         }
 
         getPosts()
+        console.log(currentUser)
 
     }, [])
 

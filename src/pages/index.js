@@ -3,3 +3,4 @@ export { default as Login } from './Login';
 export { default as Feedback} from './Feedback';
 export { default as Home } from './Home';
 export {default as CharityPage} from './CharityPage'
+export {default as DonationsPage} from './DonationsPage'

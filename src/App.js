@@ -1,7 +1,7 @@
 
 import './App.css';
 import Sidebar from './components/Sidebar';
-import { Login, Register, Home, Feedback, CharityPage} from './pages'
+import { Login, Register, Home, Feedback, CharityPage, DonationsPage} from './pages'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
 import {
@@ -34,6 +34,9 @@ function App() {
           <Route exact path = "/charities/:name">
             <CharityPage />
           </Route>
+          <CustomRoutes.LoggedOutRoute exact path = "/donations">
+            <DonationsPage />
+          </CustomRoutes.LoggedOutRoute>
         </Switch>
       </Router>
     </div>

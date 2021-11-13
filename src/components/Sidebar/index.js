@@ -2,7 +2,7 @@ import React from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent, SidebarHeader } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import 'font-awesome/css/font-awesome.min.css';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaSignOutAlt, FaSignInAlt, FaUserCircle } from 'react-icons/fa';
+import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaSignOutAlt, FaSignInAlt, FaUserCircle, FaDonate } from 'react-icons/fa';
 import { IoHome } from "react-icons/io5";
 import { BiDonateHeart } from "react-icons/bi";
 import { BsBook } from "react-icons/bs";
@@ -44,7 +44,7 @@ const Sidebar = () => {
               <MenuItem>Upcoming Events</MenuItem>
               <MenuItem> <Nav.Link href="/feedbackForm">Feedback Page</Nav.Link></MenuItem>
             </SubMenu>
-            <MenuItem icon={<BiDonateHeart />}>Your Donations</MenuItem>
+            {currentUser && <MenuItem icon = {<BiDonateHeart />}><Nav.Link href = "/donations">Donations</Nav.Link></MenuItem>}
           </Menu>
         </SidebarContent>
       </ProSidebar>
