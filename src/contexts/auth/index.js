@@ -58,7 +58,6 @@ export const AuthProvider = ({ children }) => {
                 const user = jwt_decode(data.access_token);
 
                 setCurrentUser(user);
-                console.log(currentUser)
                 resolve('Login successful')
             } catch (err) {
                 reject(`Login Error: ${err}`);
