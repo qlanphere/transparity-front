@@ -3,7 +3,7 @@ import Post from '../../components/Post'
 import { useAuthContext } from '../../contexts/auth'
 import './Home.css'
 
-const host = "http://localhost:5000"
+const host = "https://transparity.herokuapp.com"
 
 let dummyData = [{
     name: "Red Cross",
@@ -29,8 +29,15 @@ const Home = () => {
 
     useEffect(() => {
 
+        const options = {
+            headers: { 'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`},
+            mode: 'cors'
+        }
+
         const getPosts = async () => {
-            //const response = await fetch(`${host}/home`)
+            //const response = await fetch(`${host}/home`, options)
             //let data = await response.json()
             // need to sort posts by most recent 
             let postArray = dummyData.map(post =>
