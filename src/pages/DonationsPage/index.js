@@ -26,7 +26,7 @@ const DonationsPage = () => {
 
     return (
         <>
-            <h1>{currentUser.user_type=='charity' ? `Donations Received`:`${currentUser.sub.name}'s Donations`}</h1>
+            <h1>{currentUser.user=='charity' ? `Donations Received`:`${currentUser.sub.name}'s Donations`}</h1>
             <h3>${donations}</h3>
         </>
     )
