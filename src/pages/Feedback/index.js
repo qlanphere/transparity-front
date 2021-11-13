@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
 import axios from 'axios';
@@ -6,6 +7,8 @@ const host = 'https://transparity.herokuapp.com'
 const cors = require('cors')
 
 const Feedback = () => {
+  const {currentUser} = useAuthContext()
+  const charity_id = currentUser.sub.id
   const [formData, setFormData] = useState({
     transparency: "",
     punctuality: "",
@@ -17,7 +20,6 @@ const Feedback = () => {
   const [CRating, setCrating] = useState(1);
   const [desciption,setDescription] = useState("")
 
-  const charity_id = "Cancer research"
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -38,7 +40,7 @@ const Feedback = () => {
                 mode: 'cors'
             }
             console.log(formData)
-            const { data } = await axios.patch(`${host}/feedback/${charity_id}`, formData, charity_id, options)
+            const { data } = await axios.patch(`${host}/feedback/${charity_id}`, formData, options)
             if (data.err){
                 throw Error(data.err)
             }
