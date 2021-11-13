@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
 const cors = require('cors')
 
@@ -53,8 +54,8 @@ const Tickets = () => {
             if (ticketArray) {
                 let openTicks = ticketArray.filter(ticket => ticket.status == true)
                 let closedTicks = ticketArray.filter(ticket => ticket.status == false)
-                setOpenTickets(openTicks)
-                setClosedTickets(closedTicks)
+                setOpenTickets(openTicks.map(ticket => <Ticket title = {ticket.title} description = {ticket.description} date = {ticket.ticket_date}/>))
+                setClosedTickets(closedTicks.map(ticket => <Ticket title = {ticket.title} description = {ticket.description} date = {ticket.ticket_date}/>))
             }
 
         }
@@ -74,7 +75,7 @@ const Tickets = () => {
         </div>
             <div>
                 <h1>Open Tickets</h1>
-                    {/* {openTickets} */}
+                    {openTickets}
             </div>
             <div>
                 <h1>Closed Tickets</h1>
