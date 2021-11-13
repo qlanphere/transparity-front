@@ -1,0 +1,19 @@
+.register-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 80%;
+    margin: 0 auto;
+    min-width: 400px;
+    margin-left: 270px;
+    text-align: center;
+    padding-top: 2%;
+}
+
+.register-title{
+    text-align: center;
+    margin-left: 270px;
+    padding-top: 10%;
+    width: 80%;
+    min-width: 400px;
+}

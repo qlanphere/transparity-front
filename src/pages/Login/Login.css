@@ -1,0 +1,27 @@
+.login-form{
+    margin-left: 270px;
+    min-width: 350px;
+}
+
+.login-page-title{
+    margin-left: 270px;
+    padding-top: 10%;
+}
+
+.login-button{
+    background-color: #9ACD32;
+    color: #fff;
+    border: none;
+}
+
+#root > div > form > div > div:nth-child(3) > input{
+    background-color: #9ACD32;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+}
+
+
+#root > div > form > div > div:nth-child(3) > input:hover{
+    background-color: #424242;
+}

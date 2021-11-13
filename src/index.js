@@ -5,11 +5,14 @@ import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from './contexts/auth';
 import reportWebVitals from './reportWebVitals';
+import { CharityProvider } from './contexts/charityContext';
 
 ReactDOM.render(
   <Router>
     <AuthProvider>
+      <CharityProvider>
       <App />
+      </CharityProvider>
     </AuthProvider>
   </Router>
 ,
