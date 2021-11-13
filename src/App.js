@@ -40,6 +40,9 @@ function App() {
           <CustomRoutes.LoggedOutRoute exact path = "/tickets">
             <Tickets />
           </CustomRoutes.LoggedOutRoute>
+          <CustomRoutes.LoggedOutRoute exact path = "/tickets/:id">
+
+          </CustomRoutes.LoggedOutRoute>
         </Switch>
       </Router>
     </div>
