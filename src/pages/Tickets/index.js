@@ -16,8 +16,20 @@ const Tickets = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await axios.patch(`${host}/ticket/${currentUser.sub.id}`)
+        return new Promise(async (resolve, reject) => {
+        try {
+            const options = {
+                headers: { 'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*"},
+                mode: 'cors'
+            }
+        await axios.patch(`${host}/ticket/${currentUser.sub.id}`, options)
+        resolve('Ticket created succesful')
+        } catch (err) {
+            reject(`Ticket Error: ${err}`);
+        }
 
+    })
     }
 
     useEffect(() => {
