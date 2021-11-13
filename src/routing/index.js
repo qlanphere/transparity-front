@@ -5,10 +5,11 @@ import { useAuthContext } from "../contexts/auth";
 
 export const LoggedOutRoute = ({ children }) => {
     const { currentUser } = useAuthContext();
+    console.log("currentUser", currentUser)
 
     return (
         <Route> { 
-            !currentUser
+            !!currentUser
                 ? children
                 : <Redirect to='/home' /> }
         </Route> )

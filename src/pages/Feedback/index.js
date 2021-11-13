@@ -7,9 +7,9 @@ const cors = require('cors')
 
 const Feedback = () => {
   const [formData, setFormData] = useState({
-    transparency_rating: "",
-    punctuality_rating: "",
-    comeback_rating: "",
+    transparency: "",
+    punctuality: "",
+    comeback: "",
   });
   const [TRating, setTrating] = useState(2);
   const [PRating, setPrating] = useState(4);
@@ -36,9 +36,9 @@ const Feedback = () => {
             if (data.err){
                 throw Error(data.err)
             }
-            resolve('Registration successful')
+            resolve('Feedback successfully sent!')
         } catch (err) {
-            reject(`Registration Error: ${err}`);
+            reject(`Error while sending the feedback ${err}`);
         }
     })
 }
