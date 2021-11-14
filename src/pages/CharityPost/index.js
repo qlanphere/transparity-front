@@ -3,7 +3,8 @@ import axios from 'axios';
 import {Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useAuthContext } from "../../contexts/auth";
-const host = 'https://transparity.herokuapp.com'
+// const host = 'https://transparity.herokuapp.com'
+const host = 'http://localhost:5000'
 const cors = require('cors')
 
 
@@ -23,24 +24,32 @@ const CharityPost = () => {
 
     const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
     console.log(formData)
-    const handleSubmit = (formData, charity_id) => {
-        return new Promise(async (resolve, reject) => {
+    const handleSubmit = async (formData, charity_id) => {
+        // e.preventDefault()
+        // return new Promise(async (resolve, reject) => {
             try {
                 const options = {
-                    headers: { 'Content-Type': 'application/json',
-                    "Access-Control-Allow-Origin": "*"},
-                    mode: 'cors'
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`},
+                mode: 'cors',
+                body: JSON.stringify(formData)
                 }
                 console.log(formData)
-                const { data } = await axios.patch(`${host}/charity/${charity_id}`, formData, options)
-                if (data.err){
-                    throw Error(data.err)
-                }
-                resolve('New post successfuly created!')
-            } catch (err) {
-                reject(`Error while creating a new post ${err}`);
+                await fetch(`${host}/charity/${charity_id}`, options)
+                // if (data.err){
+                //     throw Error(data.err)
+                // }
+        //         resolve('New post successfuly created!')
+        //     } catch (err) {
+        //         reject(`Error while creating a new post ${err}`);
+        //     }
+        // })
+            }catch (err) {
+                // reject(`Ticket Error: ${err}`);
+                console.log(err)
             }
-        })
     }
 
     
@@ -51,7 +60,7 @@ const CharityPost = () => {
                 <h2 className="text-muted"> Please fill in the below form to add a new post</h2>
                 <h3> {currentUser.sub.name}</h3>
             </div>
-            <form className="register-form" onSubmit={handleSubmit}>
+            <form className="register-form" onSubmit={(e)=>handleSubmit(e)}>
             <div className="form-fields-container d-flex flex-column justify-content-start align-center">
                 <div className="p-2">
                 <label>Title:</label>
@@ -71,7 +80,7 @@ const CharityPost = () => {
                 </div>
                 <div className="p-2">
                 <label>Upload Image:</label>
-                <input type="file" name="img" value={formData.img} onChange={handleChange}/>
+                <input type="text" name="img" value={formData.img} onChange={handleChange}/>
                 </div>
                 <div className="p-2">
                 <input className="submit-button btn btn-secondary" type="submit" value="Submit"/>
