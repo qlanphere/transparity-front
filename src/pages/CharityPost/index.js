@@ -24,7 +24,7 @@ const CharityPost = () => {
 
     const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
     console.log(formData)
-    const handleSubmit = async (formData, charity_id) => {
+    const handleSubmit = async () => {
         // e.preventDefault()
         // return new Promise(async (resolve, reject) => {
             try {
