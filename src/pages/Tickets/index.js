@@ -6,8 +6,8 @@ import './Tickets.css'
 const cors = require('cors')
 
 
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 
 const Tickets = () => {
 
@@ -36,7 +36,7 @@ const Tickets = () => {
         let charityData = await response.json()
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
         try {
             // getCharityId()
             const options = {
@@ -87,21 +87,17 @@ const Tickets = () => {
 
     return (
         <>
-            <div>
-                <h1>Create New Ticket</h1>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <select value = {ticketFormData.charityName} name = "charityName" onChange = {handleInput}>
+            <div className="tickets-page">
+                <h1 className="new-ticket">Create a New <span className="green">Ticket</span></h1>
+                <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
+                <select value = {ticketFormData.charityName} name = "charityName" onChange = {handleInput}>
                         {charities}
                     </select>
                     <input type="text" name="name" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
-                    <input type="text" name="description" value={ticketFormData.description} onChange={handleInput} placeholder="description" />
-                    <input type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
+                    <textarea type="text" name="description" value={ticketFormData.description} onChange={handleInput} placeholder="description" />
+                    <input id="ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
                 </form>
 
-            </div>
-            <div>
-                <h1>Open Tickets</h1>
-                {openTickets}
             </div>
             <div className="open-tickets">
                 <h1>Open <span className="green">Tickets</span></h1>
