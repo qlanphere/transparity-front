@@ -6,8 +6,8 @@ import './Tickets.css'
 const cors = require('cors')
 
 
-const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
+// const host = 'https://transparity.herokuapp.com'
+const host = 'http://localhost:5000'
 
 const Tickets = () => {
 
@@ -32,13 +32,15 @@ const Tickets = () => {
     }
 
     const getCharityId = async (name) => {
-        let response = await fetch(`${host}/charities/${name}`, optionsGet)
+        let response = await fetch(`${host}/charity/${name}`, optionsGet)
         let charityData = await response.json()
+        return charityData._id
     }
 
     const handleSubmit = async (e) => {
         try {
-            // getCharityId()
+            e.preventDefault()
+            let charityId = await getCharityId(ticketFormData.charityName)
             const options = {
                 method: 'PATCH',
                 headers: {
@@ -51,6 +53,7 @@ const Tickets = () => {
             }
             console.log(ticketFormData)
             await fetch(`${host}/ticket/${currentUser.sub.id}`, options)
+            await fetch(`${host}/ticket/${charityId}`, options)
         } catch (err) {
             console.log(err)
         }
