@@ -1,0 +1,54 @@
+
+.tickets-page{
+    margin-left: 270px;
+}
+
+.new-ticket{
+    text-align: center;
+    font-size: 24px;
+    padding-top: 4%;
+}
+
+.new-ticket-form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: 270px;
+    margin: 0 auto;
+}
+
+.new-ticket-form input{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.green{
+    color: #9ACD32;
+}
+
+#ticket-button{
+    border: none;
+    background-color: #9ACD32;
+    color: #fff;
+}
+
+#ticket-button:hover{
+    background-color: #424242;
+    cursor:pointer;
+}
+
+.open-tickets{
+    margin-left: 270px;
+}
+
+.open-tickets h1{
+    font-size: 24px;
+}
+
+.closed-tickets{
+    margin-left: 270px;
+}
+
+.closed-tickets h1{
+    font-size: 24px;
+}
