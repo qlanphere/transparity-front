@@ -1,9 +1,8 @@
-import React, { useState, useEffect, Component } from 'react'
-import Select from 'react-select'
-import { Dropdown } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
+import './Tickets.css'
 const cors = require('cors')
 
 
@@ -104,7 +103,11 @@ const Tickets = () => {
                 <h1>Open Tickets</h1>
                 {openTickets}
             </div>
-            <div>
+            <div className="open-tickets">
+                <h1>Open <span className="green">Tickets</span></h1>
+                {openTickets}
+            </div>
+            <div className="closed-tickets">
                 <h1>Closed Tickets</h1>
                 {closedTickets}
             </div>

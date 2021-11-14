@@ -17,3 +17,37 @@
     width: 80%;
     min-width: 400px;
 }
+
+#register-button{
+    background-color: #9ACD32;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+}
+
+
+#register-button:hover{
+    background-color: #424242;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .register-title{
+        margin-left: 200px;
+    }
+    .register-form{
+        margin-left: 200px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .register-title{
+        margin-left: 80px;
+    }
+    
+    .register-form{
+        margin-left: 80px;
+    }
+}
