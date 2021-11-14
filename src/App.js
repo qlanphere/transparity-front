@@ -1,8 +1,9 @@
 import './App.css';
 import Sidebar from './components/Sidebar';
-import { Login, Register, Home, Feedback, CharityPage, DonationsPage, CharityPost, Tickets, TicketId} from './pages'
+import { Login, Register, Home, Feedback, CharityPage, DonationsPage, CharityPost, Tickets, TicketId } from './pages'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
+import BurgerMenu from './components/BurgerMenu/BurgerMenu'
 import {
   BrowserRouter as Router,
   Link, Route, Switch, useParams
@@ -12,7 +13,8 @@ import {
 function App() {
   return (
     <div className="App">
-      <Sidebar />
+      <BurgerMenu />
+      {/* <Sidebar /> */}
       <Router>
         <Switch>
           <Route exact path="/home">

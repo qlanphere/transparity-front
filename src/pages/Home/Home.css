@@ -2,10 +2,10 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-
+/* 
 #home-page{
     margin-left: 270px;
-}
+} */
 
 .charity-mode{
     color: #9ACD32;
@@ -16,7 +16,7 @@
 }
 
 
-@media only screen and (max-width: 800px){
+/* @media only screen and (max-width: 800px){
     #home-page{
         margin-left: 200px;
     }
@@ -50,4 +50,4 @@
         margin-right: 10px;
         width: 90%;
     }
-}
+} */

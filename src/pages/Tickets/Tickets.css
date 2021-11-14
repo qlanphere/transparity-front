@@ -1,6 +1,6 @@
 
 .tickets-page{
-    margin-left: 270px;
+    /* margin-left: 270px; */
 }
 
 .new-ticket{
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     width: 400px;
-    margin-left: 270px;
+    /* margin-left: 270px; */
     margin: 0 auto;
 }
 
@@ -37,17 +37,17 @@
     cursor:pointer;
 }
 
-.open-tickets{
+/* .open-tickets{
     margin-left: 270px;
-}
+} */
 
 .open-tickets h1{
     font-size: 24px;
 }
 
-.closed-tickets{
+/* .closed-tickets{
     margin-left: 270px;
-}
+} */
 
 .closed-tickets h1{
     font-size: 24px;
