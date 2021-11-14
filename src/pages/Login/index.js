@@ -42,7 +42,7 @@ const Login = () => {
                         <input className={styles.input} type="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
                     </div>
                     <div className="p-2">
-                        <input className="login-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} value="Login" />
+                        <input id="login-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} value="Login" />
                     </div>
                     <p className="p-2">Not registered yet? <a className={styles.a} href="/register">Create an Account</a></p>
                 </div>

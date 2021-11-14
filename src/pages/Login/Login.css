@@ -8,20 +8,15 @@
     padding-top: 10%;
 }
 
-.login-button{
+#login-button{
     background-color: #9ACD32;
     color: #fff;
     border: none;
-}
-
-#root > div > form > div > div:nth-child(3) > input{
-    background-color: #9ACD32;
-    color: #fff;
-    border: none;
+    width: 80px;
     padding: 8px 12px;
 }
 
-
-#root > div > form > div > div:nth-child(3) > input:hover{
-    background-color: #424242;
+#login-button:hover{
+    background-color:#424242;
+    cursor: pointer;
 }

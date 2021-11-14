@@ -61,19 +61,19 @@ const Register = () => {
             <form className="register-form" onSubmit={handleSubmit} aria-label="register">
                 <div className="form-fields-container">
                     <div className="p-2">
-                        <AccountCircle />
-                        <input className={styles.input} type="text" name="name" value={formData.name} onChange={handleInput} placeholder="name" />
+                        {/* <AccountCircle /> */}
+                        <input className={styles.input} type="text" name="name" value={formData.name} onChange={handleInput} placeholder="Name" />
                     </div>
                     <div className="p-2">
-                        <EmailIcon />
+                        {/* <EmailIcon /> */}
                         <input className={styles.input} type="email" name="email" value={formData.email} onChange={handleInput} placeholder="Email" />
                     </div>
                     <div className="p-2">
-                        <PasswordIcon />
+                        {/* <PasswordIcon /> */}
                         <input className={styles.input} type="password" name="password" value={formData.password} onChange={handleInput} placeholder="Password" />
                     </div>
                     <div className="p-2">
-                        <PasswordIcon />
+                        {/* <PasswordIcon /> */}
                         <input className={styles.input} type="password" name="passwordConfirmation" value={formData.passwordConfirmation} onChange={handleInput} placeholder="Confirm Password" />
                         <div className="box">
                             <span>
@@ -93,7 +93,7 @@ const Register = () => {
                             </span>
                         </div>
                     </div>
-                    <Button type="submit" variant="contained" size="large" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} >{user ? "Create User Account" : "Create Charity Account"}</Button>
+                    <button id="register-button" type="submit" variant="contained" size="large" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} >{user ? "Create Account" : "Create Charity Account"}</button>
                 </div>
 
             </form>

@@ -98,11 +98,13 @@
   }
 
   .pro-sidebar{
-    width: 80px;
+    width: 80px !important;
+    z-index: -5 !important;
   }
 
   .pro-sidebar-inner{
-    width: 80px;
+    width: 80px !important;
+    z-index: -5 !important;
   }
 
   #root > div > div.bar > div > div.pro-sidebar-inner > div > div.pro-sidebar-content > nav > ul > li:nth-child(1) > div > span.pro-item-content > a{
