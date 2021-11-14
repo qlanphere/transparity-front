@@ -5,17 +5,18 @@
     width: 80%;
     margin: 0 auto;
     min-width: 400px;
-    margin-left: 270px;
+    /* margin-left: 270px; */
     text-align: center;
     padding-top: 2%;
 }
 
 .register-title{
     text-align: center;
-    margin-left: 270px;
+    /* margin-left: 270px; */
     padding-top: 10%;
     width: 80%;
     min-width: 400px;
+    margin: 0 auto;
 }
 
 #register-button{
@@ -32,7 +33,7 @@
 }
 
 
-
+/* 
 @media only screen and (max-width: 800px) {
     .register-title{
         margin-left: 200px;
@@ -50,4 +51,4 @@
     .register-form{
         margin-left: 80px;
     }
-}
+} */
