@@ -27,6 +27,12 @@ const Post = (props) => {
         history.push('/feedbackForm')
     }
 
+    const handleDonate = async (postId) => {
+        console.log(postId)
+        await setPostId(postId)
+        history.push('/donate')
+    }
+
     return (
         <>
             <div className="card-container">
@@ -37,7 +43,7 @@ const Post = (props) => {
                     <p>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
 
-                    <button className="t-button" size="small">Donate</button>
+                    <button className="t-button" size="small" onClick={() => handleDonate(props.post_id)}>Donate</button>
                     <button className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>
                 </div>
