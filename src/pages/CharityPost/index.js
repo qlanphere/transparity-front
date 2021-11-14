@@ -48,12 +48,11 @@ const CharityPost = () => {
     
     return (
         <div>
-            
             <div id="heading" className="register-title">
                 <h2 className="text-muted"> Please fill in the below form to add a new post</h2>
                 <h3> {currentUser.sub.name}</h3>
             </div>
-            <form className="register-form" onSubmit={(e)=>handleSubmit(e)}>
+            <form encType="multipart/form-data" className="register-form" onSubmit={(e)=>handleSubmit(e)}>
             <div className="form-fields-container d-flex flex-column justify-content-start align-center">
                 <div className="p-2">
                 <label>Title:</label>
@@ -73,7 +72,8 @@ const CharityPost = () => {
                 </div>
                 <div className="p-2">
                 <label>Upload Image:</label>
-                <input type="text" name="img" value={formData.img} onChange={handleChange}/>
+                <input className="custom-file-input" type="file" name="img" id="img" value={formData.img} onChange={handleChange}/>
+                {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
                 </div>
                 <div className="p-2">
                 <input className="submit-button btn btn-secondary" type="submit" value="Submit"/>
