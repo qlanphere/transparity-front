@@ -3,7 +3,8 @@ import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
 import axios from 'axios';
-const host = 'https://transparity.herokuapp.com'
+// const host = 'https://transparity.herokuapp.com'
+const host = 'http://localhost:5000'
 const cors = require('cors')
 
 const Feedback = () => {
