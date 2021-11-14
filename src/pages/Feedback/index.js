@@ -11,45 +11,55 @@ const Feedback = () => {
   const {currentUser} = useAuthContext()
   const charity_id = currentUser.sub.id
   const [formData, setFormData] = useState({
-    transparency: "",
-    punctuality: "",
-    comeback: "",
+    rating:{
+      transparency: "",
+      punctuality:"",
+      comeback: "",
+    },
     description:""
-  });
+});
   const [TRating, setTrating] = useState(2);
   const [PRating, setPrating] = useState(4);
   const [CRating, setCrating] = useState(1);
-  const [desciption,setDescription] = useState("")
+  const [description,setDescription] = useState("")
 
 
   function handleSubmit(e) {
     e.preventDefault();
-    setFormData([TRating,PRating,CRating,desciption])
+    // setFormData({TRating,PRating,CRating},desciption)
+    setFormData({...formData, rating: {
+      transparency: TRating,
+      punctuality:PRating,
+      comeback:CRating
+      },
+      description:description,
+ })
     sendFeedback(formData,charity_id)
   }
 
   function handleChange(e){
     setDescription(e.target.value)
   }
-
-  const sendFeedback = (formData, charity_id) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const options = {
-                headers: { 'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*"},
-                mode: 'cors'
-            }
+  console.log(formData)
+  const sendFeedback = async () => {
+    // return new Promise(async (resolve, reject) => {
+      try {
+        const options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        mode: 'cors',
+        body: JSON.stringify(formData)
+    }
             console.log(formData)
-            const { data } = await axios.patch(`${host}/feedback/${charity_id}`, formData, options)
-            if (data.err){
-                throw Error(data.err)
-            }
-            resolve('Feedback successfully sent!')
-        } catch (err) {
-            reject(`Error while sending the feedback ${err}`);
-        }
-    })
+            await fetch(`${host}/feedback/${charity_id}`, options)
+            
+    }catch(err){
+      console.log(err)
+    }
 }
 
   return (
@@ -59,7 +69,7 @@ const Feedback = () => {
       <h3   > punctuality rating is {PRating}</h3>
       <h3> Comeback rating is {CRating}</h3> */}
 
-      <form class="rating-form" onSubmit={handleSubmit}>
+      <form method="PATCH" class="rating-form" onSubmit={(e)=>{handleSubmit(e)}}>
         <div className="mt-5 card">
           <p >
            1.  Did you receive an email from the charity to tell you how your
@@ -370,7 +380,7 @@ const Feedback = () => {
         </div>
         <div className="mt-5 card">
         <label>Do you like to add more to the feedback:</label>
-        <textarea id="text-area" name="textarea" rows="5" value={desciption} onChange={handleChange} /><br/>
+        <textarea id="text-area" name="textarea" rows="5" value={description} onChange={handleChange} /><br/>
         </div>
         <input className="mt-3" type="submit" value="Submit Feedback"/>
       </form>

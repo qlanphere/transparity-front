@@ -48,7 +48,6 @@ const CharityPost = () => {
     
     return (
         <div>
-            
             <div id="heading" className="register-title">
                 <h2 className="text-muted"> Please fill in the below form to add a new post</h2>
                 <h3> {currentUser.sub.name}</h3>
