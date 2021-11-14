@@ -6,17 +6,25 @@ import CardMedia from '@mui/material/CardMedia';
 import './Post.css'
 
 import { useCharityContext } from '../../contexts/charityContext';
+import { usePostContext } from '../../contexts/postContext';
+
 import { useHistory } from 'react-router-dom';
 
 const Post = (props) => {
-
+    const { setPostId } = usePostContext()
     const { setCharityName } = useCharityContext()
     const history = useHistory();
 
     const handleClick = (name) => {
         setCharityName(name)
         history.push(`/charities/${name}`)
+    }
 
+    const handleReview = async (postId) => {
+        console.log(postId)
+        await setPostId(postId)
+        console.log(postId)
+        history.push('/feedbackForm')
     }
 
     return (
@@ -31,6 +39,7 @@ const Post = (props) => {
 
                     <button className="t-button" size="small">Donate</button>
                     <button className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
+                    <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>
                 </div>
             </div>
         </>

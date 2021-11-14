@@ -2,12 +2,17 @@ import React, { useState, useContext } from "react";
 import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
+import { usePostContext } from '../../contexts/postContext';
 import axios from 'axios';
 // const host = 'https://transparity.herokuapp.com'
 const host = 'http://localhost:5000'
 const cors = require('cors')
 
 const Feedback = () => {
+
+  const { postId } = usePostContext()
+  console.log(postId)
+
   const { currentUser } = useAuthContext()
   const charity_id = currentUser.sub.id
   const [formData, setFormData] = useState({
@@ -35,6 +40,7 @@ const Feedback = () => {
       },
       description: description,
     })
+    console.log(formData)
     sendFeedback(formData, charity_id)
   }
 
@@ -42,7 +48,8 @@ const Feedback = () => {
     setDescription(e.target.value)
   }
   console.log(formData)
-  const sendFeedback = async () => {
+
+  const sendFeedback = async (formData, charity_id) => {
     // return new Promise(async (resolve, reject) => {
     try {
       const options = {
@@ -56,7 +63,9 @@ const Feedback = () => {
         body: JSON.stringify(formData)
       }
       console.log(formData)
-      await fetch(`${host}/feedback/${charity_id}`, options)
+      console.log(charity_id)
+
+      await fetch(`${host}/feedback/${postId}`, options)
 
     } catch (err) {
       console.log(err)
@@ -380,15 +389,10 @@ const Feedback = () => {
           </div>
         </div>
         <div className="mt-5 card">
-<<<<<<< HEAD
           <label>Do you like to add more to the feedback:</label>
-          <textarea id="text-area" name="textarea" rows="5" value={desciption} onChange={handleChange} /><br />
-=======
-        <label>Do you like to add more to the feedback:</label>
-        <textarea id="text-area" name="textarea" rows="5" value={description} onChange={handleChange} /><br/>
->>>>>>> 514a20f8e1ee0aebb264e714356cd5e14328a00b
+          <textarea id="text-area" name="textarea" rows="5" value={description} onChange={handleChange} /><br />
         </div >
-  <input className="mt-3" type="submit" value="Submit Feedback" />
+        <input className="mt-3" type="submit" value="Submit Feedback" />
       </form >
     </div >
   );

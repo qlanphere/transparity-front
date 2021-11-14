@@ -9,6 +9,7 @@ const host = "https://transparity.herokuapp.com"
 let dummyData = [{
     name: "Red Cross",
     posts: {
+        post_id: "RWiKTh2",
         title: "Greenpeace", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae facere molestiae eligendi voluptatem saepe vel modi corrupti, ipsum ratione nisi sint, molestias impedit numquam exercitationem nesciunt est eum dolor quas!", image: "https://i.pinimg.com/originals/0c/3b/7f/0c3b7f62c49f3ee684e3478bd3f171e5.jpg", goal: "£20,000", creation_date: '10/10/20'
     }
 }, {
@@ -50,7 +51,9 @@ const Home = () => {
                     image={post.posts.image}
                     goal={post.posts.goal}
                     date={post.posts.creation_date}
-                    name={post.name} />)
+                    name={post.name}
+                    post_id={post.posts.post_id}
+                />)
             setPosts(postArray)
         }
 

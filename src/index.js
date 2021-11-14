@@ -6,16 +6,19 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from './contexts/auth';
 import reportWebVitals from './reportWebVitals';
 import { CharityProvider } from './contexts/charityContext';
+import { PostProvider } from './contexts/postContext';
 
 ReactDOM.render(
   <Router>
     <AuthProvider>
       <CharityProvider>
-      <App />
+        <PostProvider>
+          <App />
+        </PostProvider>
       </CharityProvider>
     </AuthProvider>
   </Router>
-,
+  ,
   document.getElementById('root')
 );
 
