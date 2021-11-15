@@ -40,3 +40,8 @@
   .slideshowDot.active {
     background-color: #6a0dad;
   }
+
+  .size {
+      width: 500px;
+      height:500px;
+  }
