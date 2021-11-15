@@ -1,14 +1,14 @@
 import React from 'react'
+import './Ticket.css'
 
 
 const Ticket = (props) => {
     return (
-        <div>
-            
-            <h2><a href={`/tickets/${props.id}`}>{props.title}</a></h2>
-            <h3>{props.charityName}</h3>
-            <p>{props.description}</p>
-            <p>{props.date}</p>
+        <div className="ticket-container">
+            <h3 className="ticket-charity">{props.charityName}</h3>
+            <h4 className="ticket-title"><a href={`/tickets/${props.id}`}>{props.title}</a></h4>
+            <p className="ticket-description">{props.description}</p>
+            <p className="ticket-date">{props.date}</p>
         </div>
     )
 }
