@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
@@ -23,13 +23,46 @@ const Feedback = () => {
     },
     description: ""
   });
-  // const [TRating, setTrating] = useState(2);
-  // const [PRating, setPrating] = useState(4);
-  // const [CRating, setCrating] = useState(1);
-  // const [description, setDescription] = useState("")
+  const [TRating, setTrating] = useState(2);
+  const [PRating, setPrating] = useState(4);
+  const [CRating, setCrating] = useState(1);
+  const [description, setDescription] = useState("")
 
-const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
-  function handleSubmit(e) {
+  const [pressed, setPressed] = useState(false);
+
+  useEffect(() => {
+    console.log('pressed yet?' + pressed)
+    if (pressed == true) {
+      console.log('inside use effect' + formData)
+      const sendFeedback = async () => {
+        // return new Promise(async (resolve, reject) => {
+        try {
+          const options = {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "*",
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            mode: 'cors',
+            body: JSON.stringify(formData)
+          }
+          console.log(formData)
+          console.log(charity_id)
+
+          await fetch(`${host}/feedback/${postId}`, options)
+          setPressed(false)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+      sendFeedback()
+    }
+  }, [formData])
+
+
+  async function handleSubmit(e) {
+    console.log(formData)
     e.preventDefault();
     // setFormData({TRating,PRating,CRating},desciption)
     setFormData({
@@ -40,8 +73,7 @@ const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.tar
       },
       description: description,
     })
-    // console.log(formData)
-    sendFeedback()
+    console.log(formData)
   }
 
   function handleChange(e) {
@@ -50,38 +82,7 @@ const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.tar
   console.log("before" ,formData)
   
 
-  const sendFeedback = async (e) => {
-    // return new Promise(async (resolve, reject) => {
-      e.preventDefault();
-    // setFormData({TRating,PRating,CRating},desciption)
-    setFormData({
-      ...formData, rating: {
-        transparency: TRating,
-        punctuality: PRating,
-        comeback: CRating
-      },
-      description: description,
-    })
-    try {
-      const options = {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        mode: 'cors',
-        body: JSON.stringify(formData)
-      }
-      console.log("after",formData)
-      console.log("postid" , postId)
 
-      await fetch(`${host}/feedback/${postId}`, options)
-
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   return (
     <div>
@@ -403,7 +404,7 @@ const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.tar
           <label>Do you like to add more to the feedback:</label>
           <textarea id="text-area" name="textarea" rows="5" value={description} onChange={handleChange} /><br />
         </div >
-        <input className="mt-3" type="submit" value="Submit Feedback" />
+        <input className="mt-3" type="submit" value="Submit Feedback" onClick={() => { setPressed(true) }} />
       </form >
     </div >
   );

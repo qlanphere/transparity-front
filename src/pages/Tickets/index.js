@@ -6,8 +6,8 @@ import './Tickets.css'
 const cors = require('cors')
 
 
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 
 const Tickets = () => {
 
@@ -63,6 +63,7 @@ const Tickets = () => {
     useEffect(() => {
 
         const getTickets = async () => {
+            console.log(`${host}/user/${currentUser.sub.id}`)
             const response = await fetch(`${host}/user/${currentUser.sub.id}`, optionsGet)
             const ticketData = await response.json()
             let ticketArray = ticketData.tickets
