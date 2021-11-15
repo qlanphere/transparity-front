@@ -3,8 +3,8 @@ import Post from '../../components/Post'
 import { useAuthContext } from "../../contexts/auth";
 const cors = require('cors')
 
-// const host = "https://transparity.herokuapp.com"
-const host = 'http://localhost:5000'
+const host = "https://transparity.herokuapp.com"
+// const host = 'http://localhost:5000'
 
 const CharityPage = () => {
 
