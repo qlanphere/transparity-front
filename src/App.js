@@ -1,6 +1,6 @@
 import './App.css';
 import Sidebar from './components/Sidebar';
-import { Login, Register, Home, Feedback, CharityPage, DonationsPage, CharityPost, Tickets, TicketId } from './pages'
+import { Login, Register, Home, Feedback, CharityPage, DonationsPage, CharityPost, Tickets, TicketId, About } from './pages'
 import DonatePage from './pages/DonatePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
@@ -30,6 +30,9 @@ function App() {
           <Route exact path="/register">
             <Register />
           </Route>
+          <Route exact path = '/about'>
+            <About />
+            </Route>
           <CustomRoutes.LoggedOutRoute exact path="/feedbackForm">
             <Feedback />
           </CustomRoutes.LoggedOutRoute>

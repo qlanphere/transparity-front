@@ -1,8 +1,10 @@
 import React, {useContext, useState, useEffect} from 'react'
 import Post from '../../components/Post'
 import { useAuthContext } from "../../contexts/auth";
+const cors = require('cors')
 
-const host = "https://transparity.herokuapp.com"
+// const host = "https://transparity.herokuapp.com"
+const host = 'http://localhost:5000'
 
 const CharityPage = () => {
 
@@ -15,17 +17,26 @@ const CharityPage = () => {
     useEffect(() => {
         
         const getPosts = async () => {
-            
-            setCharityName(window.location)
+            const charity = window.location.pathname.split('/')[2]
+            setCharityName(charity)
             console.log(charityName)
-
-            const response = await fetch(`${host}/charity/${currentUser.id}`)
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                mode: 'cors',
+            }
+            const response = await fetch(`${host}/charity/${charityName}`, options)
             let data = await response.json()
+            console.log(data)
             // need to sort posts by most recent 
-            let postArray = data.map(post => 
+            let postArray = data.posts.map(post => 
                                     <Post title = {post.title}
                                         description = {post.description}
-                                        image = {post.image}
+                                        image = {post.img}
                                         date = {post.creation_date} />)
             setPosts(postArray)
         }
@@ -33,6 +44,10 @@ const CharityPage = () => {
         const getReviews = async () => {
             const response = await fetch(`${host}/feedback/${currentUser.id}`)
         }
+
+    
+
+
 
         getPosts()
 
