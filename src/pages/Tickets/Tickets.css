@@ -7,6 +7,7 @@
     text-align: center;
     font-size: 24px;
     padding-top: 4%;
+    padding-bottom: 30px;
 }
 
 .new-ticket-form{
@@ -22,6 +23,21 @@
     margin-top: 20px;
 }
 
+.new-ticket-form input:focus{
+    outline: none;
+    border: 1px solid #9ACD32;
+}
+
+.new-ticket-form textarea:focus{
+    outline: none;
+    border: 1px solid #9ACD32;
+}
+
+.new-ticket-form select:focus{
+    outline: none;
+    border: 1px solid #9ACD32;
+}
+
 .green{
     color: #9ACD32;
 }
@@ -30,6 +46,8 @@
     border: none;
     background-color: #9ACD32;
     color: #fff;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 #ticket-button:hover{
@@ -40,6 +58,11 @@
 /* .open-tickets{
     margin-left: 270px;
 } */
+
+.open-tickets{
+    width: 50%;
+    margin: 10px auto;
+}
 
 .open-tickets h1{
     font-size: 24px;
