@@ -6,8 +6,8 @@ import './Tickets.css'
 const cors = require('cors')
 
 
-const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
+// const host = 'https://transparity.herokuapp.com'
+const host = 'http://localhost:5000'
 
 const Tickets = () => {
 
@@ -16,6 +16,7 @@ const Tickets = () => {
     const [closedTickets, setClosedTickets] = useState([])
     const [ticketFormData, setTicketFormData] = useState({ name: "", description: "", res: [], status: true, charityName: ""})
     const [charities, setCharities] = useState([])
+    const [newTicket, setNewTicket] = useState(false)
 
     const handleInput = e => setTicketFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     const formIncomplete = () => Object.values(ticketFormData).some(v => !v)
@@ -54,6 +55,8 @@ const Tickets = () => {
             console.log(ticketFormData)
             await fetch(`${host}/ticket/${currentUser.sub.id}`, options)
             await fetch(`${host}/ticket/${charityId}`, options)
+            setNewTicket(true)
+
         } catch (err) {
             console.log(err)
         }
@@ -87,7 +90,8 @@ const Tickets = () => {
 
         getTickets()
         getCharities()
-    }, [])
+        setNewTicket(false)
+    }, [newTicket])
 
     return (
         <>
