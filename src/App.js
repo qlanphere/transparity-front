@@ -5,6 +5,7 @@ import DonatePage from './pages/DonatePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
 import BurgerMenu from './components/BurgerMenu/BurgerMenu'
+import DisplayRating from './components/DisplayRating/index.js';
 import {
   BrowserRouter as Router,
   Link, Route, Switch, useParams
@@ -35,6 +36,9 @@ function App() {
           </CustomRoutes.LoggedOutRoute>
           <Route exact path="/charities/:name">
             <CharityPage />
+          </Route>
+          <Route exact path="/rating">
+            <DisplayRating />
           </Route>
           <CustomRoutes.LoggedOutRoute exact path="/donate">
             <DonatePage />

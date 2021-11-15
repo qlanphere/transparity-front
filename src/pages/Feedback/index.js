@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
 import { usePostContext } from '../../contexts/postContext';
 import axios from 'axios';
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 const cors = require('cors')
 
 const Feedback = () => {
@@ -91,7 +91,7 @@ const Feedback = () => {
       <h3   > punctuality rating is {PRating}</h3>
       <h3> Comeback rating is {CRating}</h3> */}
 
-      <form method="PATCH" class="rating-form" onSubmit={(e) => { sendFeedback(e) }}>
+      <form method="PATCH" class="rating-form" onSubmit={(e) => { handleSubmit(e) }}>
         <div className="mt-5 card">
           <p >
             1.  Did you receive an email from the charity to tell you how your
