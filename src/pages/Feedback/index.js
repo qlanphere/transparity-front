@@ -17,18 +17,18 @@ const Feedback = () => {
   const charity_id = currentUser.sub.id
   const [formData, setFormData] = useState({
     rating: {
-      transparency: "",
-      punctuality: "",
-      comeback: "",
+      transparency: "2",
+      punctuality: "4",
+      comeback: "1",
     },
     description: ""
   });
-  const [TRating, setTrating] = useState(2);
-  const [PRating, setPrating] = useState(4);
-  const [CRating, setCrating] = useState(1);
-  const [description, setDescription] = useState("")
+  // const [TRating, setTrating] = useState(2);
+  // const [PRating, setPrating] = useState(4);
+  // const [CRating, setCrating] = useState(1);
+  // const [description, setDescription] = useState("")
 
-
+const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
   function handleSubmit(e) {
     e.preventDefault();
     // setFormData({TRating,PRating,CRating},desciption)
@@ -40,17 +40,28 @@ const Feedback = () => {
       },
       description: description,
     })
-    console.log(formData)
-    sendFeedback(formData, charity_id)
+    // console.log(formData)
+    sendFeedback()
   }
 
   function handleChange(e) {
     setDescription(e.target.value)
   }
-  console.log(formData)
+  console.log("before" ,formData)
+  
 
-  const sendFeedback = async (formData, charity_id) => {
+  const sendFeedback = async (e) => {
     // return new Promise(async (resolve, reject) => {
+      e.preventDefault();
+    // setFormData({TRating,PRating,CRating},desciption)
+    setFormData({
+      ...formData, rating: {
+        transparency: TRating,
+        punctuality: PRating,
+        comeback: CRating
+      },
+      description: description,
+    })
     try {
       const options = {
         method: 'PATCH',
@@ -62,8 +73,8 @@ const Feedback = () => {
         mode: 'cors',
         body: JSON.stringify(formData)
       }
-      console.log(formData)
-      console.log(charity_id)
+      console.log("after",formData)
+      console.log("postid" , postId)
 
       await fetch(`${host}/feedback/${postId}`, options)
 
@@ -79,7 +90,7 @@ const Feedback = () => {
       <h3   > punctuality rating is {PRating}</h3>
       <h3> Comeback rating is {CRating}</h3> */}
 
-      <form method="PATCH" class="rating-form" onSubmit={(e) => { handleSubmit(e) }}>
+      <form method="PATCH" class="rating-form" onSubmit={(e) => { sendFeedback(e) }}>
         <div className="mt-5 card">
           <p >
             1.  Did you receive an email from the charity to tell you how your
