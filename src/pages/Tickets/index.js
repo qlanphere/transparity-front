@@ -16,6 +16,7 @@ const Tickets = () => {
     const [closedTickets, setClosedTickets] = useState([])
     const [ticketFormData, setTicketFormData] = useState({ name: "", description: "", res: [], status: true, charityName: ""})
     const [charities, setCharities] = useState([])
+    const [newTicket, setNewTicket] = useState(false)
 
     const handleInput = e => setTicketFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     const formIncomplete = () => Object.values(ticketFormData).some(v => !v)
@@ -54,6 +55,8 @@ const Tickets = () => {
             console.log(ticketFormData)
             await fetch(`${host}/ticket/${currentUser.sub.id}`, options)
             await fetch(`${host}/ticket/${charityId}`, options)
+            setNewTicket(true)
+
         } catch (err) {
             console.log(err)
         }
@@ -63,6 +66,7 @@ const Tickets = () => {
     useEffect(() => {
 
         const getTickets = async () => {
+            console.log(`${host}/user/${currentUser.sub.id}`)
             const response = await fetch(`${host}/user/${currentUser.sub.id}`, optionsGet)
             const ticketData = await response.json()
             let ticketArray = ticketData.tickets
@@ -86,7 +90,8 @@ const Tickets = () => {
 
         getTickets()
         getCharities()
-    }, [])
+        setNewTicket(false)
+    }, [newTicket])
 
     return (
         <>

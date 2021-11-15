@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
@@ -28,8 +28,41 @@ const Feedback = () => {
   const [CRating, setCrating] = useState(1);
   const [description, setDescription] = useState("")
 
+  const [pressed, setPressed] = useState(false);
 
-  function handleSubmit(e) {
+  useEffect(() => {
+    console.log('pressed yet?' + pressed)
+    if (pressed == true) {
+      console.log('inside use effect' + formData)
+      const sendFeedback = async () => {
+        // return new Promise(async (resolve, reject) => {
+        try {
+          const options = {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "*",
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            mode: 'cors',
+            body: JSON.stringify(formData)
+          }
+          console.log(formData)
+          console.log(charity_id)
+
+          await fetch(`${host}/feedback/${postId}`, options)
+          setPressed(false)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+      sendFeedback()
+    }
+  }, [formData])
+
+
+  async function handleSubmit(e) {
+    console.log(formData)
     e.preventDefault();
     // setFormData({TRating,PRating,CRating},desciption)
     setFormData({
@@ -41,7 +74,6 @@ const Feedback = () => {
       description: description,
     })
     console.log(formData)
-    sendFeedback(formData, charity_id)
   }
 
   function handleChange(e) {
@@ -49,28 +81,7 @@ const Feedback = () => {
   }
   console.log(formData)
 
-  const sendFeedback = async (formData, charity_id) => {
-    // return new Promise(async (resolve, reject) => {
-    try {
-      const options = {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        mode: 'cors',
-        body: JSON.stringify(formData)
-      }
-      console.log(formData)
-      console.log(charity_id)
 
-      await fetch(`${host}/feedback/${postId}`, options)
-
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   return (
     <div>
@@ -392,7 +403,7 @@ const Feedback = () => {
           <label>Do you like to add more to the feedback:</label>
           <textarea id="text-area" name="textarea" rows="5" value={description} onChange={handleChange} /><br />
         </div >
-        <input className="mt-3" type="submit" value="Submit Feedback" />
+        <input className="mt-3" type="submit" value="Submit Feedback" onClick={() => { setPressed(true) }} />
       </form >
     </div >
   );
