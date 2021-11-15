@@ -6,15 +6,15 @@ import './Tickets.css'
 const cors = require('cors')
 
 
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 
 const Tickets = () => {
 
     const { currentUser } = useAuthContext()
     const [openTickets, setOpenTickets] = useState([])
     const [closedTickets, setClosedTickets] = useState([])
-    const [ticketFormData, setTicketFormData] = useState({ name: "", description: "", res: [], status: true, charityName: ""})
+    const [ticketFormData, setTicketFormData] = useState({ name: "", description: "", res: [], status: true, charityName: "" })
     const [charities, setCharities] = useState([])
     const [newTicket, setNewTicket] = useState(false)
 
@@ -74,16 +74,16 @@ const Tickets = () => {
                 let openTicks = ticketArray.filter(ticket => ticket.status == true)
                 let closedTicks = ticketArray.filter(ticket => ticket.status == false)
                 console.log(ticketArray)
-                setOpenTickets(openTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName = {ticket.charity_name}/>))
-                setClosedTickets(closedTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName = {ticket.charity_name}/>))
+                setOpenTickets(openTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />))
+                setClosedTickets(closedTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />))
             }
         }
 
         const getCharities = async () => {
             const response = await fetch(`${host}/home`, optionsGet)
             const userData = await response.json()
-            const charityArray = userData.filter(user => user.user_type=='charity')
-            const dropdownArray  = charityArray.map(c => <option value = {c.name}>{c.name}</option>)
+            const charityArray = userData.filter(user => user.user_type == 'charity')
+            const dropdownArray = charityArray.map(c => <option value={c.name}>{c.name}</option>)
             setCharities(dropdownArray)
         }
 
@@ -95,10 +95,10 @@ const Tickets = () => {
 
     return (
         <>
-            <div className="tickets-page">
+            {(currentUser.sub.user != 'charity') ? <div className="tickets-page">
                 <h1 className="new-ticket">Create a New <span className="green">Ticket</span></h1>
                 <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
-                <select value = {ticketFormData.charityName} name = "charityName" onChange = {handleInput}>
+                    <select value={ticketFormData.charityName} name="charityName" onChange={handleInput}>
                         {charities}
                     </select>
                     <input type="text" name="name" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
@@ -106,15 +106,15 @@ const Tickets = () => {
                     <input id="ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
                 </form>
 
-            </div>
+            </div> : <></>}
             <div className="open-tickets">
                 <h1>Open <span className="green">Tickets</span></h1>
                 {openTickets}
             </div>
-            <div className="closed-tickets">
+            {(currentUser.sub.user != 'charity') ?<div className="closed-tickets">
                 <h1>Closed Tickets</h1>
                 {closedTickets}
-            </div>
+            </div>: <></>}
         </>
     )
 }
