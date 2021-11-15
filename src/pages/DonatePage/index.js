@@ -3,38 +3,6 @@ import './DonatePage.css'
 
 function DonatePage() {
 
-    // const paypal = useRef()
-    // useEffect(() => {
-    //     console.log('we here')
-    //     window.paypal.Buttons({
-    //         cureateOrder: (data, actions, err) => {
-    //             return actions.order.create({
-    //                 intent: "CAPTURE",
-    //                 purchase_units: [{
-    //                     description: "Donating to Greenpeace Post1",
-    //                     amount: {
-    //                         currency_code: "GBP",
-    //                         value: 350.00,
-    //                     }
-    //                 }]
-    //             })
-    //         },
-    //         onApprove: async (data, actions) => {
-    //             const order = await actions.order.capture()
-    //             console.log(order)
-    //         },
-    //         onError: (err) => {
-    //             console.log(err)
-    //         }
-    //     }).render(paypal.current)
-    // }, [])
-    // return (
-    //     <div>
-    //         <h1>Donate</h1>
-    //         <div>{paypal}</div>
-    //     </div>
-    // )
-
     const paypal = useRef();
 
     useEffect(() => {
@@ -43,12 +11,15 @@ function DonatePage() {
                 createOrder: (data, actions, err) => {
                     return actions.order.create({
                         intent: "CAPTURE",
+                        application_context: {
+                            shipping_preference: 'NO_SHIPPING'
+                        },
                         purchase_units: [{
                             description: "Donating to Greenpeace Post1",
                             amount: {
                                 currency_code: "GBP",
                                 value: 350.00,
-                            }
+                            },
                         }]
                     });
                 },
