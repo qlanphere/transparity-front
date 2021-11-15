@@ -4,8 +4,8 @@ import { Form } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useAuthContext } from "../../contexts/auth";
 import './CharityPost.css'
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 const cors = require('cors')
 const imageToBase64 = require('image-to-base64')
 
