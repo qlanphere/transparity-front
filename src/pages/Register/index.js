@@ -56,7 +56,7 @@ const Register = () => {
     }
 
     return (
-        <>
+        <div className="register-page">
             <h1 className="register-title">Register</h1>
             <form className="register-form" onSubmit={handleSubmit} aria-label="register">
                 <div className="form-fields-container">
@@ -99,7 +99,7 @@ const Register = () => {
             </form>
             {error && <div id="error">{error}</div>}
             {loading && <div id="loading">Creating account . . .</div>}
-        </>
+        </div>
     );
 
 }
