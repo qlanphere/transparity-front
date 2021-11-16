@@ -3,14 +3,12 @@ import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import './CharityPost.css'
 import Button from 'react-bootstrap/Button'
-import {usePostContext} from '../../contexts/postContext'
 const cors = require('cors')
 
 const host = 'https://transparity.herokuapp.com'
 
 const EditPost = (props) => {
     const { currentUser } = useAuthContext()
-    // const { postId } = usePostContext()
     const [formData, setFormData] = useState({
         "description": '',
         "pdf": ''
@@ -41,6 +39,7 @@ const EditPost = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log(postId)
         try {
             const options = {
                 method: 'PATCH',

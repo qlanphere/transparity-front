@@ -37,7 +37,7 @@ const Home = () => {
                         goal={post.goal}
                         date={post.creation_date}
                         name={p.name}
-                        post_id={post.post_id}
+                        postId={post.post_id}
                     />)
 
             })

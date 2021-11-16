@@ -38,7 +38,6 @@ const CharityPage = () => {
       };
       const response = await fetch(`${host}/charity/${window.location.pathname.split('/')[2]}`, options);
       let data = await response.json();
-
       setBio(({avatar: data.avatar,
               bio: data.bio}))
       // need to sort posts by most recent
@@ -51,6 +50,7 @@ const CharityPage = () => {
           date={post.creation_date}
           hidden = "true"
           name = {data.name}
+          postId={post.post_id}
         />
       ));
 

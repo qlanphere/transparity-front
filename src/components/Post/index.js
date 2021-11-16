@@ -11,7 +11,6 @@ import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/auth';
 
 const host = "https://transparity.herokuapp.com"
-// const host = "http://127.0.0.1:5000"
 
 const Post = (props) => {
     const { setPostId, emailP, setEmailP } = usePostContext()
@@ -80,14 +79,12 @@ const Post = (props) => {
                     <p className="card-date">{props.date}</p>
                     <p className="card-date">{props.target_date}</p>
 
-                    {/* insert button for edit post */}
-                    <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.post_id}/>
+                    <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.postId}/>
                     {donate()}
-                    <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
+                    {currentUser ? <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button> :<></>}
                     {review()}
                     <DispayRating charity={props.name} />
                     {currentUser && props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
-                    {/* props.name === currentUser.sub.user &&  */}
                 </div>
             </div>
 
