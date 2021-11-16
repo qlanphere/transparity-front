@@ -17,6 +17,22 @@ const index = () => {
                     <h4>Copyright &copy; 2021 </h4>
                 </div>
 
+                <div className="footer-transp-container">
+                    <ul>
+                        <li><a href="https://transparity.netlify.app/timeline">Timeline</a></li>
+                        <li><a href="https://transparity.netlify.app/tickets">Tickets</a></li>
+                        <li><a href="https://transparity.netlify.app/feedbackForm">Feedback</a></li>
+                        <li><a href="https://transparity.netlify.app/donations">Donations</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="https://transparity.netlify.app/home">Home</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+
+                </div>
+
 
                 <div class="footer-social-media-banner">
                     <h5>Follow Us:</h5>
@@ -26,6 +42,7 @@ const index = () => {
                     <a href="" target="_blank"><AiIcons.AiFillYoutube /></a>
                 </div>
             </footer>
+            <div class="bottom-separator"></div>
         </div>
     )
 }

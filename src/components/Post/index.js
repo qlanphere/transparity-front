@@ -16,7 +16,7 @@ const host = "https://transparity.herokuapp.com"
 // const host = "http://127.0.0.1:5000"
 
 const Post = (props) => {
-    const { postId,setPostId, emailP, setEmailP } = usePostContext()
+    const { postId, setPostId, emailP, setEmailP } = usePostContext()
     const { charityName, setCharityName, charityId, setCharityId } = useCharityContext()
     const { currentUser } = useAuthContext()
     const [modalShow, setModalShow] = useState(false);
@@ -60,7 +60,7 @@ const Post = (props) => {
     const donate = () => {
         try {
             return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button> : <></>
-        } catch {return false}
+        } catch { return false }
     }
 
     const review = () => {
@@ -83,7 +83,7 @@ const Post = (props) => {
                     <p className="card-date">{props.target_date}</p>
 
                     {/* insert button for edit post */}
-                    <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.post_id}/>
+                    <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.post_id} />
                     {donate()}
                     <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     {review()}
@@ -91,10 +91,10 @@ const Post = (props) => {
                     {/* {console.log("prop: ",props.name)}
                     {console.log("current:", currentUser.sub.name)} */}
 
-                    { currentUser && props.name === currentUser.sub.name && <EditButton postId = {props.postId}>...</EditButton>}
+                    {currentUser && props.name === currentUser.sub.name && <EditButton postId={props.postId}>Edit</EditButton>}
                     {/* props.name === currentUser.sub.user &&  */}
                 </div>
-                
+
             </div>
         </>
     );

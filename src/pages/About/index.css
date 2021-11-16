@@ -1,9 +1,14 @@
 /* Slideshow */
 
+.about-page{
+  overflow: hidden;
+  width: 100%;
+}
+
 .slideshow {
     margin: 0 auto;
     overflow: hidden;
-    max-width: auto;
+    max-width: 100%;
   }
   
   .slideshowSlider {
@@ -74,19 +79,18 @@
     margin-top: 50px;
     height: 500px;
     background-color: #9ACD32;
-    margin-bottom: 100px;
   }
 
-  .slide::before,
-  .slide::after{
+  .slide::before{
     content: '';
     position: absolute;
     height: 100px;
-    bottom: -350px;
+    bottom: -340px;
     right: 0;
     left: 0;
     background: #fff;
-    transform: skewY(-3deg)
+    transform: skewY(-3deg);
+    z-index: 5;
   }
 
   .slide-title{
@@ -94,10 +98,49 @@
     padding-top: 20px;
     letter-spacing: 0.3rem;
     font-size: 28px;
+    margin-bottom: 60px;
+  }
+
+  .rounded-card{
+    height: 400px;
+    background-color: #fff;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 25px;
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 10;
   }
 
 
+@media only screen and (max-width: 1100px) and (min-width:600px){
+  .slide::before,
+  .slide::after{
+    content: '';
+    position: absolute;
+    height: 100px;
+    bottom: -390px;
+    right: 0;
+    left: 0;
+    background: #fff;
+    transform: skewY(-3deg);
+    z-index: 5;
+  }
+}
 
+@media only screen and (min-width:100px) and (max-width: 601px){
+  .slide::before,
+  .slide::after{
+    content: '';
+    position: absolute;
+    height: 100px;
+    bottom: -690px;
+    right: 0;
+    left: 0;
+    background: #fff;
+    transform: skewY(-3deg)
+  }
+}
 
 
   

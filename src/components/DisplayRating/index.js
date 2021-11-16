@@ -120,7 +120,7 @@ const DispayRating = (props) => {
   return (
     <div>
       <h6>{totalReviews} Reviews</h6>
-      {totalReviews !== 0 && <div className="review-container"><p>Transparency: <span className="green">{rating}/5</span> </p><p>Punctuality: <span className="green">{punctualityRating}/5</span> </p><p>Retention: <span className="green">{returningRating}/5</span> </p></div>}
+      {totalReviews !== 0 && <div className="review-container"><p>Transparency <span className="green">{rating}/5</span> </p><p>Punctuality <span className="green">{punctualityRating}/5</span> </p><p>Retention <span className="green">{returningRating}/5</span> </p></div>}
     </div>
   )
 }

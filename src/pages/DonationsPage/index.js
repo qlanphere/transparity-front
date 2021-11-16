@@ -53,7 +53,7 @@ const DonationsPage = () => {
         <div className="donations-history-page">
             <h1 className="donations-history-title">{currentUser.user == 'charity' ? `Donations Received` : `${currentUser.sub.name}'s Total Amount Donated: `}</h1>
             <h3 className="total-donated"><span className="green">$</span>{donations}</h3>
-            <div>{transactions}</div>
+            <div className="grid-display">{transactions}</div>
         </div>
     )
 }

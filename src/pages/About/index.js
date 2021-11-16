@@ -74,6 +74,7 @@ const About = () => {
             </div>
             <div className="slide">
                 <h1 className="slide-title">Creating Change <HiCubeTransparent /></h1>
+                <div className="rounded-card"></div>
             </div>
             {/* <div
                     className="slideshowSlider"
