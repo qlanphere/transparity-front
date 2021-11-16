@@ -55,6 +55,18 @@ const Post = (props) => {
         history.push('/donate')
     }
 
+    const donate = () => {
+        try {
+            return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button> : <></>
+        } catch {return false}
+    }
+
+    const review = () => {
+        try {
+            return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>
+        } catch { return false }
+    }
+
 
     return (
         <>
@@ -70,14 +82,11 @@ const Post = (props) => {
 
                     {/* insert button for edit post */}
                     <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.post_id}/>
-                    {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button> : <></>}
+                    {donate()}
                     <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
-                    {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>}
+                    {review()}
                     <DispayRating charity={props.name} />
-                    {console.log("prop: ",props.name)}
-                    {console.log("current:", currentUser.sub.name)}
-
-                    { props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
+                    {currentUser && props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
                     {/* props.name === currentUser.sub.user &&  */}
                 </div>
             </div>
