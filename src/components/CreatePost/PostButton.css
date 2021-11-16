@@ -13,3 +13,8 @@
     background-color: #9ACD32;
     outline: none;
 }
+
+.Toastify__progress-bar--success {
+    color: #9ACD32 !important;
+    background-color: #9ACD32 !important;
+  }
