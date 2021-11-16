@@ -3,12 +3,14 @@ import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import './CharityPost.css'
 import Button from 'react-bootstrap/Button'
+import { usePostContext } from '../../contexts/postContext';
 const cors = require('cors')
 
 const host = 'https://transparity.herokuapp.com'
 
 function CreatePost(props) {
     const { currentUser } = useAuthContext()
+    const {posted, setPosted} = usePostContext()
     const charity_name = currentUser.sub.name
     const charity_id = currentUser.sub.id
     const [modalShow, setModalShow] = useState(true);
@@ -56,6 +58,7 @@ function CreatePost(props) {
             }
             console.log(formData)
             await fetch(`${host}/charity/post/${charity_id}`, options)
+            setPosted(true)
 
         } catch (err) {
             console.log(err)
@@ -103,7 +106,7 @@ function CreatePost(props) {
                         {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
                     </div>
                     <div className="form-button">
-                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
+                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" onClick={() => {props.onHide(); props.notify()}}/>
                     </div>
 
                 </div>
@@ -111,9 +114,6 @@ function CreatePost(props) {
 
         </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
       </Modal>
     );
   }

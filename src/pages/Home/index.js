@@ -5,6 +5,7 @@ import './Home.css'
 import Footer from '../../components/Footer'
 import { HdrOnSelectSharp } from '@mui/icons-material'
 import Button from '../../components/CreatePost/PostButton'
+import { usePostContext } from '../../contexts/postContext'
 
 
 const host = "https://transparity.herokuapp.com"
@@ -12,6 +13,7 @@ const host = "https://transparity.herokuapp.com"
 const Home = () => {
     const [posts, setPosts] = useState([])
     const { currentUser } = useAuthContext()
+    const {posted, setPosted} = usePostContext()
 
     useEffect(() => {
 
@@ -42,8 +44,8 @@ const Home = () => {
             })
             function flatten(ary) {
                 let ret = [];
-                for(let i = 0; i < ary.length; i++) {
-                    if(Array.isArray(ary[i])) {
+                for (let i = 0; i < ary.length; i++) {
+                    if (Array.isArray(ary[i])) {
                         ret = ret.concat(flatten(ary[i]));
                     } else {
                         ret.push(ary[i]);
@@ -57,30 +59,32 @@ const Home = () => {
                 if (a.creation_date > b.creation_date) return -1;
                 if (a.creation_date < b.creation_date) return 1;
                 return 0;
-              });
+            });
             setPosts(sortedArr.reverse())
-            }
-        
+        }
+
 
         getPosts()
-        console.log(currentUser)
+        setPosted(false)
 
-    }, [])
+    }, [posted])
 
     const create = () => {
         try {
-            return currentUser && currentUser.sub.user == 'charity' ? <Button/> : <></>
-        } catch {return false}
+            return currentUser && currentUser.sub.user == 'charity' ? <Button /> : <></>
+        } catch { return false }
     }
 
 
     return (
         <>
-        {create()}
-        
+
             <div id="home-page" className='d-flex justify-content-end align-items-center flex-column mr-auto'>
-                <h1 className="dashboard-title"> Donate With <span className="charity-mode">Transparity</span> </h1>
-                {posts}
+                <h1 className="dashboard-title"> Welcome to <span className="charity-mode">Transparity</span> </h1>
+                {create()}
+                <div className="grid-display">
+                    {posts}
+                </div>
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
                 <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" /> */}
             </div>

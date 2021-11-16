@@ -1,32 +1,34 @@
 .card-container{
     display: flex;
+    flex-direction: column;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     margin-bottom: 20px;
-    width: 500px;
+    width: 400px;
+    padding: 5px;
 }
 
 .card-info{
     width: 100%;
     padding: 15px;
+    text-align: center;
 }
 .charity-name{
-    text-align: left;
     font-size: 18px;
 }
 
 .card-description{
-    text-align: left;
     font-size: 12px;
 }
 
 .card-title{
     font-size: 24px;
-    text-align: left;
 }
 
 .card-img{
     height:150px;
+    width: auto;
     align-self: center;
+    justify-self: center;
 }
 
 .t-button{

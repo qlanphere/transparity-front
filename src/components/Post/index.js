@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -67,26 +67,26 @@ const Post = (props) => {
     return (
         <>
             <div className="card-container">
-                <img className="card-img" src={props.image} width={150} />
                 <div className="card-info">
                     <h1 className="card-title">{props.title}</h1>
                     <h2 className="charity-name">{props.name}</h2>
+                    <img className="card-img" src={props.image} width={150} />
                     <p className="card-description">{props.description}</p>
                     <p>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
-                    <p className = "card-date">{props.target_date}</p>
-                    
+                    <p className="card-date">{props.target_date}</p>
+
                     {/* insert button for edit post */}
                     <EditPost show={modalShow} onHide={() => setModalShow(false)} />
-                    {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button>: <></>}
-                    <button hidden = {props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
-                    {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>: <></>}
-                    <DispayRating charity={props.name}/>
+                    {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button> : <></>}
+                    <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
+                    {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>}
+                    <DispayRating charity={props.name} />
                     { <button onClick={handleEdit}>...</button>}
                     {/* props.name === currentUser.sub.user &&  */}
                 </div>
             </div>
-           
+
         </>
     );
 }

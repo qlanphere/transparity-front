@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import './CreateBio.css'
 import Button from 'react-bootstrap/Button'
+import { usePostContext } from '../../contexts/postContext';
 const cors = require('cors')
 
 const host = 'https://transparity.herokuapp.com'
@@ -11,6 +12,7 @@ function CreateBio(props) {
     const { currentUser } = useAuthContext()
     const charity_name = currentUser.sub.name
     const charity_id = currentUser.sub.id
+    const {updatedBio, setUpdatedBio} = usePostContext()
     const [formData, setFormData] = useState({
         description: "",
         img: ""
@@ -36,7 +38,6 @@ function CreateBio(props) {
     }
 
     const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
-    console.log(formData)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -50,9 +51,8 @@ function CreateBio(props) {
                 mode: 'cors',
                 body: JSON.stringify(formData)
             }
-            console.log(formData)
             await fetch(`${host}/update/charity/${charity_id}`, options)
-
+            setUpdatedBio(true)
         } catch (err) {
             console.log(err)
         }
@@ -87,7 +87,7 @@ function CreateBio(props) {
                         {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
                     </div>
                     <div className="form-button">
-                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
+                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" onClick = {() => {props.onHide(); props.notify()}}/>
                     </div>
 
                 </div>
@@ -95,9 +95,7 @@ function CreateBio(props) {
 
         </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
+
       </Modal>
     );
   }
