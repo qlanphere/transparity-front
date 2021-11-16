@@ -15,8 +15,10 @@ const TicketId = () => {
     const [ticketData, setTicketData] = useState('')
     const [responseFormData, setResponseFormData] = useState({ name: currentUser.sub.name, user_type: currentUser.sub.user, description: "" })
     const [responseData, setResponseData] = useState([])
-    const [closeButton, setCloseButton] = useState('')
+    const [recipientFormData, setRecipientFormData] = useState({ name: '', user_type: currentUser.sub.user=='charity' ? 'user':'charity', description: "" })
+
     const [status, setStatus] = useState(true)
+    const [newResponse, setNewResponse] = useState(false)
 
     const handleCloseTicket = async () => {
         const options = {
@@ -32,18 +34,21 @@ const TicketId = () => {
         await fetch(`${host}/ticket/status/${id}`, options)
         setStatus(false)
     }
-    console.log(ticketData)
     const canIReply = () => {
         try {
         return responseData ? (responseData[responseData.length - 1].props.name == currentUser.sub.name) : false
         } catch { return false}
     }
-    const handleInput = e => setResponseFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    const handleInput = e => {
+        setResponseFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+        setRecipientFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+        setRecipientFormData(prev => ({...prev, name: ticketData.props.charityName}))
+    }
     const formIncomplete = () => Object.values(responseFormData).some(v => !v) || canIReply()
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const options = {
+            const options1 = {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,8 +58,22 @@ const TicketId = () => {
                 mode: 'cors',
                 body: JSON.stringify(responseFormData)
             }
-            currentUser.sub.user == 'user' ? await fetch(`${host}/user/ticket/${id}`, options) : await fetch(`${host}/charity/ticket/${id}`, options)
+            const options2 = {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                mode: 'cors',
+                body: JSON.stringify(recipientFormData)
+            }
+            let recipientType = currentUser.sub.user=='charity' ? 'user':'charity'
 
+            await fetch(`${host}/${currentUser.sub.user}/ticket/${id}`, options1)
+            await fetch(`${host}/${recipientType}/ticket/${id}`, options2)
+
+            setNewResponse(true)
         } catch (err) {
             console.log(err)
         }
@@ -70,10 +89,10 @@ const TicketId = () => {
             },
             mode: 'cors'
         }
+        
         const getTicket = async () => {
             const response = await fetch(`${host}/tickets/${id}`, options)
             const ticket = await response.json()
-            console.log(ticket)
             setStatus(ticket.status ? true: false)
             setTicketData(<Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />)
             setResponseData(ticket.res.map(message => <Response description={message.description} date={message.date} name={message.name} />))
@@ -81,15 +100,16 @@ const TicketId = () => {
 
         getTicket()
         
-        setCloseButton(status ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>)
+        setNewResponse(false)
+        
 
-    }, [status])
+    }, [status, newResponse])
 
     return (
         <>
             <h1>Ticket {id}</h1>
             {ticketData}
-            {closeButton}
+            {currentUser.sub.user == 'user' ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>}
             <div>
                 {responseData}
             </div>
