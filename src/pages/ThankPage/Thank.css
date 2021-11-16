@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.thank-you-title{
+    font-family: 'Roboto';
+    font-size: 36px;
+    padding-top: 10%;
+}
+
+.green{
+    color: #9ACD32;
+}
