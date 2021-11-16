@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { usePostContext } from '../../contexts/postContext';
 import { useCharityContext } from '../../contexts/charityContext';
 import { useAuthContext } from '../../contexts/auth';
@@ -7,6 +8,7 @@ import './DonatePage.css'
 function DonatePage() {
 
     const paypal = useRef();
+    const history = useHistory();
 
     const [donate, setDonate] = useState(100);
     const [ready, setReady] = useState(false);
@@ -57,7 +59,7 @@ function DonatePage() {
                         }
                         // const response = await fetch(`${charityId}/donate/${userId}`, options)
                         const response = await fetch(`http://127.0.0.1:5000/${charityId}/donate/${currentUser.sub.id}`, options)
-
+                        history.push(`/thankyou`)
 
                     },
                     onError: (err) => {
@@ -70,10 +72,10 @@ function DonatePage() {
 
     return (
         <div>
-            <h1 className="donate-page-title">Donate</h1>
+            <h1 className="donate-page-title">Donate to {charityName}</h1>
             <p>Please enter the amount you would like to donate:</p>
-            <input type="text" onChange={(e) => { setDonate(parseInt(e.target.value)) }} />
-            <button onClick={() => { setReady(true) }}>Confirm</button>
+            <input className="donate-amount" type="text" onChange={(e) => { setDonate(parseInt(e.target.value)) }} />
+            <button className="confirm-button" onClick={() => { setReady(true) }}>Confirm</button>
 
             <div className="paypal-container" ref={paypal}></div>
         </div>
