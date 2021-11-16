@@ -1,0 +1,12 @@
+.review-container{
+    display: flex;
+    align-self: center;
+}
+
+.review-container p{
+    font-size: 14px;
+}
+
+.green{
+    color: #9ACD32;
+}
