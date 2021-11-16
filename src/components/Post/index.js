@@ -59,10 +59,6 @@ const Post = (props) => {
         history.push('/donate')
     }
 
-    function handleEdit(e){
-        
-        <EditPost postId = {props.post_id}/>
-    }
 
     return (
         <>
@@ -77,12 +73,15 @@ const Post = (props) => {
                     <p className="card-date">{props.target_date}</p>
 
                     {/* insert button for edit post */}
-                    <EditPost show={modalShow} onHide={() => setModalShow(false)} />
+                    <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.post_id}/>
                     {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button> : <></>}
                     <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>}
                     <DispayRating charity={props.name} />
-                    { <button onClick={handleEdit}>...</button>}
+                    {console.log("prop: ",props.name)}
+                    {console.log("current:", currentUser.sub.name)}
+
+                    { props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
                     {/* props.name === currentUser.sub.user &&  */}
                 </div>
             </div>
