@@ -5,6 +5,7 @@ import './Home.css'
 import Footer from '../../components/Footer'
 import { HdrOnSelectSharp } from '@mui/icons-material'
 import Button from '../../components/CreatePost/PostButton'
+import { usePostContext } from '../../contexts/postContext'
 
 
 const host = "https://transparity.herokuapp.com"
@@ -12,6 +13,7 @@ const host = "https://transparity.herokuapp.com"
 const Home = () => {
     const [posts, setPosts] = useState([])
     const { currentUser } = useAuthContext()
+    const {posted, setPosted} = usePostContext()
 
     useEffect(() => {
 
@@ -63,9 +65,9 @@ const Home = () => {
 
 
         getPosts()
-        console.log(currentUser)
+        setPosted(false)
 
-    }, [])
+    }, [posted])
 
     const create = () => {
         try {

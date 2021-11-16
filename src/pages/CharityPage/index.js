@@ -4,6 +4,7 @@ import Post from "../../components/Post";
 import { useAuthContext } from "../../contexts/auth";
 import { useCharityContext } from "../../contexts/charityContext";
 import Button from "../../components/CreateBio/BioButton"
+import { usePostContext } from "../../contexts/postContext";
 const cors = require("cors");
 
 const host = "https://transparity.herokuapp.com";
@@ -14,8 +15,8 @@ const CharityPage = () => {
   const [reviews, setReviews] = useState([]);
   const { charityName, setCharityName } = useCharityContext();
   const { currentUser } = useAuthContext();
+  const {updatedBio, setUpdatedBio} = usePostContext()
   const [bio, setBio] = useState({avatar:'', bio: ''})
-  console.log(bio);
 
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const CharityPage = () => {
       };
       const response = await fetch(`${host}/charity/${window.location.pathname.split('/')[2]}`, options);
       let data = await response.json();
+
       setBio(({avatar: data.avatar,
               bio: data.bio}))
       // need to sort posts by most recent
@@ -62,6 +64,7 @@ const CharityPage = () => {
     } else {
       setPosts(<h3>You have no posts yet!</h3>)
     }
+    setUpdatedBio(false)
       // sortedArr != [] ? setPosts(sortedArr.reverse()) : setPosts(<h3>You have no posts yet!</h3>)
       
     } catch (err) {
@@ -69,7 +72,7 @@ const CharityPage = () => {
     }
   }
   getPosts();
-  }, [charityName]);
+  }, [updatedBio]);
 
   
 
