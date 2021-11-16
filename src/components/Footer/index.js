@@ -1,7 +1,6 @@
 import React from 'react'
 import './Footer.css'
 import { HiCubeTransparent } from "react-icons/hi";
-import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import * as RiIcons from 'react-icons/ri'

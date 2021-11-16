@@ -1,13 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useAuthContext } from "../../contexts/auth";
 import { useHistory } from "react-router-dom";
-import { AccountCircle } from '@mui/icons-material'
-import PasswordIcon from '@mui/icons-material/Password'
-import EmailIcon from '@mui/icons-material/Email'
 import styles from './Register.module.css'
 import './Register.css'
-import Button from '@mui/material/Button';
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 

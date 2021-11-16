@@ -1,16 +1,13 @@
 import './App.css';
-import Sidebar from './components/Sidebar';
 import { Login, Register, Home, Feedback, CharityPage, DonationsPage, CharityPost, Tickets, TicketId, About } from './pages'
 import DonatePage from './pages/DonatePage';
 import ThankPage from './pages/ThankPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
 import BurgerMenu from './components/BurgerMenu/BurgerMenu'
-import DisplayRating from './components/DisplayRating/index.js';
 import Footer from './components/Footer/index'
 import {
-  BrowserRouter as Router,
-  Link, Route, Switch, useParams
+  BrowserRouter as Router, Route, Switch
 } from 'react-router-dom';
 
 
@@ -25,7 +22,7 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/">
-            <Home />
+            <About />
           </Route>
           <Route exact path="/login">
             <Login />

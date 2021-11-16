@@ -2,7 +2,6 @@ import React from 'react'
 import './index.css'
 import Slider from "react-slick";
 import { HiCubeTransparent } from "react-icons/hi";
-import Footer from '../../components/Footer'
 //import "~slick-carousel/slick/slick.css"; 
 // import "~slick-carousel/slick/slick-theme.css";
 

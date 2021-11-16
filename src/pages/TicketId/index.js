@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
-import { MessageList } from 'react-chat-elements'
+
 import Response from '../../components/Response'
 import './TicketId.css'
 

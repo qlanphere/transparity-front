@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthContext } from "../../contexts/auth";
 import { useHistory } from "react-router-dom";
-import PasswordIcon from '@mui/icons-material/Password'
-import EmailIcon from '@mui/icons-material/Email'
 import styles from './Login.module.css'
 import './Login.css'
 

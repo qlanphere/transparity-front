@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
 import { usePostContext } from '../../contexts/postContext';
-import axios from 'axios';
 const host = 'https://transparity.herokuapp.com'
 // const host = 'http://localhost:5000'
 const cors = require('cors')

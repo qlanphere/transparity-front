@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import './CreateBio.css'
-import Button from 'react-bootstrap/Button'
 import { usePostContext } from '../../contexts/postContext';
 const cors = require('cors')
 

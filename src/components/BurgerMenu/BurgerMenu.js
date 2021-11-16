@@ -2,16 +2,13 @@ import { slide as Menu } from 'react-burger-menu'
 import React, { Profiler, useState } from "react";
 import "react-pro-sidebar/dist/css/styles.css";
 import 'font-awesome/css/font-awesome.min.css';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaSignOutAlt, FaSignInAlt, FaUserCircle, FaDonate, FaTicketAlt, FaBars, FaIdBadge} from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
+import { FaHeart, FaSignOutAlt, FaSignInAlt, FaUserCircle, FaDonate, FaTicketAlt, FaBars, FaIdBadge} from 'react-icons/fa';
 import { IoHome } from "react-icons/io5";
 import { BiDonateHeart } from "react-icons/bi";
 import { BsBook } from "react-icons/bs";
 import { HiCubeTransparent } from "react-icons/hi";
-import { NavLink, Link } from 'react-router-dom';
-import { Nav, Navbar, Container } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 import { useAuthContext } from "../../contexts/auth";
-import styled from 'styled-components';
 import './BurgerMenu.css'
 
 function BurgerMenu() {
