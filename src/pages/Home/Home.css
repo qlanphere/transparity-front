@@ -2,10 +2,13 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-/* 
-#home-page{
-    margin-left: 270px;
-} */
+
+
+.grid-display{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    gap: 30px;
+} 
 
 .charity-mode{
     color: #9ACD32;
