@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './Post.css'
+// import EditPost from '../CreatePost/Edit'
 import DispayRating from '../../components/DisplayRating'
+import EditPost from '../../components/CreatePost/Edit'
 
 import { useCharityContext } from '../../contexts/charityContext';
 import { usePostContext } from '../../contexts/postContext';
@@ -53,6 +55,11 @@ const Post = (props) => {
         history.push('/donate')
     }
 
+    function handleEdit(e){
+        
+        <EditPost postId = {props.post_id}/>
+    }
+
     return (
         <>
             <div className="card-container">
@@ -71,6 +78,8 @@ const Post = (props) => {
                     <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>}
                     <DispayRating charity={props.name} />
+                    { <button onClick={handleEdit}>...</button>}
+                    {/* props.name === currentUser.sub.user &&  */}
                 </div>
             </div>
 
