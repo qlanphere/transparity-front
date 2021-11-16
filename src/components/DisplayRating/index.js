@@ -118,15 +118,16 @@ const DispayRating = (props) => {
                         console.log("transparency" , reducedTrans)
                         console.log("punctual" , punctualArray)
                         console.log("return " , returnArray)
-                        setTotalReviews(reviewLength.length)
+                        setTotalReviews(postArray.length)
                         //calculates the average in all the 3 areas
                         if (reviewLength !==0 && postArray.length != 0 && punctualArray.length != 0 && returnArray.length!=0){
-                            console.log("inside second if")
+                            //transparency
                             let sum = reducedTrans.reduce((a,b)=> parseInt(a)+parseInt(b))
-                            console.log(sum)
                             setRating(Math.round(parseInt(sum)/reviewLength.length).toFixed(1))  
+                            //punctuality
                             let sumP = reducedPunc.reduce((a,b)=>parseInt(a)+parseInt(b))
                             setPunctualityRating(Math.round(parseInt(sumP)/reviewLength.length).toFixed(1))  
+                            //Retention
                             let sumR = reducedReturn.reduce((a,b)=>parseInt(a)+parseInt(b))
                             setReturningRating(Math.round(parseInt(sumR)/reviewLength.length).toFixed(1)) 
                         }
@@ -218,7 +219,7 @@ const DispayRating = (props) => {
 
     return (
         <div>
-           <h6>Total Reviews({totalReviews})</h6>
+           <h6>{totalReviews} Reviews</h6>
            {/* <h2>{allPosts}</h2> */}
            {totalReviews !==0 && <div><p>Transparency: {rating}/5 </p><p>Punctuality: {punctualityRating}/5 </p><p>Retention: {returningRating}/5 </p></div>}
            

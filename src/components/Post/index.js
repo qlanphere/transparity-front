@@ -73,6 +73,8 @@ const Post = (props) => {
                     <button hidden = {props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>: <></>}
                     <DispayRating charity={props.name}/>
+                    {<button onClick={()=>alert("hey")}>...</button>}
+                    {/* props.name === currentUser.sub.user &&  */}
                 </div>
             </div>
            
