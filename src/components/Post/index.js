@@ -39,6 +39,7 @@ const Post = (props) => {
                 <img className="card-img" src={props.image} width={150} />
                 <div className="card-info">
                     <h1 className="card-title">{props.title}</h1>
+                    <h2 className="charity-name">{props.name}</h2>
                     <p className="card-description">{props.description}</p>
                     <p>{props.goal}</p>
                     <p className="card-date">{props.date}</p>

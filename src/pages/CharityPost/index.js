@@ -7,7 +7,6 @@ import './CharityPost.css'
 const host = 'https://transparity.herokuapp.com'
 // const host = 'http://localhost:5000'
 const cors = require('cors')
-const imageToBase64 = require('image-to-base64')
 
 const CharityPost = () => {
     const { currentUser } = useAuthContext()
@@ -44,11 +43,6 @@ const CharityPost = () => {
     console.log(formData)
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // const file = e.target[4].files[0];
-        // console.log(e)
-        // const base64 = await convertToBase64(file);
-        // setFormData(data => ({...data, "img": base64}))
-        // return new Promise(async (resolve, reject) => {
         try {
             const options = {
                 method: 'PATCH',

@@ -9,6 +9,10 @@
     width: 100%;
     padding: 15px;
 }
+.charity-name{
+    text-align: left;
+    font-size: 18px;
+}
 
 .card-description{
     text-align: left;

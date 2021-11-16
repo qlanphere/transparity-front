@@ -42,20 +42,55 @@ const Home = () => {
         }
 
         const getPosts = async () => {
-            //const response = await fetch(`${host}/home`, options)
-            //let data = await response.json()
+            const response = await fetch(`${host}/home`, options)
+            let data = await response.json()
+            let arr;
             // need to sort posts by most recent 
-            let postArray = dummyData.map(post =>
-                <Post title={post.posts.title}
-                    description={post.posts.description}
-                    image={post.posts.image}
-                    goal={post.posts.goal}
-                    date={post.posts.creation_date}
-                    name={post.name}
-                    post_id={post.posts.post_id}
-                />)
-            setPosts(postArray)
-        }
+            // for(let d in data){
+            //     for(posts in d){
+            //         arr.push(<Post title={posts.title}
+            //             description={posts.description}
+            //             image={posts.img}
+            //             goal={posts.goal}
+            //             date={posts.creation_date}
+            //             name={posts.name}
+            //             post_id={posts.post_id}
+            //         />)
+            //     }
+            // }
+            let newArr = data.map((p) => {
+                return p.posts.map(post =>
+                    <Post title={post.title}
+                        description={post.description}
+                        image={post.img}
+                        goal={post.goal}
+                        date={post.creation_date}
+                        name={p.name}
+                        post_id={post.post_id}
+                    />)
+
+            })
+            function flatten(ary) {
+                let ret = [];
+                for(let i = 0; i < ary.length; i++) {
+                    if(Array.isArray(ary[i])) {
+                        ret = ret.concat(flatten(ary[i]));
+                    } else {
+                        ret.push(ary[i]);
+                    }
+                }
+                return ret;
+            }
+            arr = flatten(newArr)
+            console.log(arr)
+            const sortedArr = arr.sort(function (a, b) {
+                if (a.creation_date > b.creation_date) return -1;
+                if (a.creation_date < b.creation_date) return 1;
+                return 0;
+              });
+            setPosts(sortedArr.reverse())
+            }
+        
 
         getPosts()
         console.log(currentUser)
