@@ -37,6 +37,7 @@ const DonationsPage = () => {
             let transactionArray = donationData.map(transaction =>
                 <Transaction amount={transaction.amount}
                     charity_name={transaction.charity_name}
+                    user_name={transaction.user_name}
                     date={transaction.date} />)
 
             let donationArray = donationData.map(element => element.amount)
