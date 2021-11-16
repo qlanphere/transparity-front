@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import Post from '../../components/Post'
 import { useAuthContext } from '../../contexts/auth'
 import './Home.css'
+import Footer from '../../components/Footer'
 
 
 const host = "https://transparity.herokuapp.com"
