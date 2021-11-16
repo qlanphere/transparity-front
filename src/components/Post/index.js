@@ -66,6 +66,7 @@ const Post = (props) => {
                     <p className="card-description">{props.description}</p>
                     <p>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
+                    <p className = "card-date">{props.target_date}</p>
                     
 
                     {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button>: <></>}
