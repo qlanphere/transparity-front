@@ -1,7 +1,11 @@
-import { ContentPasteOutlined } from '@mui/icons-material'
+
 import React, { useContext, useState, useEffect } from 'react'
 import './Rating.css'
 const host = 'https://transparity.herokuapp.com'
+<<<<<<< HEAD
+=======
+// const host = 'http://localhost:5000'
+>>>>>>> 4a0392f8cedf9e0c279b2078f52f9df7ac7d99a1
 
 const DispayRating = (props) => {
     const [rating,setRating] = useState(0)

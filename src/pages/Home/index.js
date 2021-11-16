@@ -1,9 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Post from '../../components/Post'
 import { useAuthContext } from '../../contexts/auth'
 import './Home.css'
-import Footer from '../../components/Footer'
-import { HdrOnSelectSharp } from '@mui/icons-material'
+
 import Button from '../../components/CreatePost/PostButton'
 import { usePostContext } from '../../contexts/postContext'
 

@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
 import { usePostContext } from '../../contexts/postContext';
-import axios from 'axios';
 const host = 'https://transparity.herokuapp.com'
 // const host = 'http://localhost:5000'
 const cors = require('cors')
@@ -79,14 +78,14 @@ const Feedback = () => {
   function handleChange(e) {
     setDescription(e.target.value)
   }
-  console.log("before" ,formData)
-  
+  console.log("before", formData)
+
 
 
 
   return (
-    <div>
-      <h1>Feedback form</h1><h4>Please select the rating for each areas.</h4>
+    <div className="feedback-page">
+      <h1 className="feedback-page-title"><span className="green">Feedback</span> form</h1><h4>Please select the rating for each of the areas.</h4>
       {/* <h3> transparency rating is {TRating}</h3>
       <h3   > punctuality rating is {PRating}</h3>
       <h3> Comeback rating is {CRating}</h3> */}
@@ -301,7 +300,7 @@ const Feedback = () => {
         {/* Third Question */}
         <div className="mt-5 card">
           <p>
-            3. How do you feel about donating back to this charity?
+            3. How likely are you to donate to this charity again in the future?
           </p>
           <div className="d-flex justify-content-center">
             <label htmlFor="super-happy2">
@@ -401,10 +400,10 @@ const Feedback = () => {
           </div>
         </div>
         <div className="mt-5 card">
-          <label>Do you like to add more to the feedback:</label>
+          <label className="text-area-label">Here you can add any extra feedback:</label>
           <textarea id="text-area" name="textarea" rows="5" value={description} onChange={handleChange} /><br />
         </div >
-        <input className="mt-3" type="submit" value="Submit Feedback" onClick={() => { setPressed(true) }} />
+        <input className="feedback-submit-button" type="submit" value="Submit Feedback" onClick={() => { setPressed(true) }} />
       </form >
     </div >
   );

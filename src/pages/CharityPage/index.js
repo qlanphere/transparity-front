@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import CreateBio from "../../components/CreateBio";
 import Post from "../../components/Post";
 import { useAuthContext } from "../../contexts/auth";
 import { useCharityContext } from "../../contexts/charityContext";

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
 import './Tickets.css'
