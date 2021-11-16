@@ -118,7 +118,7 @@ const DispayRating = (props) => {
                         console.log("transparency" , reducedTrans)
                         console.log("punctual" , punctualArray)
                         console.log("return " , returnArray)
-                        setTotalReviews(postArray.length)
+                        // setTotalReviews(reviewLength.length)
                         //calculates the average in all the 3 areas
                         if (reviewLength !==0 && postArray.length != 0 && punctualArray.length != 0 && returnArray.length!=0){
                             //transparency
@@ -130,6 +130,12 @@ const DispayRating = (props) => {
                             //Retention
                             let sumR = reducedReturn.reduce((a,b)=>parseInt(a)+parseInt(b))
                             setReturningRating(Math.round(parseInt(sumR)/reviewLength.length).toFixed(1)) 
+
+                            if (sum + sumP + sumR == 0){
+                                setTotalReviews(0)
+                      
+                            }
+                            else setTotalReviews(reviewLength.length)
                         }
                     
             

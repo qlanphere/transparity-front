@@ -75,7 +75,7 @@ const EditPost = (props) => {
         <div>
             <div id="heading" className="register-title">
                 {/* <h2 className="text-muted"> Please fill in form below to edit your post</h2> */}
-                <h3> {currentUser.sub.name}</h3>
+                <h3> {props.name}</h3>
             </div>
             <form encType="multipart/form-data" className="register-form" onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-fields-container d-flex flex-column justify-content-start align-center">
