@@ -30,9 +30,9 @@ function App() {
           <Route exact path="/register">
             <Register />
           </Route>
-          <Route exact path = '/about'>
+          <Route exact path='/about'>
             <About />
-            </Route>
+          </Route>
           <CustomRoutes.LoggedOutRoute exact path="/feedbackForm">
             <Feedback />
           </CustomRoutes.LoggedOutRoute>
