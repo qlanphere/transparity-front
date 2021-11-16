@@ -19,6 +19,7 @@ const Post = (props) => {
     const { currentUser } = useAuthContext()
     const [modalShow, setModalShow] = useState(false);
     const history = useHistory();
+    
 
     const handleClick = (name) => {
         setCharityName(name)
@@ -77,7 +78,7 @@ const Post = (props) => {
                     {console.log("prop: ",props.name)}
                     {console.log("current:", currentUser.sub.name)}
 
-                    { props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
+                    { currentUser && props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
                     {/* props.name === currentUser.sub.user &&  */}
                 </div>
             </div>
