@@ -11,6 +11,7 @@ function CreatePost(props) {
     const { currentUser } = useAuthContext()
     const charity_name = currentUser.sub.name
     const charity_id = currentUser.sub.id
+    const [modalShow, setModalShow] = useState(true);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
