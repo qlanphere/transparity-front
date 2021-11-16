@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import './Post.css'
+import EditPost from '../CreatePost/Edit'
 import DispayRating from '../../components/DisplayRating'
 
 import { useCharityContext } from '../../contexts/charityContext';
@@ -19,6 +20,7 @@ const Post = (props) => {
     const { setPostId, emailP, setEmailP } = usePostContext()
     const { charityName, setCharityName, charityId, setCharityId } = useCharityContext()
     const { currentUser } = useAuthContext()
+    const [modalShow, setModalShow] = useState(false);
     const history = useHistory();
 
     const handleClick = (name) => {
@@ -59,23 +61,24 @@ const Post = (props) => {
     return (
         <>
             <div className="card-container">
-                <img className="card-img" src={props.image} width={150} />
                 <div className="card-info">
                     <h1 className="card-title">{props.title}</h1>
                     <h2 className="charity-name">{props.name}</h2>
+                    <img className="card-img" src={props.image} width={150} />
                     <p className="card-description">{props.description}</p>
                     <p>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
-                    <p className = "card-date">{props.target_date}</p>
-                    
+                    <p className="card-date">{props.target_date}</p>
 
-                    {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button>: <></>}
-                    <button hidden = {props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
-                    {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>: <></>}
-                    <DispayRating charity={props.name}/>
+                    {/* insert button for edit post */}
+                    <EditPost show={modalShow} onHide={() => setModalShow(false)} />
+                    {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button> : <></>}
+                    <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
+                    {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>}
+                    <DispayRating charity={props.name} />
                 </div>
             </div>
-           
+
         </>
     );
 }

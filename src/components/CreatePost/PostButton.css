@@ -1,0 +1,15 @@
+.create-post-button{
+    margin-bottom: 30px !important;
+    background-color: #9ACD32;
+    border:none;
+}
+
+.create-post-button:hover{
+    background-color: #424242;
+    cursor: pointer;
+}
+
+.create-post-button:focus{
+    background-color: #9ACD32;
+    outline: none;
+}
