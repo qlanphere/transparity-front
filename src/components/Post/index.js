@@ -4,6 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import './Post.css'
+import DispayRating from '../../components/DisplayRating'
 
 import { useCharityContext } from '../../contexts/charityContext';
 import { usePostContext } from '../../contexts/postContext';
@@ -59,15 +60,19 @@ const Post = (props) => {
                 <img className="card-img" src={props.image} width={150} />
                 <div className="card-info">
                     <h1 className="card-title">{props.title}</h1>
+                    <h2 className="charity-name">{props.name}</h2>
                     <p className="card-description">{props.description}</p>
                     <p>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
+                    
 
                     <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button>
                     <button className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>
+                    <DispayRating charity={props.name}/>
                 </div>
             </div>
+           
         </>
     );
 }

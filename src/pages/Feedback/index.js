@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
 import { usePostContext } from '../../contexts/postContext';
 import axios from 'axios';
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 const cors = require('cors')
 
 const Feedback = () => {
@@ -17,9 +17,9 @@ const Feedback = () => {
   const charity_id = currentUser.sub.id
   const [formData, setFormData] = useState({
     rating: {
-      transparency: "",
-      punctuality: "",
-      comeback: "",
+      transparency: "2",
+      punctuality: "4",
+      comeback: "1",
     },
     description: ""
   });
@@ -79,7 +79,8 @@ const Feedback = () => {
   function handleChange(e) {
     setDescription(e.target.value)
   }
-  console.log(formData)
+  console.log("before" ,formData)
+  
 
 
 
