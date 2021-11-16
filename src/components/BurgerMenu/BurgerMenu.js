@@ -2,7 +2,7 @@ import { slide as Menu } from 'react-burger-menu'
 import React, { useState } from "react";
 import "react-pro-sidebar/dist/css/styles.css";
 import 'font-awesome/css/font-awesome.min.css';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaSignOutAlt, FaSignInAlt, FaUserCircle, FaDonate, FaTicketAlt, FaBars } from 'react-icons/fa';
+import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaSignOutAlt, FaSignInAlt, FaUserCircle, FaDonate, FaTicketAlt, FaBars, FaIdBadge} from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IoHome } from "react-icons/io5";
 import { BiDonateHeart } from "react-icons/bi";
@@ -25,6 +25,7 @@ function BurgerMenu() {
                 <div className="m-item"><span className="icon-wrapper"><BsBook /></span><Nav.Link href="/timeline">Timeline</Nav.Link></div>
                 {currentUser && <div className="m-item"><span className="icon-wrapper"><FaTicketAlt /></span><Nav.Link href="/tickets">Tickets</Nav.Link></div>}
                 {currentUser && <div className="m-item"><span className="icon-wrapper"><FaSignOutAlt /></span><Nav.Link href="/home" onClick={logout}>Logout</Nav.Link></div>}
+                {currentUser.sub.user='charity' && <div className='m-item'><span className="icon-wrapper"><FaIdBadge/></span><Nav.Link href={`/charities/${currentUser.sub.name}`}>Profile</Nav.Link></div>}
                 {!currentUser && <div className="m-item"><span className="icon-wrapper"><FaSignInAlt /></span><Nav.Link href="/login">Sign in</Nav.Link></div>}
                 {!currentUser && <div className="m-item"><span className="icon-wrapper"><FaUserCircle /></span><Nav.Link href="/register">Register</Nav.Link></div>}
                 {currentUser && <div className="m-item"><span className="icon-wrapper"><FaHeart /></span><Nav.Link href="/feedbackForm">Feedback Page</Nav.Link></div>}

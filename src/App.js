@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
 import BurgerMenu from './components/BurgerMenu/BurgerMenu'
 import DisplayRating from './components/DisplayRating/index.js';
+import Footer from './components/Footer/index'
 import {
   BrowserRouter as Router,
   Link, Route, Switch, useParams
@@ -61,6 +62,7 @@ function App() {
           </CustomRoutes.LoggedOutRoute>
         </Switch>
       </Router>
+      <Footer />
     </div>
   );
 }
