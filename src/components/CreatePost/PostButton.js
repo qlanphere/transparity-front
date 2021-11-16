@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import CreatePost from "./index"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './PostButton.css'
 
 const PostButton = () => {
@@ -11,7 +13,8 @@ const PostButton = () => {
         Create Post
       </Button>
       <CreatePost show={modalShow}
-        onHide={() => setModalShow(false)}></CreatePost>
+        onHide={() => setModalShow(false)} notify = {() => toast.success('Succesfully posted')}></CreatePost>
+        <ToastContainer />
     </>
   )
 }

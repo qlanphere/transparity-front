@@ -87,7 +87,7 @@ function CreateBio(props) {
                         {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
                     </div>
                     <div className="form-button">
-                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" onClick = {props.onHide}/>
+                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" onClick = {() => {props.onHide(); props.notify()}}/>
                     </div>
 
                 </div>
