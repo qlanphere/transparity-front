@@ -1,0 +1,27 @@
+.register-form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    text-align: left;
+}
+
+.form-block{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-button{
+    background-color: #9ACD32;
+    margin: 0 auto;
+    border: none;
+}
+
+.form-button input{
+    background-color: #9aCD32;
+    border: none;
+}
+
+.space{
+    margin-bottom: 10px;
+}
