@@ -3,22 +3,19 @@ import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import './CharityPost.css'
 import Button from 'react-bootstrap/Button'
+import {usePostContext} from '../../contexts/postContext'
 const cors = require('cors')
 
 const host = 'https://transparity.herokuapp.com'
 
-function CreatePost(props) {
+const EditPost = (props) => {
     const { currentUser } = useAuthContext()
-    const charity_name = currentUser.sub.name
-    const charity_id = currentUser.sub.id
-    const [modalShow, setModalShow] = useState(true);
+    const { postId } = usePostContext()
     const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        goal: "",
-        img: "",
-        target_date: ""
+        "description": '',
+        "pdf": ''
     })
+
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const fileReader = new FileReader();
@@ -32,15 +29,15 @@ function CreatePost(props) {
         });
     };
 
-    const handleImg = async e => {
+    const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
+
+    const handlePDF = async e => {
         const file = e.target.files[0];
         console.log(file)
         const base64 = await convertToBase64(file);
-        setFormData(data => ({ ...data, "img": base64 }))
+        setFormData(data => ({ ...data, "pdf": base64 }))
     }
 
-    const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
-    console.log(formData)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -55,14 +52,15 @@ function CreatePost(props) {
                 body: JSON.stringify(formData)
             }
             console.log(formData)
-            await fetch(`${host}/charity/post/${charity_id}`, options)
+            await fetch(`${host}/post/${postId}`, options)
 
         } catch (err) {
             console.log(err)
         }
     }
     return (
-      <Modal
+        <>
+             <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -70,42 +68,29 @@ function CreatePost(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Edit Post
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <div>
             <div id="heading" className="register-title">
-                <h2 className="text-muted"> Please fill in form below to add a new post</h2>
+                {/* <h2 className="text-muted"> Please fill in form below to edit your post</h2> */}
                 <h3> {currentUser.sub.name}</h3>
             </div>
             <form encType="multipart/form-data" className="register-form" onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-fields-container d-flex flex-column justify-content-start align-center">
                     <div className="form-block">
-                        <label>Title:</label>
-                        <input type="text" name="title" value={formData.title} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
                         <label>Description:</label>
-                        <textarea name="description" value={formData.description} onChange={handleChange} />
+                        <input type="text" name="title" value={formData.description} onChange={handleChange} />
                     </div>
                     <div className="form-block">
-                        <label>Goal:</label>
-                        <input type="text" name="goal" value={formData.goal} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label>Target Date:</label>
-                        <input type="date" name="target_date" value={formData.target_date} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label className="space">Upload Image:</label>
-                        <input className="custom-file-input" type="file" name="img" id="img" onChange={handleImg} />
+                        <label className="space">Upload PDF:</label>
+                        <input className="custom-file-input" type="file" name="img" id="img" onChange={handlePDF} />
                         {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
                     </div>
                     <div className="form-button">
                         <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
                     </div>
-
                 </div>
             </form>
 
@@ -115,7 +100,8 @@ function CreatePost(props) {
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
-    );
-  }
+        </>
+    )
+}
 
-export default CreatePost
+export default EditPost;
