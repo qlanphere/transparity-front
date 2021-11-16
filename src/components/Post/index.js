@@ -70,7 +70,7 @@ const Post = (props) => {
                     
 
                     {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button>: <></>}
-                    <button className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
+                    <button hidden = {props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>: <></>}
                     <DispayRating charity={props.name}/>
                 </div>
