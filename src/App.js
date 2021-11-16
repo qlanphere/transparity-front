@@ -33,21 +33,21 @@ function App() {
           <Route exact path = '/about'>
             <About />
             </Route>
-          <CustomRoutes.LoggedOutRoute exact path="/feedbackForm">
+          <CustomRoutes.PrivateUserRoute exact path="/feedbackForm">
             <Feedback />
-          </CustomRoutes.LoggedOutRoute>
+          </CustomRoutes.PrivateUserRoute>
           <Route exact path="/charities/:name">
             <CharityPage />
           </Route>
-          <CustomRoutes.LoggedOutRoute exact path="/donate">
+          <CustomRoutes.PrivateUserRoute exact path="/donate">
             <DonatePage />
-          </CustomRoutes.LoggedOutRoute>
+          </CustomRoutes.PrivateUserRoute>
           <CustomRoutes.LoggedOutRoute exact path="/donations">
             <DonationsPage />
           </CustomRoutes.LoggedOutRoute>
-          <CustomRoutes.LoggedOutRoute exact path="/charitypost">
+          <CustomRoutes.PrivateCharityRoute exact path="/charitypost">
             <CharityPost />
-          </CustomRoutes.LoggedOutRoute>
+          </CustomRoutes.PrivateCharityRoute>
           <CustomRoutes.LoggedOutRoute exact path="/tickets">
             <Tickets />
           </CustomRoutes.LoggedOutRoute>

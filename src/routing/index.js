@@ -15,8 +15,19 @@ export const LoggedOutRoute = ({ children }) => {
         </Route> )
 }
 
+export const PrivateUserRoute = ({ children }) => {
+    const { currentUser } = useAuthContext();
 
-export const PrivateRoute = ({ children }) => {
+    return (
+        <Route> { 
+            currentUser.sub.user == 'user'
+                ? children
+                : <Redirect to='/home' /> }
+        </Route> )
+}
+
+
+export const PrivateCharityRoute = ({ children }) => {
     const { currentUser } = useAuthContext();
 
     return (
