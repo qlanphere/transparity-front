@@ -4,9 +4,10 @@ const CharityContext = React.createContext();
 
 export function CharityProvider({ children }) {
     const [charityName, setCharityName] = useState("");
+    const [charityId, setCharityId] = useState();
 
     return (
-        <CharityContext.Provider value={{ charityName, setCharityName }}>
+        <CharityContext.Provider value={{ charityName, setCharityName, charityId, setCharityId }}>
             {children}
         </CharityContext.Provider>
 

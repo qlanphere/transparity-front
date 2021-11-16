@@ -15,7 +15,7 @@ const host = "https://transparity.herokuapp.com"
 
 const Post = (props) => {
     const { setPostId, emailP, setEmailP } = usePostContext()
-    const { charityName, setCharityName } = useCharityContext()
+    const { charityName, setCharityName, charityId, setCharityId } = useCharityContext()
     const history = useHistory();
 
     const handleClick = (name) => {
@@ -45,8 +45,10 @@ const Post = (props) => {
         }
         const response = await fetch(`${host}/charity/${name}`, options)
         const data = await response.json()
+        console.log(data)
         console.log(data["email"])
         setEmailP(data["email"])
+        setCharityId(data["_id"])
 
         history.push('/donate')
     }

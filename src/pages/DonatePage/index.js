@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { usePostContext } from '../../contexts/postContext';
 import { useCharityContext } from '../../contexts/charityContext';
+import { useAuthContext } from '../../contexts/auth';
 import './DonatePage.css'
 
 function DonatePage() {
@@ -10,7 +11,8 @@ function DonatePage() {
     const [donate, setDonate] = useState(100);
     const [ready, setReady] = useState(false);
     const { postId, emailP } = usePostContext()
-    const { charityName, setCharityName } = useCharityContext()
+    const { charityName, setCharityName, charityId } = useCharityContext()
+    const { currentUser } = useAuthContext()
 
     useEffect(() => {
         if (ready == true) {
@@ -54,7 +56,7 @@ function DonatePage() {
                             body: JSON.stringify(orderData)
                         }
                         // const response = await fetch(`${charityId}/donate/${userId}`, options)
-                        const response = await fetch(`http://127.0.0.1:5000/619302d8b04f08f0e6106eb1/donate/6192324c128f2dac9b301a06`, options)
+                        const response = await fetch(`http://127.0.0.1:5000/${charityId}/donate/${currentUser.sub.id}`, options)
 
 
                     },
