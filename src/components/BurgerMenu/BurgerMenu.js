@@ -22,7 +22,7 @@ function BurgerMenu() {
             <Menu>
                 <div className="m-title">Transparity <HiCubeTransparent /></div>
                 <div className="m-item"><span className="icon-wrapper"><IoHome /></span><Nav.Link href="/home">Home</Nav.Link></div>
-                <div className="m-item"><span className="icon-wrapper"><BsBook /></span><Nav.Link href="/about">About</Nav.Link></div>
+                <div className="m-item"><span className="icon-wrapper"><BsBook /></span><Nav.Link href="/timeline">Timeline</Nav.Link></div>
                 {currentUser && <div className="m-item"><span className="icon-wrapper"><FaTicketAlt /></span><Nav.Link href="/tickets">Tickets</Nav.Link></div>}
                 {currentUser && <div className="m-item"><span className="icon-wrapper"><FaSignOutAlt /></span><Nav.Link href="/home" onClick={logout}>Logout</Nav.Link></div>}
                 {!currentUser && <div className="m-item"><span className="icon-wrapper"><FaSignInAlt /></span><Nav.Link href="/login">Sign in</Nav.Link></div>}

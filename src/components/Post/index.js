@@ -10,6 +10,7 @@ import { useCharityContext } from '../../contexts/charityContext';
 import { usePostContext } from '../../contexts/postContext';
 
 import { useHistory } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/auth';
 
 const host = "https://transparity.herokuapp.com"
 // const host = "http://127.0.0.1:5000"
@@ -17,6 +18,7 @@ const host = "https://transparity.herokuapp.com"
 const Post = (props) => {
     const { setPostId, emailP, setEmailP } = usePostContext()
     const { charityName, setCharityName, charityId, setCharityId } = useCharityContext()
+    const { currentUser } = useAuthContext()
     const history = useHistory();
 
     const handleClick = (name) => {
@@ -66,9 +68,9 @@ const Post = (props) => {
                     <p className="card-date">{props.date}</p>
                     
 
-                    <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button>
+                    {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button>: <></>}
                     <button className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
-                    <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>
+                    {currentUser.sub.user=='user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button>: <></>}
                     <DispayRating charity={props.name}/>
                 </div>
             </div>

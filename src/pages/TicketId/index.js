@@ -98,7 +98,7 @@ const TicketId = () => {
         <div className="ticket-page">
             <h1 className="ticket-page-title">Ticket {id}</h1>
             {ticketData}
-            {status ? currentUser.sub.user == 'user' ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>: <></>}
+            {status ? currentUser.sub.user == 'charity' ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>: <></>}
             <div>
                 {responseData}
             </div>

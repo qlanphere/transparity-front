@@ -39,7 +39,7 @@ const Sidebar = () => {
         <SidebarContent>
           <Menu iconShape="circle">
             <MenuItem icon={<IoHome />}><Nav.Link href="/home">Home</Nav.Link></MenuItem>
-            <MenuItem icon={<BsBook />}><Nav.Link href='/about'>About</Nav.Link></MenuItem>
+            <MenuItem icon={<BsBook />}><Nav.Link href='/timeline'>Timeline</Nav.Link></MenuItem>
             {currentUser && <MenuItem icon={<FaTicketAlt />}><Nav.Link href="/tickets" >Tickets</Nav.Link></MenuItem>}
             {currentUser && <MenuItem icon={<FaSignOutAlt />}><Nav.Link href="/home" onClick={logout}>Logout</Nav.Link></MenuItem>}
             {!currentUser && <MenuItem icon={<FaSignInAlt />}><Nav.Link href="/login">Sign in</Nav.Link></MenuItem>}
