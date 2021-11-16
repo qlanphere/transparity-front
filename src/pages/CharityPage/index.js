@@ -51,6 +51,7 @@ const CharityPage = () => {
           image={post.img}
           date={post.creation_date}
           hidden = "true"
+          name = {data.name}
         />
       ));
 
