@@ -1,7 +1,29 @@
 .donate-page-title{
     padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .paypal-container{
     padding-top: 100px;
+}
+
+.confirm-button{
+    border: none;
+    background-color: #9ACD32;
+    margin-left: 10px;
+    color: #fff;
+    padding: 4px 12px;
+}
+
+.confirm-button:hover{
+    background-color: #424242;
+    cursor: pointer;
+}
+
+.donate-amount{
+    outline: none;
+}
+
+.donate-amount:focus{
+    border: 1px solid #9ACD32;
 }
