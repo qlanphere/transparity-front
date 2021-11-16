@@ -16,7 +16,6 @@ const TicketId = () => {
     const [ticketData, setTicketData] = useState('')
     const [responseFormData, setResponseFormData] = useState({ name: currentUser.sub.name, user_type: currentUser.sub.user, description: "" })
     const [responseData, setResponseData] = useState([])
-    const [recipientFormData, setRecipientFormData] = useState({ name: '', user_type: currentUser.sub.user=='charity' ? 'user':'charity', description: "" })
 
     const [status, setStatus] = useState(true)
     const [newResponse, setNewResponse] = useState(false)
@@ -42,14 +41,12 @@ const TicketId = () => {
     }
     const handleInput = e => {
         setResponseFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
-        setRecipientFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
-        setRecipientFormData(prev => ({...prev, name: ticketData.props.charityName}))
     }
     const formIncomplete = () => Object.values(responseFormData).some(v => !v) || canIReply()
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const options1 = {
+            const options = {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,22 +56,12 @@ const TicketId = () => {
                 mode: 'cors',
                 body: JSON.stringify(responseFormData)
             }
-            const options2 = {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                mode: 'cors',
-                body: JSON.stringify(recipientFormData)
-            }
-            let recipientType = currentUser.sub.user=='charity' ? 'user':'charity'
 
-            await fetch(`${host}/${currentUser.sub.user}/ticket/${id}`, options1)
-            await fetch(`${host}/${recipientType}/ticket/${id}`, options2)
+            await fetch(`${host}/res/ticket/${id}`, options)
+
 
             setNewResponse(true)
+            setResponseFormData({ name: currentUser.sub.name, user_type: currentUser.sub.user, description: "" })
         } catch (err) {
             console.log(err)
         }
