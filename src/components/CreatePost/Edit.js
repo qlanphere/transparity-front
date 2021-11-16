@@ -10,11 +10,12 @@ const host = 'https://transparity.herokuapp.com'
 
 const EditPost = (props) => {
     const { currentUser } = useAuthContext()
-    const { postId } = usePostContext()
+    // const { postId } = usePostContext()
     const [formData, setFormData] = useState({
         "description": '',
         "pdf": ''
     })
+    const postId = props.postId
 
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -81,11 +82,11 @@ const EditPost = (props) => {
                 <div className="form-fields-container d-flex flex-column justify-content-start align-center">
                     <div className="form-block">
                         <label>Description:</label>
-                        <input type="text" name="title" value={formData.description} onChange={handleChange} />
+                        <input type="text" name="description" value={formData.description} onChange={handleChange} />
                     </div>
                     <div className="form-block">
                         <label className="space">Upload PDF:</label>
-                        <input className="custom-file-input" type="file" name="img" id="img" onChange={handlePDF} />
+                        <input className="custom-file-input" type="file" name="pdf" id="img" onChange={handlePDF} />
                         {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
                     </div>
                     <div className="form-button">

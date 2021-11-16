@@ -10,8 +10,6 @@ const DispayRating = (props) => {
   const [returningRating, setReturningRating] = useState(0)
   const [totalReviews, setTotalReviews] = useState(0)
   const [allPosts, setAllPosts] = useState(0)
-  // const [stars,setStars] = useState("")
-  //let dataLength = dummyData.length
   let charity_id = props.charity
   // console.log(charity_id)
   // let charity_id = 'bicccharity'
@@ -114,69 +112,6 @@ const DispayRating = (props) => {
         console.log(err)
       }
 
-      // //Calculate transparency rating
-      // let data = dummyData.map(post=>{
-      //     let rev = post.posts.reviews[0].rating.transparency
-      //     return rev
-      // })
-
-      // if (data.length !=0){
-      //     // console.log(data)
-      //     let sum = data.reduce((a,b)=>parseInt(a)+parseInt(b))
-      //     setRating(Math.round(sum/dataLength).toFixed(1))  
-      //     // console.log(rating)
-      // }
-
-      // //Calculate punctuality rating
-      // let punctualityData = dummyData.map(post=>{
-      //     let puncRev = post.posts.reviews[0].rating.punctuality
-      //     // console.log(puncRev)
-      //     return puncRev
-      // })
-
-      // if (punctualityData.length !=0){
-      //     // console.log(data)
-      //     let psum = punctualityData.reduce((a,b)=>parseInt(a)+parseInt(b))
-      //     setPunctualityRating(Math.round(psum/dataLength).toFixed(1))  
-      //     // console.log(rating)
-      // }
-
-      // //Calculate returning-customer rating
-      // let returningData = dummyData.map(post=>{
-      //     let returnRev = post.posts.reviews[0].rating.comeback
-      //     return returnRev
-      // })
-
-      // if (returningData.length !=0){
-      //     // console.log(data)
-      //     let sum = returningData.reduce((a,b)=>parseInt(a)+parseInt(b))
-      //     setReturningRating(Math.round(sum/dataLength).toFixed(1))  
-      //     // console.log(rating)
-      // }
-      // console.log(dataLength)
-
-      // switch(rating){
-      //     case 1:
-      //         setStars('*')
-      //         break;
-      //     case 2:
-      //         setStars('* *')
-      //         break;
-      //     case 3:
-      //         setStars('* * *')
-      //         break;
-      //     case 4:
-      //         setStars('* * * *')
-      //         break;
-      //     case 5:
-      //         setStars('* * * * * ')
-      //         break;
-
-      // }
-
-
-
-
 
     }
 
@@ -186,15 +121,7 @@ const DispayRating = (props) => {
   return (
     <div>
       <h6>{totalReviews} Reviews</h6>
-      {/* <h2>{allPosts}</h2> */}
       {totalReviews !== 0 && <div className="review-container"><p>Transparency: <span className="green">{rating}/5</span> </p><p>Punctuality: <span className="green">{punctualityRating}/5</span> </p><p>Retention: <span className="green">{returningRating}/5</span> </p></div>}
-
-
-
-
-
-
-
     </div>
   )
 }
