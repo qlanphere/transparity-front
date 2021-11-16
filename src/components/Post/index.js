@@ -7,6 +7,8 @@ import EditPost from '../../components/CreatePost/Edit'
 import { useCharityContext } from '../../contexts/charityContext';
 import { usePostContext } from '../../contexts/postContext';
 
+import EditButton from '../../components/CreatePost/EditButton'
+
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/auth';
 
@@ -14,7 +16,7 @@ const host = "https://transparity.herokuapp.com"
 // const host = "http://127.0.0.1:5000"
 
 const Post = (props) => {
-    const { setPostId, emailP, setEmailP } = usePostContext()
+    const { postId,setPostId, emailP, setEmailP } = usePostContext()
     const { charityName, setCharityName, charityId, setCharityId } = useCharityContext()
     const { currentUser } = useAuthContext()
     const [modalShow, setModalShow] = useState(false);
@@ -74,14 +76,14 @@ const Post = (props) => {
                     <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     {currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>}
                     <DispayRating charity={props.name} />
-                    {console.log("prop: ",props.name)}
-                    {console.log("current:", currentUser.sub.name)}
+                    {/* {console.log("prop: ",props.name)}
+                    {console.log("current:", currentUser.sub.name)} */}
 
-                    { props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
+                    { props.name === currentUser.sub.name && <EditButton postId = {props.postId}>...</EditButton>}
                     {/* props.name === currentUser.sub.user &&  */}
                 </div>
+                
             </div>
-
         </>
     );
 }

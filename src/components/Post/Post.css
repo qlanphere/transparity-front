@@ -49,3 +49,8 @@
 .card-date{
     font-size: 12px;
 }
+
+.Toastify__progress-bar--success {
+    color: #9ACD32 !important;
+    background-color: #9ACD32 !important;
+  }

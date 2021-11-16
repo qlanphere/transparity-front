@@ -3,6 +3,9 @@ import Post from '../../components/Post'
 import { useAuthContext } from '../../contexts/auth'
 import './Home.css'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Button from '../../components/CreatePost/PostButton'
 import { usePostContext } from '../../contexts/postContext'
 
@@ -37,7 +40,7 @@ const Home = () => {
                         goal={post.goal}
                         date={post.creation_date}
                         name={p.name}
-                        post_id={post.post_id}
+                        postId={post.post_id}
                     />)
 
             })
@@ -87,6 +90,7 @@ const Home = () => {
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
                 <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" /> */}
             </div>
+            
         </>
     )
 }

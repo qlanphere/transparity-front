@@ -2,10 +2,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import './Rating.css'
 const host = 'https://transparity.herokuapp.com'
-<<<<<<< HEAD
-=======
-// const host = 'http://localhost:5000'
->>>>>>> 4a0392f8cedf9e0c279b2078f52f9df7ac7d99a1
 
 const DispayRating = (props) => {
     const [rating,setRating] = useState(0)
@@ -32,15 +28,14 @@ const DispayRating = (props) => {
 
                 const response = await fetch(`${host}/charity/${charity_id}`, options)
                 let data =  await response.json()
-                console.log(data)
                 // if all the charities are in data
                     // let postArray = data.map(post => post.posts.map(ele=>ele.reviews.map(rd=>rd.rating.transparency)))
                     let postLength = data.posts.length
-                    console.log("data length" , postLength)
+                    //console.log("data length" , postLength)
                   
                     if (postLength !=0){
                       setAllPosts(postLength)
-                      console.log("inside first if")
+                      //console.log("inside first if")
                       //gives an array of all the transparency scores for all the reviews
                         let postArray = data.posts.map(post=>post.reviews.map(ele=>ele.rating.transparency))
                        //gives an array of all the punctuality scores for all the reviews
@@ -50,7 +45,7 @@ const DispayRating = (props) => {
 
                         //returning the array of how many reviws in the post
                         let reviewLength = data.posts.map(post=>post.reviews.length)
-                        console.log("review length:" , reviewLength)
+                        //console.log("review length:" , reviewLength)
 
                         //calculates the reduced sum of the all the transparency array
                         let reducedTrans = postArray.map(x=>{
@@ -76,9 +71,9 @@ const DispayRating = (props) => {
                           else return 0
                         })
 
-                        console.log("transparency" , reducedTrans)
-                        console.log("punctual" , punctualArray)
-                        console.log("return " , returnArray)
+                        // console.log("transparency" , reducedTrans)
+                        // console.log("punctual" , punctualArray)
+                        // console.log("return " , returnArray)
                         // setTotalReviews(reviewLength.length)
                         //calculates the average in all the 3 areas
                         if (reviewLength !==0 && postArray.length != 0 && punctualArray.length != 0 && returnArray.length!=0){

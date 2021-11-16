@@ -4,6 +4,9 @@ import { useAuthContext } from "../../contexts/auth";
 import { useCharityContext } from "../../contexts/charityContext";
 import Button from "../../components/CreateBio/BioButton"
 import { usePostContext } from "../../contexts/postContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css'
 const cors = require("cors");
 
 const host = "https://transparity.herokuapp.com";
@@ -14,7 +17,7 @@ const CharityPage = () => {
   const [reviews, setReviews] = useState([]);
   const { charityName, setCharityName } = useCharityContext();
   const { currentUser } = useAuthContext();
-  const {updatedBio, setUpdatedBio} = usePostContext()
+  const {updatedBio, setUpdatedBio, posted, setPosted} = usePostContext()
   const [bio, setBio] = useState({avatar:'', bio: ''})
 
 
@@ -51,8 +54,10 @@ const CharityPage = () => {
           date={post.creation_date}
           hidden = "true"
           name = {data.name}
+          postId={post.post_id}
         />
       ));
+      //postArray.push(<ToastContainer />)
 
       const sortedArr = postArray.sort(function (a, b) {
         if (a.creation_date > b.creation_date) return -1;
@@ -66,13 +71,13 @@ const CharityPage = () => {
     }
     setUpdatedBio(false)
       // sortedArr != [] ? setPosts(sortedArr.reverse()) : setPosts(<h3>You have no posts yet!</h3>)
-      
+      setPosted(false)
     } catch (err) {
       console.log(err)
     }
   }
   getPosts();
-  }, [updatedBio]);
+  }, [updatedBio, posted]);
 
   
 
@@ -91,6 +96,7 @@ const CharityPage = () => {
       {createBio()}
       {posts}
       {reviews}
+      
     </div>
   );
 };
