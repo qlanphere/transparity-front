@@ -16,8 +16,9 @@ const TicketId = () => {
     const [ticketData, setTicketData] = useState('')
     const [responseFormData, setResponseFormData] = useState({ name: currentUser.sub.name, user_type: currentUser.sub.user, description: "" })
     const [responseData, setResponseData] = useState([])
-    const [closeButton, setCloseButton] = useState('')
+
     const [status, setStatus] = useState(true)
+    const [newResponse, setNewResponse] = useState(false)
 
     const handleCloseTicket = async () => {
         const options = {
@@ -33,13 +34,14 @@ const TicketId = () => {
         await fetch(`${host}/ticket/status/${id}`, options)
         setStatus(false)
     }
-    console.log(ticketData)
     const canIReply = () => {
         try {
             return responseData ? (responseData[responseData.length - 1].props.name == currentUser.sub.name) : false
         } catch { return false }
     }
-    const handleInput = e => setResponseFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    const handleInput = e => {
+        setResponseFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    }
     const formIncomplete = () => Object.values(responseFormData).some(v => !v) || canIReply()
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -54,8 +56,12 @@ const TicketId = () => {
                 mode: 'cors',
                 body: JSON.stringify(responseFormData)
             }
-            currentUser.sub.user == 'user' ? await fetch(`${host}/user/ticket/${id}`, options) : await fetch(`${host}/charity/ticket/${id}`, options)
 
+            await fetch(`${host}/res/ticket/${id}`, options)
+
+
+            setNewResponse(true)
+            setResponseFormData({ name: currentUser.sub.name, user_type: currentUser.sub.user, description: "" })
         } catch (err) {
             console.log(err)
         }
@@ -71,6 +77,7 @@ const TicketId = () => {
             },
             mode: 'cors'
         }
+        
         const getTicket = async () => {
             const response = await fetch(`${host}/tickets/${id}`, options)
             const ticket = await response.json()
@@ -81,16 +88,17 @@ const TicketId = () => {
         }
 
         getTicket()
+        
+        setNewResponse(false)
+        
 
-        setCloseButton(status ? <input className="close-ticket-button" type="button" onClick={handleCloseTicket} value="Close Ticket"></input> : <></>)
-
-    }, [status])
+    }, [status, newResponse])
 
     return (
         <div className="ticket-page">
             <h1 className="ticket-page-title">Ticket {id}</h1>
             {ticketData}
-            {closeButton}
+            {currentUser.sub.user == 'user' ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>}
             <div>
                 {responseData}
             </div>

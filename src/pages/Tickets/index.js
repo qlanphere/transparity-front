@@ -54,8 +54,8 @@ const Tickets = () => {
             }
             console.log(ticketFormData)
             await fetch(`${host}/ticket/${currentUser.sub.id}`, options)
-            await fetch(`${host}/ticket/${charityId}`, options)
             setNewTicket(true)
+            setTicketFormData({ name: "", description: "", res: [], status: true, charityName: "" })
 
         } catch (err) {
             console.log(err)
