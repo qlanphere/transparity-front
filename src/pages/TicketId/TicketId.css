@@ -1,0 +1,41 @@
+.ticket-page{
+    padding: 2%;
+}
+
+.ticket-page-title{
+    padding-top: 5%;
+}
+
+.close-ticket-button{
+    border:none;
+    background-color: #9ACD32;
+    color: #fff;
+    margin-bottom: 30px;
+    padding: 10px 12px;
+}
+
+.close-ticket-button:hover{
+    cursor: pointer;
+    background-color: #424242;
+}
+
+/* 
+#submit-ticket-button{
+    border:none;
+    background-color: #9ACD32;
+    color: #fff;
+    margin-bottom: 30px;
+    padding: 10px 12px;
+} */
+
+.enabled{
+    border:none;
+    background-color: #9ACD32;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.enabled:hover{
+    background-color: #424242;
+    cursor: pointer;
+}

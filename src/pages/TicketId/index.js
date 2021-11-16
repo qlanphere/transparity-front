@@ -3,6 +3,7 @@ import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
 import { MessageList } from 'react-chat-elements'
 import Response from '../../components/Response'
+import './TicketId.css'
 
 const host = 'https://transparity.herokuapp.com'
 // const host = 'http://localhost:5000'
@@ -27,7 +28,7 @@ const TicketId = () => {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
             mode: 'cors',
-            body: JSON.stringify({status: false})
+            body: JSON.stringify({ status: false })
         }
         await fetch(`${host}/ticket/status/${id}`, options)
         setStatus(false)
@@ -35,8 +36,8 @@ const TicketId = () => {
     console.log(ticketData)
     const canIReply = () => {
         try {
-        return responseData ? (responseData[responseData.length - 1].props.name == currentUser.sub.name) : false
-        } catch { return false}
+            return responseData ? (responseData[responseData.length - 1].props.name == currentUser.sub.name) : false
+        } catch { return false }
     }
     const handleInput = e => setResponseFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     const formIncomplete = () => Object.values(responseFormData).some(v => !v) || canIReply()
@@ -74,20 +75,20 @@ const TicketId = () => {
             const response = await fetch(`${host}/tickets/${id}`, options)
             const ticket = await response.json()
             console.log(ticket)
-            setStatus(ticket.status ? true: false)
+            setStatus(ticket.status ? true : false)
             setTicketData(<Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />)
             setResponseData(ticket.res.map(message => <Response description={message.description} date={message.date} name={message.name} />))
         }
 
         getTicket()
-        
-        setCloseButton(status ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>)
+
+        setCloseButton(status ? <input className="close-ticket-button" type="button" onClick={handleCloseTicket} value="Close Ticket"></input> : <></>)
 
     }, [status])
 
     return (
-        <>
-            <h1>Ticket {id}</h1>
+        <div className="ticket-page">
+            <h1 className="ticket-page-title">Ticket {id}</h1>
             {ticketData}
             {closeButton}
             <div>
@@ -96,9 +97,9 @@ const TicketId = () => {
 
             <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
                 <textarea type="text" name="description" value={responseFormData.description} onChange={handleInput} placeholder="Enter response" />
-                <input type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
+                <input id="submit-ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
             </form>
-        </>
+        </div>
     )
 }
 

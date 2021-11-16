@@ -2,6 +2,7 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 import { Login, Register, Home, Feedback, CharityPage, DonationsPage, CharityPost, Tickets, TicketId, About } from './pages'
 import DonatePage from './pages/DonatePage';
+import ThankPage from './pages/ThankPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as CustomRoutes from "./routing";
 import BurgerMenu from './components/BurgerMenu/BurgerMenu'
@@ -31,9 +32,9 @@ function App() {
           <Route exact path="/register">
             <Register />
           </Route>
-          <Route exact path = '/about'>
+          <Route exact path='/about'>
             <About />
-            </Route>
+          </Route>
           <CustomRoutes.LoggedOutRoute exact path="/feedbackForm">
             <Feedback />
           </CustomRoutes.LoggedOutRoute>
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <CustomRoutes.LoggedOutRoute exact path="/donate">
             <DonatePage />
+          </CustomRoutes.LoggedOutRoute>
+          <CustomRoutes.LoggedOutRoute exact path="/thankyou">
+            <ThankPage />
           </CustomRoutes.LoggedOutRoute>
           <CustomRoutes.LoggedOutRoute exact path="/donations">
             <DonationsPage />

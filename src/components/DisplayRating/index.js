@@ -44,14 +44,16 @@ let dummyData = [{
           }]
     }
 }]
-const DispayRating = () => {
+const DispayRating = (props) => {
     const [rating,setRating] = useState(0)
     const [punctualityRating,setPunctualityRating] = useState(0)
     const [returningRating,setReturningRating] = useState(0)
-    const [allPosts,setAllPosts] = useState([])
+    const [totalReviews,setTotalReviews] = useState(0)
     // const [stars,setStars] = useState("")
     let dataLength = dummyData.length
-    let charity_id = ''
+    // let charity_id = props.charity
+    // console.log(charity_id)
+    let charity_id = 'Rec Ross'
     useEffect(() => {
 
         const getAllPosts = async () => {
@@ -66,25 +68,29 @@ const DispayRating = () => {
                   mode: 'cors',
                 }
 
-                const response = await fetch(`${host}/charity/${charity_id}>"`, options)
+                const response = await fetch(`${host}/charity/${charity_id}`, options)
                 let data =  await response.json()
-                console.log(data.map(post => post.posts.map(ele=>ele.reviews.length)))
-                // if (data.posts.length !== 0){
-                    let postArray = data.map(post => post.posts.map(ele=>ele.reviews.map(rd=>rd.rating.transparency)))
-                    let transparencyLength = postArray.length
-                    console.log("length" + transparencyLength)
-                    // if (transparencyLength !=0){
-                    //     // console.log(data)
-                    //     let sum = postArray.reduce((a,b)=>parseInt(a)+parseInt(b))
-                    //     console.log(sum)
-                    //     setAllPosts(Math.round(parseInt(sum)/transparencyLength).toFixed(1))  
-                    //     // console.log(rating)
-                    // }
+                console.log(data)
+                // if all the charities are in data
+                    // let postArray = data.map(post => post.posts.map(ele=>ele.reviews.map(rd=>rd.rating.transparency)))
+                    let postArray = data.posts.map(post=>post.reviews.map(ele=>ele.rating.transparency))
+                    let punctualArray = data.posts.map(post=>post.reviews.map(ele=>ele.rating.punctuality))
+                    let returnArray = data.posts.map(post=>post.reviews.map(ele=>ele.rating.comeback))
+                    let reviewLength = data.posts.map(post=>post.reviews.length)
+                    console.log("length:" , reviewLength)
+                    setTotalReviews(reviewLength)
+                    if (reviewLength !=0){
+                        let sum = postArray.reduce((a,b)=>parseInt(a)+parseInt(b))
+                        setRating(Math.round(parseInt(sum)/reviewLength).toFixed(1))  
+                        let sumP = punctualArray.reduce((a,b)=>parseInt(a)+parseInt(b))
+                        setPunctualityRating(Math.round(parseInt(sumP)/reviewLength).toFixed(1))  
+                        let sumR = returnArray.reduce((a,b)=>parseInt(a)+parseInt(b))
+                        setReturningRating(Math.round(parseInt(sumR)/reviewLength).toFixed(1)) 
+                    }
+
             
-                    console.log(postArray)
+    
                 
-                setAllPosts(postArray)
-                // }
                 
               } catch (err) {
                 console.log(err)
@@ -161,14 +167,15 @@ const DispayRating = () => {
 
     return (
         <div>
-       
-           Transparency Rating : {rating}/5 <br/>
-           Punctuality Rating : {punctualityRating}/5 <br/>
-           Returning-customer Rating : {returningRating}/5
-           <br/><br/>
+           <h6>Total Reviews({totalReviews})</h6>
+           {totalReviews && <div><p>Transparency: {rating}/5 </p><p>Punctuality: {punctualityRating}/5 </p><p>Retention: {returningRating}/5 </p></div>}
+           
+           
+           
+           
+           
 
-           Trasparency data : {allPosts}
-           Punctuality data : {punctualityRating}/5
+    
         </div>
     )
 }

@@ -4,12 +4,10 @@ import { Form } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useAuthContext } from "../../contexts/auth";
 import './CharityPost.css'
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 const cors = require('cors')
 const imageToBase64 = require('image-to-base64')
-
-
 
 const CharityPost = () => {
     const { currentUser } = useAuthContext()
@@ -24,32 +22,32 @@ const CharityPost = () => {
     })
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
-          const fileReader = new FileReader();
-          fileReader.readAsDataURL(file);
-          fileReader.onload = () => {
-            resolve(fileReader.result);
-          };
-          fileReader.onerror = (error) => {
-            reject(error);
-          };
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
         });
-      };
+    };
 
     const handleImg = async e => {
         const file = e.target.files[0];
         console.log(file)
         const base64 = await convertToBase64(file);
-        setFormData(data => ({...data, "img": base64}))
+        setFormData(data => ({ ...data, "img": base64 }))
     }
 
     const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
     console.log(formData)
     const handleSubmit = async (e) => {
         e.preventDefault()
-            // const file = e.target[4].files[0];
-            // console.log(e)
-            // const base64 = await convertToBase64(file);
-            // setFormData(data => ({...data, "img": base64}))
+        // const file = e.target[4].files[0];
+        // console.log(e)
+        // const base64 = await convertToBase64(file);
+        // setFormData(data => ({...data, "img": base64}))
         // return new Promise(async (resolve, reject) => {
         try {
             const options = {
