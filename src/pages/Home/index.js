@@ -80,7 +80,9 @@ const Home = () => {
             <div id="home-page" className='d-flex justify-content-end align-items-center flex-column mr-auto'>
                 <h1 className="dashboard-title"> Welcome to <span className="charity-mode">Transparity</span> </h1>
                 {create()}
-                {posts}
+                <div className="grid-display">
+                    {posts}
+                </div>
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
                 <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" /> */}
             </div>
