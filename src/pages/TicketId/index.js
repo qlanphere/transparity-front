@@ -98,15 +98,16 @@ const TicketId = () => {
         <div className="ticket-page">
             <h1 className="ticket-page-title">Ticket {id}</h1>
             {ticketData}
-            {currentUser.sub.user == 'user' ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>}
+            {status ? currentUser.sub.user == 'user' ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>: <></>}
             <div>
                 {responseData}
             </div>
-
+            { status ?
             <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
                 <textarea type="text" name="description" value={responseFormData.description} onChange={handleInput} placeholder="Enter response" />
                 <input id="submit-ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
-            </form>
+            </form>: <></>}
+      
         </div>
     )
 }
