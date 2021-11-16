@@ -1,6 +1,7 @@
+import { ContentPasteOutlined } from '@mui/icons-material'
 import React, { useContext, useState, useEffect } from 'react'
-// const host = 'https://transparity.herokuapp.com'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 let dummyData = [{
     name: "Red Cross",
     posts: {
@@ -45,42 +46,113 @@ let dummyData = [{
 }]
 const DispayRating = () => {
     const [rating,setRating] = useState(0)
+    const [punctualityRating,setPunctualityRating] = useState(0)
+    const [returningRating,setReturningRating] = useState(0)
     const [allPosts,setAllPosts] = useState([])
-    console.log(localStorage.getItem("token"))
+    // const [stars,setStars] = useState("")
+    let dataLength = dummyData.length
+    let charity_id = ''
     useEffect(() => {
 
         const getAllPosts = async () => {
-            // try {
-            //     const options = {
-            //       method: 'GET',
-            //       headers: {
-            //         'Content-Type': 'application/json',
-            //         "Access-Control-Allow-Origin": "*",
-            //         "Authorization": `Bearer ${localStorage.getItem("token")}`
-            //       },
-            //       mode: 'cors',
-            //     }
-
-            //     const response = await fetch(`${host}/home`, options)
-            //     let data =  await response.json()
-            //     console.log(data)
-            //     // let postArray = data.map(post => post.posts.title)
-                
-            //     // setAllPosts(postArray)
-            //   } catch (err) {
-            //     console.log(err)
-            //   }    
-
-            let data = dummyData.map(post=>{
-                // console.log(post.posts.reviews[0].punctuality)
-                let rev = post.posts.reviews
-                console.log(rev[0])
-                for (let i=0;i<rev.length;i++){
-                    return rev[0]["transparency"]
+            try {
+                const options = {
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                  },
+                  mode: 'cors',
                 }
-                // return post.posts.reviews.map(ele=>ele)
-            })
-            setAllPosts(data)
+
+                const response = await fetch(`${host}/charity/${charity_id}>"`, options)
+                let data =  await response.json()
+                console.log(data.map(post => post.posts.map(ele=>ele.reviews.length)))
+                // if (data.posts.length !== 0){
+                    let postArray = data.map(post => post.posts.map(ele=>ele.reviews.map(rd=>rd.rating.transparency)))
+                    let transparencyLength = postArray.length
+                    console.log("length" + transparencyLength)
+                    // if (transparencyLength !=0){
+                    //     // console.log(data)
+                    //     let sum = postArray.reduce((a,b)=>parseInt(a)+parseInt(b))
+                    //     console.log(sum)
+                    //     setAllPosts(Math.round(parseInt(sum)/transparencyLength).toFixed(1))  
+                    //     // console.log(rating)
+                    // }
+            
+                    console.log(postArray)
+                
+                setAllPosts(postArray)
+                // }
+                
+              } catch (err) {
+                console.log(err)
+              }    
+            
+            // //Calculate transparency rating
+            // let data = dummyData.map(post=>{
+            //     let rev = post.posts.reviews[0].rating.transparency
+            //     return rev
+            // })
+
+            // if (data.length !=0){
+            //     // console.log(data)
+            //     let sum = data.reduce((a,b)=>parseInt(a)+parseInt(b))
+            //     setRating(Math.round(sum/dataLength).toFixed(1))  
+            //     // console.log(rating)
+            // }
+
+            // //Calculate punctuality rating
+            // let punctualityData = dummyData.map(post=>{
+            //     let puncRev = post.posts.reviews[0].rating.punctuality
+            //     // console.log(puncRev)
+            //     return puncRev
+            // })
+
+            // if (punctualityData.length !=0){
+            //     // console.log(data)
+            //     let psum = punctualityData.reduce((a,b)=>parseInt(a)+parseInt(b))
+            //     setPunctualityRating(Math.round(psum/dataLength).toFixed(1))  
+            //     // console.log(rating)
+            // }
+
+            // //Calculate returning-customer rating
+            // let returningData = dummyData.map(post=>{
+            //     let returnRev = post.posts.reviews[0].rating.comeback
+            //     return returnRev
+            // })
+
+            // if (returningData.length !=0){
+            //     // console.log(data)
+            //     let sum = returningData.reduce((a,b)=>parseInt(a)+parseInt(b))
+            //     setReturningRating(Math.round(sum/dataLength).toFixed(1))  
+            //     // console.log(rating)
+            // }
+            // console.log(dataLength)
+         
+                // switch(rating){
+                //     case 1:
+                //         setStars('*')
+                //         break;
+                //     case 2:
+                //         setStars('* *')
+                //         break;
+                //     case 3:
+                //         setStars('* * *')
+                //         break;
+                //     case 4:
+                //         setStars('* * * *')
+                //         break;
+                //     case 5:
+                //         setStars('* * * * * ')
+                //         break;
+                    
+                // }
+                
+            
+
+            
             
         }
 
@@ -89,7 +161,14 @@ const DispayRating = () => {
 
     return (
         <div>
-            Rating : {allPosts}
+       
+           Transparency Rating : {rating}/5 <br/>
+           Punctuality Rating : {punctualityRating}/5 <br/>
+           Returning-customer Rating : {returningRating}/5
+           <br/><br/>
+
+           Trasparency data : {allPosts}
+           Punctuality data : {punctualityRating}/5
         </div>
     )
 }

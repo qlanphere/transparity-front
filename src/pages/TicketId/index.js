@@ -15,6 +15,24 @@ const TicketId = () => {
     const [ticketData, setTicketData] = useState('')
     const [responseFormData, setResponseFormData] = useState({ name: currentUser.sub.name, user_type: currentUser.sub.user, description: "" })
     const [responseData, setResponseData] = useState([])
+    const [closeButton, setCloseButton] = useState('')
+    const [status, setStatus] = useState(true)
+
+    const handleCloseTicket = async () => {
+        const options = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            mode: 'cors',
+            body: JSON.stringify({status: false})
+        }
+        await fetch(`${host}/ticket/status/${id}`, options)
+        setStatus(false)
+    }
+    console.log(ticketData)
     const canIReply = () => {
         try {
         return responseData ? (responseData[responseData.length - 1].props.name == currentUser.sub.name) : false
@@ -55,18 +73,23 @@ const TicketId = () => {
         const getTicket = async () => {
             const response = await fetch(`${host}/tickets/${id}`, options)
             const ticket = await response.json()
+            console.log(ticket)
+            setStatus(ticket.status ? true: false)
             setTicketData(<Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />)
             setResponseData(ticket.res.map(message => <Response description={message.description} date={message.date} name={message.name} />))
         }
 
         getTicket()
+        
+        setCloseButton(status ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>)
 
-    }, [])
+    }, [status])
 
     return (
         <>
             <h1>Ticket {id}</h1>
             {ticketData}
+            {closeButton}
             <div>
                 {responseData}
             </div>
