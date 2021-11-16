@@ -20,7 +20,7 @@ function App() {
       {/* <Sidebar /> */}
       <Router>
         <Switch>
-          <Route exact path="/home">
+          <Route exact path="/timeline">
             <Home />
           </Route>
           <Route exact path="/">
@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/register">
             <Register />
           </Route>
-          <Route exact path='/about'>
+          <Route exact path='/home'>
             <About />
             </Route>
           <CustomRoutes.PrivateUserRoute exact path="/feedbackForm">

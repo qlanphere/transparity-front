@@ -74,8 +74,8 @@ const Tickets = () => {
                 let openTicks = ticketArray.filter(ticket => ticket.status == true)
                 let closedTicks = ticketArray.filter(ticket => ticket.status == false)
                 console.log(ticketArray)
-                setOpenTickets(openTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />))
-                setClosedTickets(closedTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />))
+                setOpenTickets(openTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />).reverse())
+                setClosedTickets(closedTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />).reverse())
             }
         }
 

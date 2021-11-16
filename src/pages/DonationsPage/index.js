@@ -3,8 +3,8 @@ import { useAuthContext } from '../../contexts/auth'
 import Transaction from '../../components/Transaction'
 import './Donations.css'
 
-// const host = 'https://transparity.netlify.app'
-const host = 'http://localhost:5000'
+const host = 'https://transparity.herokuapp.com'
+// const host = 'http://localhost:5000'
 
 const DonationsPage = () => {
 
@@ -20,8 +20,8 @@ const DonationsPage = () => {
             const options = {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
                     "Access-Control-Allow-Origin": "*",
+                    'Content-Type': 'application/json',
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 },
                 mode: 'cors',
@@ -37,6 +37,7 @@ const DonationsPage = () => {
             let transactionArray = donationData.map(transaction =>
                 <Transaction amount={transaction.amount}
                     charity_name={transaction.charity_name}
+                    user_name={transaction.user_name}
                     date={transaction.date} />)
 
             let donationArray = donationData.map(element => element.amount)
