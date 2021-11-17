@@ -4,12 +4,12 @@ import { useAuthContext } from '../../contexts/auth'
 import './Tickets.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Form from 'react-bootstrap/Form'
 import Footer from '../../components/Footer'
 const cors = require('cors')
 
 
 const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
 
 const Tickets = () => {
 
@@ -18,6 +18,7 @@ const Tickets = () => {
     const [closedTickets, setClosedTickets] = useState([])
     const [ticketFormData, setTicketFormData] = useState({ name: "", description: "", res: [], status: true, charityName: "" })
     const [charities, setCharities] = useState([])
+    const [validated, setValidated] = useState(false);
     const [newTicket, setNewTicket] = useState(false)
 
     const handleInput = e => setTicketFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -41,6 +42,12 @@ const Tickets = () => {
     }
 
     const handleSubmit = async (e) => {
+        const form = e.currentTarget
+        if (form.checkValidity() === false) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+        setValidated(true)
         try {
             e.preventDefault()
             let charityId = await getCharityId(ticketFormData.charityName)
@@ -100,14 +107,26 @@ const Tickets = () => {
         <>
             {(currentUser.sub.user != 'charity') ? <div className="tickets-page">
                 <h1 className="new-ticket">Create a New <span className="green">Ticket</span></h1>
-                <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
-                    <select value={ticketFormData.charityName} name="charityName" onChange={handleInput}>
+                <Form noValidate validate={validated} className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
+                    <Form.Group>
+                    <Form.Select value={ticketFormData.charityName} name="charityName" onChange={handleInput} required>
                         {charities}
-                    </select>
-                    <input type="text" name="name" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
-                    <textarea type="text" name="description" value={ticketFormData.description} onChange={handleInput} placeholder="description" />
+                    </Form.Select>
+                        </Form.Group>
+                        <Form.Group>
+                    <Form.Control type="text" name="name" minLength="2" value={ticketFormData.name} onChange={handleInput} placeholder="Title" required/>
+                    <Form.Control.Feedback type="invalid">
+                        Please enter a valid title.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control as="textarea" type="text" name="description" minlength="2" value={ticketFormData.description} onChange={handleInput} placeholder="description" required/>
+                    <Form.Control.Feedback type="invalid">
+                        Please enter a description.
+                        </Form.Control.Feedback>
+                    </Form.Group>
                     <input id="ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
-                </form>
+                </Form>
 
             </div> : <></>}
             <div className="open-tickets">
