@@ -10,6 +10,7 @@ import Button from '../../components/CreatePost/PostButton'
 import { usePostContext } from '../../contexts/postContext'
 
 import Footer from '../../components/Footer'
+import { useThemeContext } from '../../contexts/ThemeContext';
 
 
 const host = "https://transparity.herokuapp.com"
@@ -18,6 +19,7 @@ const Home = () => {
     const [posts, setPosts] = useState([])
     const { currentUser } = useAuthContext()
     const { posted, setPosted } = usePostContext()
+    const {theme} = useThemeContext()
 
     useEffect(() => {
 

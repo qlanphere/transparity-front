@@ -7,16 +7,19 @@ import { AuthProvider } from './contexts/auth';
 import reportWebVitals from './reportWebVitals';
 import { CharityProvider } from './contexts/charityContext';
 import { PostProvider } from './contexts/postContext';
+import { ThemeProvider } from './contexts/ThemeContext'
 
 ReactDOM.render(
   <Router>
-    <AuthProvider>
-      <CharityProvider>
-        <PostProvider>
-          <App />
-        </PostProvider>
-      </CharityProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <CharityProvider>
+          <PostProvider>
+            <App />
+          </PostProvider>
+        </CharityProvider>
+      </AuthProvider>
+    </ThemeProvider>
   </Router>
   ,
   document.getElementById('root')

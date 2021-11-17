@@ -13,8 +13,6 @@ const DonationsPage = () => {
     const [donations, setDonations] = useState(0)
     const [transactions, setTransactions] = useState([])
 
-    let dummyData = [{ amount: 12 }, { amount: 25 }, { amount: 72 }]
-
     useEffect(() => {
 
         const getDonations = async () => {
@@ -28,10 +26,6 @@ const DonationsPage = () => {
                 mode: 'cors',
             }
             let response = await fetch(`${host}/user/${currentUser.sub.id}`, options)
-            // let data = await response.json()
-            // console.log(data)
-            // console.log(data.donations)
-            // console.log(data.donations[0]['amount'])
             let userData = await response.json()
             let donationData = userData.donations
 
