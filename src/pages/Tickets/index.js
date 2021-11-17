@@ -8,7 +8,6 @@ import Form from 'react-bootstrap/Form'
 import Footer from '../../components/Footer'
 const cors = require('cors')
 
-
 const host = 'https://transparity.herokuapp.com'
 
 const Tickets = () => {

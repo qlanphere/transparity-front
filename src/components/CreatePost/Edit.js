@@ -40,7 +40,24 @@ const EditPost = (props) => {
         const base64 = await convertToBase64(file);
         setFormData(data => ({ ...data, "pdf": base64 }))
     }
-
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        try {
+            const options = {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                mode: 'cors'
+            }
+            await fetch(`${host}/delete/post/${postId}`, options)
+            props.onHide(); 
+        } catch (error) { 
+            console.log(error)
+        }
+    }
     const handleSubmit = async (e) => {
         const form = e.currentTarget
         if (form.checkValidity() === false) {
@@ -107,8 +124,13 @@ const EditPost = (props) => {
                         Both fields cannot be empty.
                         </Form.Control.Feedback>
                     </Form.Group>
+                    <div className="d-flex">
                     <div className="form-button">
                         <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
+                    </div>
+                    <div className="form-button">
+                        <input className="submit-button btn btn-primary" type="button" value="Delete" onClick={handleDelete}/>
+                    </div>
                     </div>
                 </div>
             </Form>
