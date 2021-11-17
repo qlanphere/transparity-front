@@ -8,7 +8,6 @@ import Response from '../../components/Response'
 import './TicketId.css'
 
 const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
 
 const TicketId = () => {
 

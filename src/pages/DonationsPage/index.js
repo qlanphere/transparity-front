@@ -5,7 +5,6 @@ import './Donations.css';
 import Footer from '../../components/Footer';
 
 const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
 
 const DonationsPage = () => {
 

@@ -18,3 +18,18 @@
     color: #9ACD32 !important;
     background-color: #9ACD32 !important;
   }
+
+  .edit-post-button{
+      border: none;
+      background-color: #9ACD32;
+      color: #fff;
+      width: 30px;
+      border-radius: 25px;
+      
+      position: absolute;
+      margin-left: 130px;
+  }
+
+  .edit-post-button:hover{
+      background-color: #424242;
+  }
