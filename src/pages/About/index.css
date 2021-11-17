@@ -120,6 +120,7 @@
     width: auto;
     margin: 0 auto;
     justify-content: space-around;
+    padding-top: 100px;
   }
 
   .button-container button{
