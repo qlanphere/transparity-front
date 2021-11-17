@@ -23,6 +23,7 @@ const Post = (props) => {
     const [modalShow, setModalShow] = useState(false);
     const [pdf, setPdf] = useState('')
     const history = useHistory();
+    
 
     const handleClick = (name) => {
         setCharityName(name)
