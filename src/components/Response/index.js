@@ -1,8 +1,9 @@
 import React from 'react'
+import './Response.css'
 
 const Response = (props) => {
     return (
-        <div>
+        <div className="ticket-response">
             <p>{props.description}</p>
             <p>{props.date}</p>
             <p>{props.name}</p>

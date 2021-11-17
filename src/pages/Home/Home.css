@@ -15,7 +15,13 @@
 }
 
 .card-img{
-    height: 180px;
+    height: auto;
+    max-height: 200px;
+    width: auto;
+    max-width: 350px;
+    /* height: 200px;
+    width: auto;
+    max-width: 250px; */
 }
 
 .Toastify__progress-bar--success {
