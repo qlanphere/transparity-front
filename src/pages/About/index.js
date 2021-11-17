@@ -2,10 +2,26 @@ import React from 'react'
 import './index.css'
 import Slider from "react-slick";
 import { HiCubeTransparent } from "react-icons/hi";
+import Footer from '../../components/Footer';
+import { useAuthContext } from '../../contexts/auth';
+import { useHistory } from 'react-router-dom';
+import { RiArrowRightSLine } from "react-icons/ri";
+
 //import "~slick-carousel/slick/slick.css"; 
 // import "~slick-carousel/slick/slick-theme.css";
 
 const About = () => {
+
+    const { currentUser } = useAuthContext()
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push(`/login`)
+    }
+
+    const handleRegister = () => {
+        history.push(`/register`)
+    }
 
     const settings = {
         dots: true,
@@ -74,7 +90,45 @@ const About = () => {
             </div>
             <div className="slide">
                 <h1 className="slide-title">Creating Change <HiCubeTransparent /></h1>
+                <div className="rounded-card">
+                    {!currentUser ? <div className="rounded-description">You can join the <span className="green">Transparity</span> community today by signing up as a <span className="bold">donator</span> or a <span className="bold">charity</span>.
+                        If you would like to sign up as a donator then click on the register button below, and in the registration form select the user option, otherwise
+                        if you would like to sign up as a charity please select the charity option.
+                        <div className="button-container">
+                            <button onClick={handleRegister}>Register</button>
+                            <button onClick={handleClick}>Login</button>
+                        </div>
+                    </div> : currentUser.sub.user == 'user' ?
+                        <div className="user-functionality">
+                            <p className="func-title">You have joined the <span className="green">Transparity</span> community as a <span className="bold">User.</span></p>
+                            <p>With this account you have access to the following features:</p>
+                            <ul>
+                                <li><RiArrowRightSLine /><span>A timeline of charity campaigns</span></li>
+                                <li><RiArrowRightSLine /><span>Make donations to charities through PayPal</span></li>
+                                <li><RiArrowRightSLine /><span>Give campaign specific reviews to charities</span></li>
+                                <li><RiArrowRightSLine /><span>Speak to Charities by opening a ticket</span></li>
+                            </ul>
+                        </div> :
+                        <div>
+                            <div className="user-functionality">
+                                <p className="func-title">You have joined the <span className="green">Transparity</span> community as a <span className="bold">Charity.</span></p>
+                                <p>With this account you have access to the following features:</p>
+                                <ul>
+                                    <li><RiArrowRightSLine /><span>Create campaign posts to increase awareness</span></li>
+                                    <li><RiArrowRightSLine /><span>Receive donations from registered users through PayPal</span></li>
+                                    <li><RiArrowRightSLine /><span>Profile page containing a bio and all of your campaigns</span></li>
+                                    <li><RiArrowRightSLine /><span>A timeline of charity campaigns</span></li>
+                                    <li><RiArrowRightSLine /><span>Respond to user tickets</span></li>
+                                </ul>
+                            </div>
+
+                        </div>}
+
+
+                </div>
+                {/* <div className="lorem-container">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </div> */}
             </div>
+            <Footer />
             {/* <div
                     className="slideshowSlider"
                     style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}

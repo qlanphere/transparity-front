@@ -7,6 +7,7 @@ import styles from './Register.module.css'
 import './Register.css'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Footer from '../../components/Footer'
 
 const Register = () => {
     const { register, login } = useAuthContext();
@@ -96,6 +97,7 @@ const Register = () => {
             </form>
             {error && <div id="error">{error}</div>}
             {loading && <div id="loading">Creating account . . .</div>}
+            <Footer />
         </div>
     );
 
