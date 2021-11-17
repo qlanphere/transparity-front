@@ -39,6 +39,7 @@
     margin: 5px;
     font-size: 10px;
     color: #000000;
+    /* color: #fff; */
 }
 
 .t-button:hover{
@@ -54,4 +55,6 @@
 .Toastify__progress-bar--success {
     color: #9ACD32 !important;
     background-color: #9ACD32 !important;
-  }
+}
+
+

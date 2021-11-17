@@ -99,6 +99,7 @@ const Post = (props) => {
         <>
             <div className="card-container">
                 <div className="card-info">
+                    {currentUser && props.name === currentUser.sub.name && <EditButton postId={props.postId}>Edit</EditButton>}
                     <h1 className="card-title">{props.title}</h1>
                     <h2 className="charity-name">{props.name}</h2>
                     <img className="card-img" src={props.image} width={150} />
@@ -106,10 +107,10 @@ const Post = (props) => {
                     <p>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
                     <p className="card-date">{props.target_date}</p>
-
                     <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.postId} />
                     {donate()}
                     {currentUser ? <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button> : <></>}
+                    {currentUser ? <button target="_blank" hidden={props.hidden} className="t-button" size="small" onClick={() => handlePDF(props.postId, props.name)}>See Report</button> : <></>}
                     {review()}
                     <DispayRating charity={props.name} />
                 </div>
