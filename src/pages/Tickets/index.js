@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
-<<<<<<< HEAD
 import './Tickets.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-=======
-import './Tickets.css';
 import Footer from '../../components/Footer'
->>>>>>> 1238fd69f2ef0519ba45ee74a604ee9ef21abbde
 const cors = require('cors')
 
 
