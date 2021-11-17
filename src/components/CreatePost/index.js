@@ -51,6 +51,7 @@ function CreatePost(props) {
         }
         setValidated(true)
         try {
+            e.preventDefault()
             const options = {
                 method: 'PATCH',
                 headers: {

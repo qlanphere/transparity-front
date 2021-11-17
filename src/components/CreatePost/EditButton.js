@@ -10,7 +10,7 @@ const EditButton = (props) => {
   return (
     <>
       <button className="edit-post-button" variant="primary" onClick={() => setModalShow(true)}>
-        ...
+        Edit
       </button>
       <Edit show={modalShow}
         onHide={() => setModalShow(false)} postId={props.postId} notify={() => toast.success('Succesfully Edited')} />

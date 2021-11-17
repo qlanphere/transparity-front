@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
@@ -11,6 +12,7 @@ const Feedback = () => {
 
   const { postId } = usePostContext()
   console.log(postId)
+  const history = useHistory();
 
   const { currentUser } = useAuthContext()
   const charity_id = currentUser.sub.id
@@ -51,6 +53,7 @@ const Feedback = () => {
 
           await fetch(`${host}/feedback/${postId}`, options)
           setPressed(false)
+          history.push('/timeline')
         } catch (err) {
           console.log(err)
         }
