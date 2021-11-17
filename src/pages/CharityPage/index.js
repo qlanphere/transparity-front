@@ -6,7 +6,8 @@ import Button from "../../components/CreateBio/BioButton"
 import { usePostContext } from "../../contexts/postContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './index.css'
+import './index.css';
+import Footer from '../../components/Footer'
 const cors = require("cors");
 
 const host = "https://transparity.herokuapp.com";
@@ -98,7 +99,7 @@ const CharityPage = () => {
       {createBio()}
       <div className="grid-display">{posts}</div>
       {reviews}
-
+      <Footer />
     </div>
   );
 };

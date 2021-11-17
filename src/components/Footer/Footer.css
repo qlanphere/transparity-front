@@ -1,6 +1,7 @@
 /* Styling the footer */
 
 .footer{
+    position: relative;
     display: flex;
     justify-content: space-around;
     height: 200px;
@@ -8,8 +9,9 @@
     padding-top: 1%;
     padding-bottom: 1%;
     width: 100%;
+    bottom: 0;
 
-    margin-top: 200px;
+    margin-top: 300px;
 }
 
 .footer-text{

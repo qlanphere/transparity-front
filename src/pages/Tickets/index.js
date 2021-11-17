@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
-import './Tickets.css'
+import './Tickets.css';
+import Footer from '../../components/Footer'
 const cors = require('cors')
 
 
@@ -110,10 +111,11 @@ const Tickets = () => {
                 <h1>Open <span className="green">Tickets</span></h1>
                 {openTickets}
             </div>
-            {(currentUser.sub.user != 'charity') ?<div className="closed-tickets">
+            {(currentUser.sub.user != 'charity') ? <div className="closed-tickets">
                 <h1>Closed Tickets</h1>
                 {closedTickets}
-            </div>: <></>}
+            </div> : <></>}
+            {/* <Footer /> */}
         </>
     )
 }

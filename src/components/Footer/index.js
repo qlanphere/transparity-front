@@ -7,7 +7,7 @@ import * as RiIcons from 'react-icons/ri'
 
 const index = () => {
     return (
-        <div>
+        <>
             <footer className="footer">
                 <div className="footer-text">
                     <div className="footer-title">
@@ -43,7 +43,7 @@ const index = () => {
                 </div>
             </footer>
             <div class="bottom-separator"></div>
-        </div>
+        </>
     )
 }
 
