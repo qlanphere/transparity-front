@@ -5,7 +5,6 @@ import "./Feedback.css";
 import { usePostContext } from '../../contexts/postContext';
 import Footer from '../../components/Footer';
 const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
 const cors = require('cors')
 
 const Feedback = () => {

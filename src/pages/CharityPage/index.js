@@ -11,7 +11,6 @@ import Footer from '../../components/Footer'
 const cors = require("cors");
 
 const host = "https://transparity.herokuapp.com";
-// const host = 'http://localhost:5000'
 
 const CharityPage = () => {
   const [posts, setPosts] = useState([]);

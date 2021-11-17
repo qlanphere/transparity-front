@@ -69,7 +69,7 @@ const About = () => {
         <div className="about-page">
             <h4>Welcome {userInfo()}</h4>
             <h1 className="about-title">What is <span className="green">Transparity?</span></h1>
-            <p className="about-intro">Transparity is a hub that connects charitable organisations with potential donors with an emphasis on transparency. Many potential donors are hesitant to donate when they don't know where their money is going or hoq much of it is actually going to the cause.
+            <p className="about-intro">Transparity is a hub that connects charitable organisations with potential donors with an emphasis on transparency. Many potential donors are hesitant to donate when they don't know where their money is going or how much of it is actually going to the cause.
                 By creating a hub where charities can interact with donors and provide feedback, donors will have a more transparent experience which will encourage donations as well as help smaller charities gain traction.
             </p>
             <div>
