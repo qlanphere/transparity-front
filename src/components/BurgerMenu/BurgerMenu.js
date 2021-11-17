@@ -15,7 +15,7 @@ import { useThemeContext } from '../../contexts/ThemeContext';
 function BurgerMenu() {
 
     const { currentUser, logout } = useAuthContext()
-    const {theme} = useThemeContext()
+    const { theme } = useThemeContext()
 
     const profile = () => {
         try {
@@ -26,8 +26,8 @@ function BurgerMenu() {
 
     const userName = () => {
         try {
-            return <div className = "userInfo"><p>{currentUser.sub.user}</p><p>{currentUser.sub.name}</p></div>
-        } catch {return false}
+            return <div className="userInfo"><p>{currentUser.sub.name}</p><p className="account-type">Account: {currentUser.sub.user}</p></div>
+        } catch { return false }
     }
 
     return (

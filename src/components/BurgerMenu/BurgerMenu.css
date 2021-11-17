@@ -108,5 +108,14 @@
 
   .userInfo {
     color: #fff;
-    margin-top: 475px;
+    margin-top: 400px;
+  }
+
+  .userInfo p{
+    margin-bottom: 0;
+  }
+
+  .account-type{
+    font-size: 14px;
+    color: #424242;
   }
