@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const host = 'https://transparity.herokuapp.com'
 const cors = require('cors')
 
@@ -32,7 +34,7 @@ export const AuthProvider = ({ children }) => {
                 const { data } = await axios.post(`${host}/register/${user ? 'user':'charity'}`, userData, options)
                 if (data.err){
                     throw Error(data.err)
-                }
+                } toast.success("Successfully Registered!")
                 resolve('Registration successful')
             } catch (err) {
                 reject(`Registration Error: ${err}`);
@@ -53,7 +55,7 @@ export const AuthProvider = ({ children }) => {
                 console.log(data)
                 if (!data) { 
                     throw new Error('Login not authorised');
-                }
+                }toast.success("Successfully Logged In!")
                 localStorage.setItem("token", data.access_token);
                 const user = jwt_decode(data.access_token);
 
@@ -75,6 +77,7 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={auth}>
             { children }
+            <ToastContainer />
         </AuthContext.Provider>
     )
 }

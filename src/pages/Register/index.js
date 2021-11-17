@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useAuthContext } from "../../contexts/auth";
 import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Register.module.css'
 import './Register.css'
 import FormControlLabel from '@mui/material/FormControlLabel';
