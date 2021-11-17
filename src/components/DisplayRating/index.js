@@ -42,7 +42,9 @@ const DispayRating = (props) => {
           let returnArray = data.posts.map(post => post.reviews.map(ele => ele.rating.comeback))
 
           //returning the array of how many reviws in the post
-          let reviewLength = data.posts.map(post => post.reviews.length)
+          let reviewL = data.posts.map(post => post.reviews.length)
+          let reviewLength  = reviewL.reduce((a,b)=>a+b)
+          console.log(reviewLength)
 
           //calculates the reduced sum of the all the transparency array
           let reducedTrans = postArray.map(x => {
@@ -74,19 +76,19 @@ const DispayRating = (props) => {
           if (reviewLength !== 0 && postArray.length != 0 && punctualArray.length != 0 && returnArray.length != 0) {
             //transparency
             let sum = reducedTrans.reduce((a, b) => parseInt(a) + parseInt(b))
-            setRating(Math.round(parseInt(sum) / reviewLength.length).toFixed(1))
+            setRating(Math.round(parseInt(sum) / reviewLength).toFixed(1))
             //punctuality
             let sumP = reducedPunc.reduce((a, b) => parseInt(a) + parseInt(b))
-            setPunctualityRating(Math.round(parseInt(sumP) / reviewLength.length).toFixed(1))
+            setPunctualityRating(Math.round(parseInt(sumP) / reviewLength).toFixed(1))
             //Retention
             let sumR = reducedReturn.reduce((a, b) => parseInt(a) + parseInt(b))
-            setReturningRating(Math.round(parseInt(sumR) / reviewLength.length).toFixed(1))
+            setReturningRating(Math.round(parseInt(sumR) / reviewLength).toFixed(1))
 
             if (sum + sumP + sumR == 0) {
               setTotalReviews(0)
 
             }
-            else setTotalReviews(reviewLength.length)
+            else setTotalReviews(reviewLength)
           }
 
 
