@@ -10,11 +10,12 @@ import { HiCubeTransparent } from "react-icons/hi";
 import { Nav } from 'react-bootstrap'
 import { useAuthContext } from "../../contexts/auth";
 import './BurgerMenu.css'
+import { useThemeContext } from '../../contexts/ThemeContext';
 
 function BurgerMenu() {
 
     const { currentUser, logout } = useAuthContext()
-    console.log(currentUser)
+    const {theme} = useThemeContext()
 
     const profile = () => {
         try {
@@ -23,9 +24,15 @@ function BurgerMenu() {
         catch { return <></> }
     }
 
+    const userName = () => {
+        try {
+            return <div className = "userInfo"><p>{currentUser.sub.user}</p><p>{currentUser.sub.name}</p></div>
+        } catch {return false}
+    }
+
     return (
-        <div>
-            <Menu>
+        <div >
+            <Menu >
                 <div className="m-title">Transparity <HiCubeTransparent /></div>
                 <div className="m-item"><span className="icon-wrapper"><IoHome /></span><Nav.Link href="/home">Home</Nav.Link></div>
                 <div className="m-item"><span className="icon-wrapper"><BsBook /></span><Nav.Link href="/timeline">Timeline</Nav.Link></div>
@@ -37,6 +44,7 @@ function BurgerMenu() {
                 {!currentUser && <div className="m-item"><span className="icon-wrapper"><FaUserCircle /></span><Nav.Link href="/register">Register</Nav.Link></div>}
                 {/* {currentUser && <div className="m-item"><span className="icon-wrapper"><FaHeart /></span><Nav.Link href="/feedbackForm">Feedback Page</Nav.Link></div>} */}
                 {currentUser && <div className="m-item"><span className="icon-wrapper"><BiDonateHeart /></span><Nav.Link href="/donations">Donations</Nav.Link></div>}
+                {userName()}
             </Menu >
         </div >
     )

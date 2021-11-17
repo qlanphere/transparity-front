@@ -44,6 +44,8 @@
     font-size: 1.15em;
   }
   
+
+  
   /* Morph shape necessary with bubble or elastic */
   .bm-morph-shape {
     fill: #373a47;
@@ -102,4 +104,9 @@
   #root > div > div:nth-child(1) > div > div.bm-menu-wrap > div.bm-menu > nav > div.bm-item.m-title > svg{
     width: 2.2rem;
     height: 2.2rem;
+  }
+
+  .userInfo {
+    color: #fff;
+    margin-top: 475px;
   }

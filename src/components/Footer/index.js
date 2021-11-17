@@ -4,11 +4,14 @@ import { HiCubeTransparent } from "react-icons/hi";
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import * as RiIcons from 'react-icons/ri'
+import { useThemeContext } from '../../contexts/ThemeContext';
 
-const index = () => {
+const Footer = () => {
+
+
     return (
         <>
-            <footer className="footer">
+            <footer className="footer" >
                 <div className="footer-text">
                     <div className="footer-title">
                         <h2>Transparity</h2>
@@ -47,4 +50,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Footer
