@@ -101,6 +101,7 @@ const Tickets = () => {
                 <h1 className="new-ticket">Create a New <span className="green">Ticket</span></h1>
                 <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
                     <select value={ticketFormData.charityName} name="charityName" onChange={handleInput}>
+                        <option selected >Select a Charity</option>
                         {charities}
                     </select>
                     <input type="text" name="name" minlength="2" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
