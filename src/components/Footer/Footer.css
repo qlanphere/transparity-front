@@ -21,6 +21,7 @@
 
 .footer-social-media-banner{
     width: auto;
+    display: flex;
 }
 
 .footer-social-media-banner h5{
@@ -106,6 +107,16 @@
     padding-left: 5px;
     height: 2.6rem;
     width: 2.6rem;
+}
+
+
+.footer-social-media-banner a svg{
+    height: 2.0rem;
+    width: 2.0rem;
+}
+
+.footer-social-media-banner a svg:hover{
+    fill: #424242;
 }
 
 

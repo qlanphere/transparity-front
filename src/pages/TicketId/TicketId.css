@@ -19,14 +19,19 @@
     background-color: #424242;
 }
 
-/* 
-#submit-ticket-button{
+ 
+ #submit-ticket-button{
     border:none;
     background-color: #9ACD32;
     color: #fff;
     margin-bottom: 30px;
     padding: 10px 12px;
-} */
+} 
+
+#submit-ticket-button:hover{
+    background-color: #424242;
+    cursor: pointer;
+}
 
 .enabled{
     border:none;
