@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import {usePostContext} from '../../contexts/postContext'
 import './CharityPost.css'
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 const cors = require('cors')
 
@@ -11,6 +12,7 @@ const host = 'https://transparity.herokuapp.com'
 const EditPost = (props) => {
     const { currentUser } = useAuthContext()
     const {posted, setPosted} = usePostContext()
+    const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState({
         "description": '',
         "pdf": ''
@@ -40,8 +42,13 @@ const EditPost = (props) => {
     }
 
     const handleSubmit = async (e) => {
+        const form = e.currentTarget
+        if (form.checkValidity() === false) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
         e.preventDefault()
-        console.log(postId)
+        setValidated(true)
         try {
             const options = {
                 method: 'PATCH',
@@ -54,8 +61,12 @@ const EditPost = (props) => {
                 body: JSON.stringify(formData)
             }
             console.log(formData)
-            await fetch(`${host}/post/${postId}`, options)
-            setPosted(true)
+            let data = await fetch(`${host}/post/${postId}`, options)
+            if (data.ok === true) {
+                props.onHide(); 
+                props.notify();
+                setPosted(true);
+            }
 
         } catch (err) {
             console.log(err)
@@ -80,22 +91,27 @@ const EditPost = (props) => {
                 {/* <h2 className="text-muted"> Please fill in form below to edit your post</h2> */}
                 <h3> {props.name}</h3>
             </div>
-            <form encType="multipart/form-data" className="register-form" onSubmit={(e) => handleSubmit(e)}>
+            <Form encType="multipart/form-data" className="register-form" onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-fields-container d-flex flex-column justify-content-start align-center">
-                    <div className="form-block">
-                        <label>Description:</label>
-                        <input type="text" name="description" value={formData.description} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label className="space">Upload PDF:</label>
-                        <input className="custom-file-input" type="file" name="pdf" id="img" onChange={handlePDF} />
-                        {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
-                    </div>
+                    <Form.Group className="form-block">
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control type="text" name="description" value={formData.description} onChange={handleChange} />
+                        <Form.Control.Feedback type="invalid">
+                        Both fields cannot be empty.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="form-block">
+                        <Form.Label className="space">Upload PDF:</Form.Label>
+                        <Form.Control className="custom-file-input" type="file" name="pdf" id="img" onChange={handlePDF} />
+                    <Form.Control.Feedback type="invalid">
+                        Both fields cannot be empty.
+                        </Form.Control.Feedback>
+                    </Form.Group>
                     <div className="form-button">
-                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" onClick={() => {props.onHide(); props.notify()}}/>
+                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
                     </div>
                 </div>
-            </form>
+            </Form>
 
         </div>
         </Modal.Body>

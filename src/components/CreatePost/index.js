@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import './CharityPost.css'
 import { usePostContext } from '../../contexts/postContext';
+import Form from 'react-bootstrap/Form'
 const cors = require('cors')
 
 const host = 'https://transparity.herokuapp.com'
@@ -12,7 +13,7 @@ function CreatePost(props) {
     const {posted, setPosted} = usePostContext()
     const charity_name = currentUser.sub.name
     const charity_id = currentUser.sub.id
-    const [modalShow, setModalShow] = useState(true);
+    const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -42,8 +43,13 @@ function CreatePost(props) {
 
     const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
     console.log(formData)
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const submit = async (e) => {
+        const form = e.currentTarget
+        if (form.checkValidity() === false) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+        setValidated(true)
         try {
             const options = {
                 method: 'PATCH',
@@ -56,8 +62,11 @@ function CreatePost(props) {
                 body: JSON.stringify(formData)
             }
             console.log(formData)
-            await fetch(`${host}/charity/post/${charity_id}`, options)
-            setPosted(true)
+            let data = await fetch(`${host}/charity/post/${charity_id}`, options)
+            if (data.ok === true){
+                setPosted(true)
+                props.onHide(); props.notify()
+            }
 
         } catch (err) {
             console.log(err)
@@ -72,44 +81,57 @@ function CreatePost(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Create a Post
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <div>
             <div id="heading" className="register-title">
-                <h2 className="text-muted"> Please fill in form below to add a new post</h2>
-                <h3> {currentUser.sub.name}</h3>
+                <h3>{currentUser.sub.name}</h3>
             </div>
-            <form encType="multipart/form-data" className="register-form" onSubmit={(e) => handleSubmit(e)}>
+            <Form noValidate validated={validated} encType="multipart/form-data" className="register-form" onSubmit={(e) => { submit(e)}}>
                 <div className="form-fields-container d-flex flex-column justify-content-start align-center">
-                    <div className="form-block">
-                        <label>Title:</label>
-                        <input type="text" name="title" value={formData.title} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label>Description:</label>
-                        <textarea name="description" value={formData.description} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label>Goal:</label>
-                        <input type="text" name="goal" value={formData.goal} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label>Target Date:</label>
-                        <input type="date" name="target_date" value={formData.target_date} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label className="space">Upload Image:</label>
-                        <input className="custom-file-input" type="file" name="img" id="img" onChange={handleImg} />
-                        {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
-                    </div>
+                    <Form.Group className="form-block">
+                        <Form.Label>Title:</Form.Label>
+                        <Form.Control type="text" name="title" value={formData.title} onChange={handleChange} required minLength="5"/>
+                        <Form.Control.Feedback type="invalid">
+                        Please enter a valid title.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="form-block">
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control as="textarea" name="description" value={formData.description} onChange={handleChange} required minLength="5"/>
+                        <Form.Control.Feedback type="invalid">
+                        Please enter a valid description.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="form-block">
+                        <Form.Label>Goal:</Form.Label>
+                        <Form.Control type="text" name="goal" value={formData.goal} onChange={handleChange} required />
+                        <Form.Control.Feedback type="invalid">
+                        Please enter a valid goal.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="form-block">
+                        <Form.Label>Target Date:</Form.Label>
+                        <Form.Control type="date" name="target_date" value={formData.target_date} onChange={handleChange} required/>
+                        <Form.Control.Feedback type="invalid">
+                        Please enter a valid date.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="form-block">
+                        <Form.Label className="space">Upload Image:</Form.Label>
+                        <Form.Control className="custom-file-input" type="file" name="img" id="img" onChange={handleImg} required/>
+                        <Form.Control.Feedback type="invalid">
+                        Please upload a valid image.
+                        </Form.Control.Feedback>
+                    </Form.Group>
                     <div className="form-button">
-                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" onClick={() => {props.onHide(); props.notify()}}/>
+                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
                     </div>
 
                 </div>
-            </form>
+            </Form>
 
         </div>
         </Modal.Body>
