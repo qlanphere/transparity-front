@@ -9,7 +9,6 @@ const cors = require('cors')
 
 
 const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
 
 const Tickets = () => {
 
@@ -104,8 +103,8 @@ const Tickets = () => {
                     <select value={ticketFormData.charityName} name="charityName" onChange={handleInput}>
                         {charities}
                     </select>
-                    <input type="text" name="name" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
-                    <textarea type="text" name="description" value={ticketFormData.description} onChange={handleInput} placeholder="description" />
+                    <input type="text" name="name" minlength="2" value={ticketFormData.name} onChange={handleInput} placeholder="Title" />
+                    <textarea type="text" name="description" minlength="2" value={ticketFormData.description} onChange={handleInput} placeholder="description" />
                     <input id="ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
                 </form>
 

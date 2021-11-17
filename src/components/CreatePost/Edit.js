@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button'
 const cors = require('cors')
 
 const host = 'https://transparity.herokuapp.com'
-// const host = 'http://localhost:5000'
 
 const EditPost = (props) => {
     const { currentUser } = useAuthContext()
