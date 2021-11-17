@@ -10,6 +10,7 @@ const DispayRating = (props) => {
   const [totalReviews, setTotalReviews] = useState(0)
   const [allPosts, setAllPosts] = useState(0)
   let charity_id = props.charity
+  let postId = props.postId
 
   useEffect(() => {
 

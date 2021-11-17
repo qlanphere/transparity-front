@@ -93,7 +93,7 @@ const Post = (props) => {
 
     const review = () => {
         try {
-            return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleReview(props.post_id)}>Review</button> : <></>
+            return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => {handleReview(props.post_id);setPostId(props.postId)}}>Review</button> : <></>
         } catch { return false }
     }
 
@@ -115,7 +115,7 @@ const Post = (props) => {
                     {currentUser ? <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button> : <></>}
                     {currentUser ? <button target="_blank" hidden={props.hidden} className="t-button" size="small" onClick={() => handlePDF(props.postId, props.name)}>See Report</button> : <></>}
                     {review()}
-                    <DispayRating charity={props.name} />
+                    <DispayRating charity={props.name} postId = {props.postId}/>
                 </div>
 
             </div>
