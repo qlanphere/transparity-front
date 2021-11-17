@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { HiCubeTransparent } from "react-icons/hi";
 import Footer from '../../components/Footer';
 import { useAuthContext } from '../../contexts/auth';
+import { useHistory } from 'react-router-dom';
 
 //import "~slick-carousel/slick/slick.css"; 
 // import "~slick-carousel/slick/slick-theme.css";
@@ -11,6 +12,16 @@ import { useAuthContext } from '../../contexts/auth';
 const About = () => {
 
     const { currentUser } = useAuthContext()
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push(`/login`)
+    }
+
+    const handleRegister = () => {
+        history.push(`/register`)
+    }
+
 
     const settings = {
         dots: true,
@@ -84,8 +95,8 @@ const About = () => {
                         If you would like to sign up as a donator then click on the register button below, and in the registration form select the user option, otherwise
                         if you would like to sign up as a charity please select the charity option.
                         <div className="button-container">
-                            <button>Register</button>
-                            <button>Login</button>
+                            <button onClick={handleRegister}>Register</button>
+                            <button onClick={handleClick}>Login</button>
                         </div>
                     </div> : <div>Thank you for joining the Transparity community.</div>}
 
