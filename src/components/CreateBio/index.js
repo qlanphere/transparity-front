@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useAuthContext } from "../../contexts/auth";
 import './CreateBio.css'
 import { usePostContext } from '../../contexts/postContext';
+import Form from 'react-bootstrap/Form'
 const cors = require('cors')
 
 const host = 'https://transparity.herokuapp.com'
@@ -12,6 +13,7 @@ function CreateBio(props) {
     const charity_name = currentUser.sub.name
     const charity_id = currentUser.sub.id
     const {updatedBio, setUpdatedBio} = usePostContext()
+    const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState({
         description: "",
         img: ""
@@ -50,8 +52,12 @@ function CreateBio(props) {
                 mode: 'cors',
                 body: JSON.stringify(formData)
             }
-            await fetch(`${host}/update/charity/${charity_id}`, options)
-            setUpdatedBio(true)
+            let data = await fetch(`${host}/update/charity/${charity_id}`, options)
+            if (data.ok === true){
+                setUpdatedBio(true)
+                props.onHide(); props.notify()
+            }
+
         } catch (err) {
             console.log(err)
         }
@@ -74,23 +80,23 @@ function CreateBio(props) {
                 <h2 className="text-muted"> Please fill in form below to create a bio</h2>
                 <h3> {currentUser.sub.name}</h3>
             </div>
-            <form encType="multipart/form-data" className="register-form" onSubmit={(e) => handleSubmit(e)}>
+            <Form noValidate validated={validated} encType="multipart/form-data" className="register-form" onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-fields-container d-flex flex-column justify-content-start align-center">
-                    <div className="form-block">
-                        <label>Description:</label>
-                        <textarea name="description" value={formData.description} onChange={handleChange} />
-                    </div>
-                    <div className="form-block">
-                        <label className="space">Upload Image:</label>
-                        <input className="custom-file-input" type="file" name="img" id="img" onChange={handleImg} />
+                    <Form.Group className="form-block">
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control as="textarea" name="description" value={formData.description} onChange={handleChange} />
+                    </Form.Group>
+                    <Form.Group className="form-block">
+                        <Form.Label className="space">Upload Image:</Form.Label>
+                        <Form.Control className="custom-file-input" type="file" name="img" id="img" onChange={handleImg} />
                         {/* <input type="text" name="img" id="img" value={formData.img} onChange={handleChange}/> */}
-                    </div>
+                    </Form.Group>
                     <div className="form-button">
-                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" onClick = {() => {props.onHide(); props.notify()}}/>
+                        <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
                     </div>
 
                 </div>
-            </form>
+            </Form>
 
         </div>
         </Modal.Body>

@@ -12,7 +12,9 @@ import EditButton from '../../components/CreatePost/EditButton'
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/auth';
 
+const base64 = require('base64topdf');
 const host = "https://transparity.herokuapp.com"
+// const host = "http://localhost:5000"
 
 const Post = (props) => {
     const { postId, setPostId, emailP, setEmailP } = usePostContext()
