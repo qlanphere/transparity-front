@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { usePostContext } from '../../contexts/postContext';
 import { useCharityContext } from '../../contexts/charityContext';
 import { useAuthContext } from '../../contexts/auth';
+import Footer from '../../components/Footer'
 import './DonatePage.css'
 
 function DonatePage() {
@@ -78,6 +79,7 @@ function DonatePage() {
             <button className="confirm-button" onClick={() => { setReady(true) }}>Confirm</button>
 
             <div className="paypal-container" ref={paypal}></div>
+            <Footer />
         </div>
     );
 

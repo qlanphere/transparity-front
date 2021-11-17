@@ -7,16 +7,21 @@ import EditPost from '../../components/CreatePost/Edit'
 import { useCharityContext } from '../../contexts/charityContext';
 import { usePostContext } from '../../contexts/postContext';
 
+import EditButton from '../../components/CreatePost/EditButton'
+
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/auth';
 
-const host = "https://transparity.herokuapp.com"
+const base64 = require('base64topdf');
+// const host = "https://transparity.herokuapp.com"
+const host = "http://localhost:5000"
 
 const Post = (props) => {
-    const { setPostId, emailP, setEmailP } = usePostContext()
+    const { postId, setPostId, emailP, setEmailP } = usePostContext()
     const { charityName, setCharityName, charityId, setCharityId } = useCharityContext()
     const { currentUser } = useAuthContext()
     const [modalShow, setModalShow] = useState(false);
+    const [pdf, setPdf] = useState('')
     const history = useHistory();
 
     const handleClick = (name) => {
@@ -54,10 +59,34 @@ const Post = (props) => {
         history.push('/donate')
     }
 
+    const handlePDF = async (postId, name) => {
+        await setPostId(postId)
+        await setCharityName(name)
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            mode: 'cors',
+        }
+        const response = await fetch(`${host}/charity/post/${postId}`, options)
+        const data = await response.json()
+        console.log(data)
+function showPdfInNewTab(base64Data) {  
+    let pdfWindow = window.open("");
+    pdfWindow.document.write( `<iframe width='100%' height='100%' src=${encodeURI(base64Data)} + "'></iframe>`);
+  }
+
+  showPdfInNewTab(data.pdf)
+
+    }
+
     const donate = () => {
         try {
             return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => handleDonate(props.post_id, props.name)}>Donate</button> : <></>
-        } catch {return false}
+        } catch { return false }
     }
 
     const review = () => {
@@ -84,10 +113,11 @@ const Post = (props) => {
                     {currentUser ? <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button> :<></>}
                     {review()}
                     <DispayRating charity={props.name} />
-                    {currentUser && props.name === currentUser.sub.name && <button onClick={()=>setModalShow(true)}>...</button>}
+                    {currentUser ? <button target="_blank" hidden={props.hidden} className="t-button" size="small" onClick={() => handlePDF(props.postId, props.name)}>See Report</button> :<></>}
+                    {currentUser && props.name === currentUser.sub.name && <EditButton postId={props.postId}>Edit</EditButton>}
                 </div>
-            </div>
 
+            </div>
         </>
     );
 }

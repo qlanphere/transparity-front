@@ -1,14 +1,17 @@
 /* Styling the footer */
 
 .footer{
+    position: relative;
     display: flex;
     justify-content: space-around;
     height: 200px;
     background-color: #9ACD32;
     padding-top: 1%;
     padding-bottom: 1%;
+    width: 100%;
+    bottom: 0;
 
-    margin-top: 200px;
+    margin-top: 300px;
 }
 
 .footer-text{
@@ -17,7 +20,6 @@
 }
 
 .footer-social-media-banner{
-    display: flex;
     width: auto;
 }
 
@@ -27,12 +29,13 @@
 }
 
 .footer-social-media-banner a{
-     padding-left: 15%;
+     padding-left: 10%;
      color: #fff;
 }
 
 .footer-social-media-banner a:hover{
     color: #a17f1a;
+    text-decoration: none !important;
 }
 
 .footer h2{
@@ -52,20 +55,63 @@
     display: flex;
 }
 
-#root > div > div.about-page > div:nth-child(5) > footer > div.footer-text > div > svg{
-    height: 2.4rem;
-    width: 2.4rem;
+#root > div > div:nth-child(3) > footer > div.footer-social-media-banner > a > svg{
+    height: 2.2rem ;
+    width: 2.2rem;
     padding: 3px;
     margin-top: 5px;
     margin-left: 5px;
 }
 
+#root > div > div:nth-child(3) > footer > div.footer-social-media-banner > a{
+    color: #424242;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    padding: 0;
+}
+
 #root > div > div.about-page > div:nth-child(5) > footer > div.footer-social-media-banner > a > svg{
     height: 1.8rem;
     width: 1.8rem;
-    align-self: center;
 }
 
 .footer-social-media-banner h5{
+    margin-top: 10px;
+}
+
+.footer-transp-container{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.footer-transp-container ul li{
+    list-style: none;
     margin-top: 5px;
 }
+
+.footer-transp-container ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-transp-container ul li a:hover{
+    color: #424242;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#root > div > div:nth-child(3) > footer > div.footer-text > div > svg{
+    margin-top: 5px;
+    padding-left: 5px;
+    height: 2.6rem;
+    width: 2.6rem;
+}
+
+
+.bottom-separator{
+    background-color: #424242;
+    height: 20px;
+    width: 100%;
+    text-align: center;
+  }

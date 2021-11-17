@@ -7,7 +7,7 @@ import * as RiIcons from 'react-icons/ri'
 
 const index = () => {
     return (
-        <div>
+        <>
             <footer className="footer">
                 <div className="footer-text">
                     <div className="footer-title">
@@ -15,6 +15,22 @@ const index = () => {
                         <HiCubeTransparent />
                     </div>
                     <h4>Copyright &copy; 2021 </h4>
+                </div>
+
+                <div className="footer-transp-container">
+                    <ul>
+                        <li><a href="https://transparity.netlify.app/timeline">Timeline</a></li>
+                        <li><a href="https://transparity.netlify.app/tickets">Tickets</a></li>
+                        <li><a href="https://transparity.netlify.app/feedbackForm">Feedback</a></li>
+                        <li><a href="https://transparity.netlify.app/donations">Donations</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="https://transparity.netlify.app/home">Home</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+
                 </div>
 
 
@@ -26,7 +42,8 @@ const index = () => {
                     <a href="" target="_blank"><AiIcons.AiFillYoutube /></a>
                 </div>
             </footer>
-        </div>
+            <div class="bottom-separator"></div>
+        </>
     )
 }
 

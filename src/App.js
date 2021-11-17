@@ -32,7 +32,7 @@ function App() {
           </Route>
           <Route exact path='/home'>
             <About />
-            </Route>
+          </Route>
           <CustomRoutes.PrivateUserRoute exact path="/feedbackForm">
             <Feedback />
           </CustomRoutes.PrivateUserRoute>
@@ -59,7 +59,7 @@ function App() {
           </CustomRoutes.LoggedOutRoute>
         </Switch>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

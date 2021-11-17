@@ -2,10 +2,15 @@ import React from 'react'
 import './index.css'
 import Slider from "react-slick";
 import { HiCubeTransparent } from "react-icons/hi";
+import Footer from '../../components/Footer';
+import { useAuthContext } from '../../contexts/auth';
+
 //import "~slick-carousel/slick/slick.css"; 
 // import "~slick-carousel/slick/slick-theme.css";
 
 const About = () => {
+
+    const { currentUser } = useAuthContext()
 
     const settings = {
         dots: true,
@@ -74,7 +79,21 @@ const About = () => {
             </div>
             <div className="slide">
                 <h1 className="slide-title">Creating Change <HiCubeTransparent /></h1>
+                <div className="rounded-card">
+                    {!currentUser ? <div className="rounded-description">You can join the <span className="green">Transparity</span> community today by signing up as a <span className="bold">donator</span> or a <span className="bold">charity</span>.
+                        If you would like to sign up as a donator then click on the register button below, and in the registration form select the user option, otherwise
+                        if you would like to sign up as a charity please select the charity option.
+                        <div className="button-container">
+                            <button>Register</button>
+                            <button>Login</button>
+                        </div>
+                    </div> : <div>Thank you for joining the Transparity community.</div>}
+
+
+                </div>
+                {/* <div className="lorem-container">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </div> */}
             </div>
+            <Footer />
             {/* <div
                     className="slideshowSlider"
                     style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}

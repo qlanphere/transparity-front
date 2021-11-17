@@ -3,8 +3,13 @@ import Post from '../../components/Post'
 import { useAuthContext } from '../../contexts/auth'
 import './Home.css'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Button from '../../components/CreatePost/PostButton'
 import { usePostContext } from '../../contexts/postContext'
+
+import Footer from '../../components/Footer'
 
 
 const host = "https://transparity.herokuapp.com"
@@ -12,7 +17,7 @@ const host = "https://transparity.herokuapp.com"
 const Home = () => {
     const [posts, setPosts] = useState([])
     const { currentUser } = useAuthContext()
-    const {posted, setPosted} = usePostContext()
+    const { posted, setPosted } = usePostContext()
 
     useEffect(() => {
 
@@ -87,6 +92,7 @@ const Home = () => {
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
                 <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" /> */}
             </div>
+            <Footer />
         </>
     )
 }

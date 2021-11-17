@@ -3,6 +3,7 @@ import { useAuthContext } from "../../contexts/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Feedback.css";
 import { usePostContext } from '../../contexts/postContext';
+import Footer from '../../components/Footer';
 const host = 'https://transparity.herokuapp.com'
 // const host = 'http://localhost:5000'
 const cors = require('cors')
@@ -405,6 +406,7 @@ const Feedback = () => {
         </div >
         <input className="feedback-submit-button" type="submit" value="Submit Feedback" onClick={() => { setPressed(true) }} />
       </form >
+      <Footer />
     </div >
   );
 };
