@@ -43,7 +43,7 @@ const DispayRating = (props) => {
 
           //returning the array of how many reviws in the post
           let reviewL = data.posts.map(post => post.reviews.length)
-          let reviewLength  = reviewL.reduce((a,b)=>a+b)
+          let reviewLength = reviewL.reduce((a, b) => a + b)
           console.log(reviewLength)
 
           //calculates the reduced sum of the all the transparency array
