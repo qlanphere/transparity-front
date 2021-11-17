@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
-import './Tickets.css';
+import './Tickets.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../../components/Footer'
 const cors = require('cors')
 
