@@ -62,7 +62,7 @@ const About = () => {
     const userInfo = () => {
         try {
             return currentUser.sub.name
-        } catch {return false}
+        } catch { return false }
     }
 
     return (
@@ -97,7 +97,7 @@ const About = () => {
             <div className="slide">
                 <h1 className="slide-title">Creating Change <HiCubeTransparent /></h1>
                 <div className="rounded-card">
-                    {!currentUser ? <div className="rounded-description">You can join the <span className="green">Transparity</span> community today by signing up as a <span className="bold">donator</span> or a <span className="bold">charity</span>.
+                    {!currentUser ? <div className="rounded-description">You can join the <span className="green">Transparity</span> community today by signing up as a <span className="bold">user</span> or a <span className="bold">charity</span>.
                         If you would like to sign up as a donator then click on the register button below, and in the registration form select the user option, otherwise
                         if you would like to sign up as a charity please select the charity option.
                         <div className="button-container">
