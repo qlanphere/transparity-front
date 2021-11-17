@@ -88,7 +88,7 @@ const Post = (props) => {
                     {donate()}
                     <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button>
                     {review()}
-                    <DispayRating charity={props.name} />
+                        <DispayRating charity={props.name} />
                     {/* {console.log("prop: ",props.name)}
                     {console.log("current:", currentUser.sub.name)} */}
 
