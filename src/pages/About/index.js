@@ -106,7 +106,7 @@ const About = () => {
                                 <li><RiArrowRightSLine /><span>A timeline of charity campaigns</span></li>
                                 <li><RiArrowRightSLine /><span>Make donations to charities through PayPal</span></li>
                                 <li><RiArrowRightSLine /><span>Give campaign specific reviews to charities</span></li>
-                                <li><RiArrowRightSLine /><span>Speak to a Charities by opening a ticket</span></li>
+                                <li><RiArrowRightSLine /><span>Speak to Charities by opening a ticket</span></li>
                             </ul>
                         </div> :
                         <div>
