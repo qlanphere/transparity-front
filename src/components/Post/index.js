@@ -13,8 +13,8 @@ import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/auth';
 
 const base64 = require('base64topdf');
-// const host = "https://transparity.herokuapp.com"
-const host = "http://localhost:5000"
+const host = "https://transparity.herokuapp.com"
+// const host = "http://localhost:5000"
 
 const Post = (props) => {
     const { postId, setPostId, emailP, setEmailP } = usePostContext()
@@ -74,12 +74,13 @@ const Post = (props) => {
         const response = await fetch(`${host}/charity/post/${postId}`, options)
         const data = await response.json()
         console.log(data)
-function showPdfInNewTab(base64Data) {  
-    let pdfWindow = window.open("");
-    pdfWindow.document.write( `<iframe width='100%' height='100%' src=${encodeURI(base64Data)} + "'></iframe>`);
-  }
 
-  showPdfInNewTab(data.pdf)
+        function showPdfInNewTab(base64Data) {
+            let pdfWindow = window.open("");
+            pdfWindow.document.write(`<iframe width='100%' height='100%' src=${encodeURI(base64Data)} + "'></iframe>`);
+        }
+
+        showPdfInNewTab(data.pdf)
 
     }
 
@@ -108,13 +109,11 @@ function showPdfInNewTab(base64Data) {
                     <p className="card-date">{props.date}</p>
                     <p className="card-date">{props.target_date}</p>
 
-                    <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.postId}/>
+                    <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.postId} />
                     {donate()}
-                    {currentUser ? <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button> :<></>}
+                    {currentUser ? <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button> : <></>}
                     {review()}
                     <DispayRating charity={props.name} />
-                    {currentUser ? <button target="_blank" hidden={props.hidden} className="t-button" size="small" onClick={() => handlePDF(props.postId, props.name)}>See Report</button> :<></>}
-                    {currentUser && props.name === currentUser.sub.name && <EditButton postId={props.postId}>Edit</EditButton>}
                 </div>
 
             </div>
