@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import { HiCubeTransparent } from "react-icons/hi";
 import Footer from '../../components/Footer';
 import { useAuthContext } from '../../contexts/auth';
+import { useHistory } from 'react-router-dom';
+import { RiArrowRightSLine } from "react-icons/ri";
 
 //import "~slick-carousel/slick/slick.css"; 
 // import "~slick-carousel/slick/slick-theme.css";
@@ -11,6 +13,15 @@ import { useAuthContext } from '../../contexts/auth';
 const About = () => {
 
     const { currentUser } = useAuthContext()
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push(`/login`)
+    }
+
+    const handleRegister = () => {
+        history.push(`/register`)
+    }
 
     const settings = {
         dots: true,
@@ -48,9 +59,15 @@ const About = () => {
     //             resetTimeout();
     //         };
     //     }, [index]);
+    const userInfo = () => {
+        try {
+            return currentUser.sub.name
+        } catch {return false}
+    }
 
     return (
         <div className="about-page">
+            <h4>Welcome {userInfo()}</h4>
             <h1 className="about-title">What is <span className="green">Transparity?</span></h1>
             <p className="about-intro">Transparity is a hub that connects charitable organisations with potential donors with an emphasis on transparency. Many potential donors are hesitant to donate when they don't know where their money is going or hoq much of it is actually going to the cause.
                 By creating a hub where charities can interact with donors and provide feedback, donors will have a more transparent experience which will encourage donations as well as help smaller charities gain traction.
@@ -84,10 +101,34 @@ const About = () => {
                         If you would like to sign up as a donator then click on the register button below, and in the registration form select the user option, otherwise
                         if you would like to sign up as a charity please select the charity option.
                         <div className="button-container">
-                            <button>Register</button>
-                            <button>Login</button>
+                            <button onClick={handleRegister}>Register</button>
+                            <button onClick={handleClick}>Login</button>
                         </div>
-                    </div> : <div>Thank you for joining the Transparity community.</div>}
+                    </div> : currentUser.sub.user == 'user' ?
+                        <div className="user-functionality">
+                            <p className="func-title">You have joined the <span className="green">Transparity</span> community as a <span className="bold">User.</span></p>
+                            <p>With this account you have access to the following features:</p>
+                            <ul>
+                                <li><RiArrowRightSLine /><span>A timeline of charity campaigns</span></li>
+                                <li><RiArrowRightSLine /><span>Make donations to charities through PayPal</span></li>
+                                <li><RiArrowRightSLine /><span>Give campaign specific reviews to charities</span></li>
+                                <li><RiArrowRightSLine /><span>Speak to Charities by opening a ticket</span></li>
+                            </ul>
+                        </div> :
+                        <div>
+                            <div className="user-functionality">
+                                <p className="func-title">You have joined the <span className="green">Transparity</span> community as a <span className="bold">Charity.</span></p>
+                                <p>With this account you have access to the following features:</p>
+                                <ul>
+                                    <li><RiArrowRightSLine /><span>Create campaign posts to increase awareness</span></li>
+                                    <li><RiArrowRightSLine /><span>Receive donations from registered users through PayPal</span></li>
+                                    <li><RiArrowRightSLine /><span>Profile page containing a bio and all of your campaigns</span></li>
+                                    <li><RiArrowRightSLine /><span>A timeline of charity campaigns</span></li>
+                                    <li><RiArrowRightSLine /><span>Respond to user tickets</span></li>
+                                </ul>
+                            </div>
+
+                        </div>}
 
 
                 </div>

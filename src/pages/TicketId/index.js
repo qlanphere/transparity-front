@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Response from '../../components/Response'
 import './TicketId.css'
@@ -62,6 +64,7 @@ const TicketId = () => {
 
             setNewResponse(true)
             setResponseFormData({ name: currentUser.sub.name, user_type: currentUser.sub.user, description: "" })
+            toast.success('Response Submitted')
         } catch (err) {
             console.log(err)
         }
@@ -107,7 +110,7 @@ const TicketId = () => {
                 <textarea type="text" name="description" value={responseFormData.description} onChange={handleInput} placeholder="Enter response" />
                 <input id="submit-ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
             </form>: <></>}
-      
+      <ToastContainer />
         </div>
     )
 }

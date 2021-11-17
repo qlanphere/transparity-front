@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useAuthContext } from "../../contexts/auth";
 import { useHistory } from "react-router-dom";
-import styles from './Login.module.css';
-import './Login.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import styles from './Login.module.css'
+import './Login.css'
 import Footer from '../../components/Footer';
 
 const Login = () => {
@@ -21,7 +23,9 @@ const Login = () => {
         try {
             setLoading(true)
             await login(formData)
+            
             history.push('/home')
+            
         } catch (err) {
             setLoading(false)
             setError(err)

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Ticket from '../../components/Ticket'
 import { useAuthContext } from '../../contexts/auth'
-import './Tickets.css';
+import './Tickets.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../../components/Footer'
 const cors = require('cors')
 
@@ -56,6 +58,7 @@ const Tickets = () => {
             await fetch(`${host}/ticket/${currentUser.sub.id}`, options)
             setNewTicket(true)
             setTicketFormData({ name: "", description: "", res: [], status: true, charityName: "" })
+            toast.success('Ticket Created Succesfully')
 
         } catch (err) {
             console.log(err)
@@ -114,7 +117,7 @@ const Tickets = () => {
             {(currentUser.sub.user != 'charity') ? <div className="closed-tickets">
                 <h1>Closed Tickets</h1>
                 {closedTickets}
-            </div> : <></>}
+            </div> : <></>}<ToastContainer />
             {/* <Footer /> */}
         </>
     )
