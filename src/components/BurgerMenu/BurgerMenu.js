@@ -13,7 +13,6 @@ import './BurgerMenu.css'
 
 function BurgerMenu() {
 
-
     const { currentUser, logout } = useAuthContext()
     console.log(currentUser)
 

@@ -103,7 +103,7 @@
   }
 
   .rounded-card{
-    height: 500px;
+    height: auto;
     background-color: #fff;
     width: 50%;
     margin: 0 auto;
@@ -113,6 +113,10 @@
     margin-bottom: 100px;
     margin-top: 50px;
     padding-top: 100px;
+  }
+
+  #root > div > div.about-page > div.slide > div > div > div > ul > li > svg{
+    fill: #9ACD32;
   }
 
   .button-container{
@@ -190,7 +194,39 @@
 .lorem-container{
   margin-bottom: 100px;
 }
+
+.user-functionality{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-functionality ul{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 20px auto;
+}
   
+
+.user-functionality ul li{
+  display: flex;
+  list-style: none;
+}
+
+.user-functionality ul li span{
+  align-self: center;
+}
+
+#root > div > div.about-page > div.slide > div > div > ul > li > svg{
+  fill: #9ACD32;
+}
+
+.func-title{
+  font-size: 24px;
+}
+
+
   /* .span-rotate{
     animation: rotation 2s infinite linear;
   }
