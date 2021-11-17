@@ -25,3 +25,18 @@
 .space{
     margin-bottom: 10px;
 }
+
+.bio-button{
+    background-color: #9aCD32;
+    border: none;
+    margin-bottom: 40px;
+}
+
+#bio{
+    padding-top: 5%;
+    margin-bottom: 10px;
+}
+
+#bio h3{
+    margin-top: 20px;
+}

@@ -17,7 +17,8 @@
 }
 
 .card-description{
-    font-size: 12px;
+    font-size: 13px;
+    padding: 10px;
 }
 
 .card-title{
@@ -49,3 +50,8 @@
 .card-date{
     font-size: 12px;
 }
+
+.Toastify__progress-bar--success {
+    color: #9ACD32 !important;
+    background-color: #9ACD32 !important;
+  }

@@ -18,6 +18,11 @@
     height: 180px;
 }
 
+.Toastify__progress-bar--success {
+    color: #9ACD32 !important;
+    background-color: #9ACD32 !important;
+  }
+
 
 /* @media only screen and (max-width: 800px){
     #home-page{

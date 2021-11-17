@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useAuthContext } from '../../contexts/auth'
 import Transaction from '../../components/Transaction'
-import './Donations.css'
+import './Donations.css';
+import Footer from '../../components/Footer';
 
 const host = 'https://transparity.herokuapp.com'
 // const host = 'http://localhost:5000'
@@ -53,7 +54,8 @@ const DonationsPage = () => {
         <div className="donations-history-page">
             <h1 className="donations-history-title">{currentUser.user == 'charity' ? `Donations Received` : `${currentUser.sub.name}'s Total Amount Donated: `}</h1>
             <h3 className="total-donated"><span className="green">$</span>{donations}</h3>
-            <div>{transactions}</div>
+            <div className="grid-display">{transactions}</div>
+            <Footer />
         </div>
     )
 }

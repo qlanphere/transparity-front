@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useAuthContext } from "../../contexts/auth";
 import { useHistory } from "react-router-dom";
-import styles from './Login.module.css'
-import './Login.css'
+import styles from './Login.module.css';
+import './Login.css';
+import Footer from '../../components/Footer';
 
 const Login = () => {
     const { login } = useAuthContext();
@@ -48,6 +49,7 @@ const Login = () => {
             </form>
             {error && <div id="error">{error}</div>}
             {loading && <div id="loading">Logging in . . .</div>}
+            <Footer />
         </>
     );
 }
