@@ -128,8 +128,8 @@ const EditPost = (props) => {
                     <div className="form-button">
                         <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
                     </div>
-                    <div className="form-button">
-                        <input className="submit-button btn btn-primary" type="button" value="Delete" onClick={handleDelete}/>
+                    <div className="delete-button">
+                        <input className="submit-button btn btn-secondary" type="button" value="Delete" onClick={handleDelete}/>
                     </div>
                     </div>
                 </div>

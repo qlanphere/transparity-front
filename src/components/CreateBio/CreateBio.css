@@ -17,6 +17,11 @@
     border: none;
 }
 
+.bio-button:hover{
+    background-color: #424242;
+    cursor: pointer;
+}
+
 .form-button input{
     background-color: #9aCD32;
     border: none;

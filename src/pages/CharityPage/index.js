@@ -58,6 +58,7 @@ const CharityPage = () => {
               hidden="true"
               name={data.name}
               postId={post.post_id}
+              goal={post.goal}
             />
           ));
           //postArray.push(<ToastContainer />)
@@ -102,10 +103,14 @@ const CharityPage = () => {
         <img src={bio.avatar} style={{ width: '300px', height: '300px' }} />
         <h3>{bio.bio}</h3>
       </div>
-      {/* <div className="d-flex"> */}
+      <div className="d-flex justify-content-around align-items-center">
+        <div className="mx-2">
       {createBio()}
-      {/* {createPost()} */}
-      {/* </div> */}
+        </div>
+        <div className="mx-2">
+      {createPost()}
+        </div>
+      </div>
       <div className="grid-display">{posts}</div>
       {reviews}
       <Footer />
