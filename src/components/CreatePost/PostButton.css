@@ -23,7 +23,8 @@
       border: none;
       background-color: #9ACD32;
       color: #fff;
-      width: 30px;
+      width: auto;
+      text-align: center;
       border-radius: 25px;
       
       position: absolute;
