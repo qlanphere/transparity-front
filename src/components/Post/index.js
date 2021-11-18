@@ -23,7 +23,7 @@ const Post = (props) => {
     const [modalShow, setModalShow] = useState(false);
     const [pdf, setPdf] = useState('')
     const history = useHistory();
-    
+
 
     const handleClick = (name) => {
         setCharityName(name)
@@ -93,7 +93,7 @@ const Post = (props) => {
 
     const review = () => {
         try {
-            return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => {handleReview(props.post_id);setPostId(props.postId)}}>Review</button> : <></>
+            return currentUser && currentUser.sub.user == 'user' ? <button className="t-button" size="small" onClick={() => { handleReview(props.post_id); setPostId(props.postId) }}>Review</button> : <></>
         } catch { return false }
     }
 
@@ -107,7 +107,7 @@ const Post = (props) => {
                     <h2 className="charity-name">{props.name}</h2>
                     <img className="card-img" src={props.image} width={150} />
                     <p className="card-description">{props.description}</p>
-                    <p>{props.goal}</p>
+                    <p><span className="green">$</span>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
                     <p className="card-date">{props.target_date}</p>
                     <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.postId} />
@@ -115,7 +115,7 @@ const Post = (props) => {
                     {currentUser ? <button hidden={props.hidden} className="t-button" size="small" onClick={() => handleClick(props.name)}>Learn More</button> : <></>}
                     {currentUser ? <button target="_blank" hidden={props.hidden} className="t-button" size="small" onClick={() => handlePDF(props.postId, props.name)}>See Report</button> : <></>}
                     {review()}
-                    <DispayRating charity={props.name} postId = {props.postId}/>
+                    <DispayRating charity={props.name} postId={props.postId} />
                 </div>
 
             </div>
