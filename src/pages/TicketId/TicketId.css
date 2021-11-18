@@ -13,8 +13,10 @@
     border:none;
     background-color: #9ACD32;
     color: #fff;
+    margin: 0 auto;
     margin-bottom: 30px;
     padding: 10px 12px;
+    width: 200px;
 }
 
 .close-ticket-button:hover{
