@@ -23,7 +23,7 @@ const CharityPage = () => {
 
   useEffect(() => {
 
-    setCharityName(window.location.pathname.split('/')[2])
+    setCharityName(window.location.pathname.split('/')[2].split('%20').join(' '))
   }, [])
 
   useEffect(() => {
