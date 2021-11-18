@@ -5,11 +5,11 @@
 
 
 .grid-display{
-    /* display: grid;
+    display: grid;
     grid-template-columns: repeat(3,auto);
-    gap: 30px; */
-    display: flex;
-    flex-direction: column;
+    gap: 30px;
+    /* display: flex;
+    flex-direction: column; */
 } 
 
 .charity-mode{
