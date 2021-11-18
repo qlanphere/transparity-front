@@ -64,6 +64,13 @@ function CreatePost(props) {
             if (data.ok === true){
                 setPosted(true)
                 props.onHide(); props.notify()
+                setFormData({
+                    title: "",
+                    description: "",
+                    goal: "",
+                    img: "",
+                    target_date: ""
+                })
             }
 
         } catch (err) {

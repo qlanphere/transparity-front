@@ -53,6 +53,8 @@ const EditPost = (props) => {
             }
             await fetch(`${host}/delete/post/${postId}`, options)
             props.onHide(); 
+            props.notify()
+            setPosted(true);
         } catch (error) { 
             console.log(error)
         }
