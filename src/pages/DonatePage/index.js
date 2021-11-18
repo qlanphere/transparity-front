@@ -59,7 +59,7 @@ function DonatePage() {
                             body: JSON.stringify(orderData)
                         }
                         // const response = await fetch(`${charityId}/donate/${userId}`, options)
-                        const response = await fetch(`http://127.0.0.1:5000/${charityId}/donate/${currentUser.sub.id}`, options)
+                        const response = await fetch(`https://transparity.herokuapp.com/${charityId}/donate/${currentUser.sub.id}`, options)
                         history.push(`/thankyou`)
 
                     },
