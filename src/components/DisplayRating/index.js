@@ -1,7 +1,9 @@
 
 import React, { useContext, useState, useEffect } from 'react'
 import './Rating.css'
+import { useAuthContext } from "../../contexts/auth";
 const host = 'https://transparity.herokuapp.com'
+ 
 
 const DispayRating = (props) => {
   const [rating, setRating] = useState(0)
@@ -10,9 +12,13 @@ const DispayRating = (props) => {
   const [totalReviews, setTotalReviews] = useState(0)
   const [allPosts, setAllPosts] = useState(0)
   let charity_id = props.charity
+  console.log(charity_id)
   let postId = props.postId
-
+ 
+  const { currentUser } = useAuthContext()
   useEffect(() => {
+
+    
 
     const getAllPosts = async () => {
       try {
@@ -28,9 +34,11 @@ const DispayRating = (props) => {
 
         const response = await fetch(`${host}/charity/${charity_id}`, options)
         let data = await response.json()
+        console.log(data)
         // if all the charities are in data
         // let postArray = data.map(post => post.posts.map(ele=>ele.reviews.map(rd=>rd.rating.transparency)))
         let postLength = data.posts.length
+        
 
         if (postLength != 0) {
           setAllPosts(postLength)
@@ -124,7 +132,7 @@ const DispayRating = (props) => {
 
   return (
     <div>
-      <h6>{totalReviews} Reviews</h6>
+      {currentUser && <h6>{totalReviews} Reviews</h6>}
       {totalReviews !== 0 && <div className="review-container"><p>Transparency <span className="green">{rating}/5</span> </p><p>Punctuality <span className="green">{punctualityRating}/5</span> </p><p>Retention <span className="green">{returningRating}/5</span> </p></div>}
     </div>
   )
