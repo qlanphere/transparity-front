@@ -92,8 +92,8 @@ const CharityPage = () => {
     <div className="d-flex justify-content-center align-items-center flex-column">
       <h1 className="profile-page-title">{charityName}'s Profile Page</h1>
       <div id="bio" className='flex'>
-        <img src={bio.avatar} style={{ width: '300px', height: '300px' }} />
-        <h3>{bio.bio}</h3>
+        <img className="bio-img" src={bio.avatar} />
+        <h3 className="bio-description">{bio.bio}</h3>
       </div>
       {createBio()}
       <div className="grid-display">{posts}</div>
