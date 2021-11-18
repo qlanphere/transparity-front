@@ -19,7 +19,7 @@ const Home = () => {
     const [posts, setPosts] = useState([])
     const { currentUser } = useAuthContext()
     const { posted, setPosted } = usePostContext()
-    const {theme} = useThemeContext()
+    const { theme } = useThemeContext()
 
     useEffect(() => {
 
@@ -60,7 +60,6 @@ const Home = () => {
                 return ret;
             }
             arr = flatten(newArr)
-            console.log(arr)
             const sortedArr = arr.sort(function (a, b) {
                 if (a.creation_date > b.creation_date) return -1;
                 if (a.creation_date < b.creation_date) return 1;
@@ -94,7 +93,7 @@ const Home = () => {
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
                 <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" /> */}
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

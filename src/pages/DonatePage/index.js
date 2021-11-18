@@ -19,7 +19,6 @@ function DonatePage() {
 
     useEffect(() => {
         if (ready == true) {
-            console.log('email inside useeffect is ' + emailP)
             window.paypal
                 .Buttons({
                     createOrder: (data, actions, err) => {
@@ -42,7 +41,6 @@ function DonatePage() {
                     },
                     onApprove: async (data, actions) => {
                         const order = await actions.order.capture();
-                        console.log(order);
                         let orderData = {
                             user_name: emailP,
                             charity_name: charityName,
