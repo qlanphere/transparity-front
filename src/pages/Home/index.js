@@ -60,7 +60,6 @@ const Home = () => {
                 return ret;
             }
             arr = flatten(newArr)
-            console.log(arr)
             const sortedArr = arr.sort(function (a, b) {
                 if (a.creation_date > b.creation_date) return -1;
                 if (a.creation_date < b.creation_date) return 1;

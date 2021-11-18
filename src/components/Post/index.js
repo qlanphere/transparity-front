@@ -31,14 +31,11 @@ const Post = (props) => {
     }
 
     const handleReview = async (postId) => {
-        console.log(postId)
         await setPostId(postId)
-        console.log(postId)
         history.push('/feedbackForm')
     }
 
     const handleDonate = async (postId, name) => {
-        console.log(postId)
         await setPostId(postId)
         await setCharityName(name)
         const options = {
@@ -52,8 +49,6 @@ const Post = (props) => {
         }
         const response = await fetch(`${host}/charity/${name}`, options)
         const data = await response.json()
-        console.log(data)
-        console.log(data["email"])
         setEmailP(data["email"])
         setCharityId(data["_id"])
 
@@ -74,7 +69,6 @@ const Post = (props) => {
         }
         const response = await fetch(`${host}/charity/post/${postId}`, options)
         const data = await response.json()
-        console.log(data)
 
         function showPdfInNewTab(base64Data) {
             let pdfWindow = window.open("");

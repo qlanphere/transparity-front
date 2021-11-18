@@ -36,7 +36,6 @@ const EditPost = (props) => {
 
     const handlePDF = async e => {
         const file = e.target.files[0];
-        console.log(file)
         const base64 = await convertToBase64(file);
         setFormData(data => ({ ...data, "pdf": base64 }))
     }
@@ -79,7 +78,6 @@ const EditPost = (props) => {
                 mode: 'cors',
                 body: JSON.stringify(formData)
             }
-            console.log(formData)
             let data = await fetch(`${host}/post/${postId}`, options)
             if (data.ok === true) {
                 props.onHide(); 
@@ -130,8 +128,8 @@ const EditPost = (props) => {
                     <div className="form-button">
                         <input className="submit-button btn btn-secondary" type="submit" value="Submit" />
                     </div>
-                    <div className="form-button">
-                        <input className="submit-button btn btn-primary" type="button" value="Delete" onClick={handleDelete}/>
+                    <div className="delete-button">
+                        <input className="submit-button btn btn-secondary" type="button" value="Delete" onClick={handleDelete}/>
                     </div>
                     </div>
                 </div>

@@ -17,6 +17,13 @@
     border: none;
 }
 
+.delete-button {
+    color: white !important;
+    background-color: #cd5132;
+    margin: 0 auto;
+    border: none;
+}
+
 .form-button input{
     background-color: #9aCD32;
     border: none;

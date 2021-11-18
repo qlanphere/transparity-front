@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }) => {
                     "Access-Control-Allow-Origin": "*"},
                     mode: 'cors'
                 }
-                console.log(userData)
                 const { data } = await axios.post(`${host}/register/${user ? 'user':'charity'}`, userData, options)
                 if (data.err){
                     throw Error(data.err)
@@ -52,15 +51,12 @@ export const AuthProvider = ({ children }) => {
                     "Access-Control-Allow-Origin": "*"},
                     mode: 'cors'
                 }
-                console.log(userData)
                 const { data } = await axios.post(`${host}/login`, userData, options)
-                console.log(data)
                 if (!data) { 
                     throw new Error('Login not authorised');
                 }toast.success("Successfully Logged In!")
                 localStorage.setItem("token", data.access_token);
                 const user = jwt_decode(data.access_token);
-                console.log(user)
                 setCurrentUser(user);
                 user.sub.user == 'user' ? setTheme('#F0F'): setTheme('#FF00FF')
                 resolve('Login successful')

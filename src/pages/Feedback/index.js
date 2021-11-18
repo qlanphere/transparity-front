@@ -11,7 +11,6 @@ const cors = require('cors')
 const Feedback = () => {
 
   const { postId } = usePostContext()
-  console.log(postId)
   const history = useHistory();
 
   const { currentUser } = useAuthContext()
@@ -32,11 +31,8 @@ const Feedback = () => {
   const [pressed, setPressed] = useState(false);
 
   useEffect(() => {
-    console.log('pressed yet?' + pressed)
     if (pressed == true) {
-      console.log('inside use effect' + formData)
       const sendFeedback = async () => {
-        // return new Promise(async (resolve, reject) => {
         try {
           const options = {
             method: 'PATCH',
@@ -48,9 +44,6 @@ const Feedback = () => {
             mode: 'cors',
             body: JSON.stringify(formData)
           }
-          console.log(formData)
-          console.log(charity_id)
-
           await fetch(`${host}/feedback/${postId}`, options)
           setPressed(false)
           history.push('/timeline')
@@ -64,9 +57,7 @@ const Feedback = () => {
 
 
   async function handleSubmit(e) {
-    console.log(formData)
     e.preventDefault();
-    // setFormData({TRating,PRating,CRating},desciption)
     setFormData({
       ...formData, rating: {
         transparency: TRating,
@@ -75,13 +66,11 @@ const Feedback = () => {
       },
       description: description,
     })
-    console.log(formData)
   }
 
   function handleChange(e) {
     setDescription(e.target.value)
   }
-  console.log("before", formData)
 
 
 

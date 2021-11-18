@@ -3,6 +3,7 @@ import Post from "../../components/Post";
 import { useAuthContext } from "../../contexts/auth";
 import { useCharityContext } from "../../contexts/charityContext";
 import Button from "../../components/CreateBio/BioButton"
+import PostButton from '../../components/CreatePost/PostButton'
 import { usePostContext } from "../../contexts/postContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,7 +19,7 @@ const CharityPage = () => {
   const { charityName, setCharityName } = useCharityContext();
   const { currentUser } = useAuthContext();
   const { updatedBio, setUpdatedBio, posted, setPosted } = usePostContext()
-  const [bio, setBio] = useState({ avatar: '', bio: '' })
+  const [bio, setBio] = useState({ avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wwfca.org%2Fen%2Fcampaigns_main%2F&psig=AOvVaw3V1MuKeo-2yEtBkYHsNeim&ust=1637324685725000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMC6_fjzofQCFQAAAAAdAAAAABAV', bio: '' })
 
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const CharityPage = () => {
         let data = await response.json();
 
         setBio(({
-          avatar: data.avatar,
+          avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wwfca.org%2Fen%2Fcampaigns_main%2F&psig=AOvVaw3V1MuKeo-2yEtBkYHsNeim&ust=1637324685725000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMC6_fjzofQCFQAAAAAdAAAAABAV',
           bio: data.bio
         }))
         // need to sort posts by most recent
@@ -57,6 +58,7 @@ const CharityPage = () => {
               hidden="true"
               name={data.name}
               postId={post.post_id}
+              goal={post.goal}
             />
           ));
           //postArray.push(<ToastContainer />)
@@ -88,6 +90,12 @@ const CharityPage = () => {
       return currentUser.sub.name == charityName ? <Button /> : <></>
     } catch { return false }
   }
+
+  const createPost = () => {
+    try {
+      return currentUser.sub.name == charityName ? <PostButton /> : <></>
+    } catch { return false }
+  }
   return (
     <div className="d-flex justify-content-center align-items-center flex-column">
       <h1 className="profile-page-title">{charityName}'s Profile Page</h1>
@@ -95,7 +103,14 @@ const CharityPage = () => {
         <img className="bio-img" src={bio.avatar} />
         <h3 className="bio-description">{bio.bio}</h3>
       </div>
+      <div className="d-flex justify-content-around align-items-center">
+        <div className="mx-2">
       {createBio()}
+        </div>
+        <div className="mx-2">
+      {createPost()}
+        </div>
+      </div>
       <div className="grid-display">{posts}</div>
       {reviews}
       <Footer />
