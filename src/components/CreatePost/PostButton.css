@@ -1,7 +1,7 @@
 .create-post-button{
-    margin-bottom: 30px !important;
-    background-color: #9ACD32;
-    border:none;
+    background-color: #9aCD32;
+    border: none;
+    margin-bottom: 40px;
 }
 
 .create-post-button:hover{
@@ -25,12 +25,20 @@
       color: #fff;
       width: auto;
       text-align: center;
-      border-radius: 25px;
+      border-radius: 4px;
       
       position: absolute;
       margin-left: 130px;
+      padding: 4px;
+      margin-top: 35px;
   }
 
   .edit-post-button:hover{
       background-color: #424242;
   }
+
+  .bio-button{
+    background-color: #9aCD32;
+    border: none;
+    margin-bottom: 40px;
+}

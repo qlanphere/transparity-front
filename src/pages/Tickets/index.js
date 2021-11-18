@@ -60,7 +60,6 @@ const Tickets = () => {
                 mode: 'cors',
                 body: JSON.stringify(ticketFormData)
             }
-            console.log(ticketFormData)
             await fetch(`${host}/ticket/${currentUser.sub.id}`, options)
             setNewTicket(true)
             setTicketFormData({ name: "", description: "", res: [], status: true, charityName: "" })
@@ -75,14 +74,12 @@ const Tickets = () => {
     useEffect(() => {
 
         const getTickets = async () => {
-            console.log(`${host}/user/${currentUser.sub.id}`)
             const response = await fetch(`${host}/user/${currentUser.sub.id}`, optionsGet)
             const ticketData = await response.json()
             let ticketArray = ticketData.tickets
             if (ticketArray) {
                 let openTicks = ticketArray.filter(ticket => ticket.status == true)
                 let closedTicks = ticketArray.filter(ticket => ticket.status == false)
-                console.log(ticketArray)
                 setOpenTickets(openTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />).reverse())
                 setClosedTickets(closedTicks.map(ticket => <Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />).reverse())
             }
