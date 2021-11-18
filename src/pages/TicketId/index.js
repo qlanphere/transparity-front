@@ -83,7 +83,6 @@ const TicketId = () => {
         const getTicket = async () => {
             const response = await fetch(`${host}/tickets/${id}`, options)
             const ticket = await response.json()
-            console.log(ticket)
             setStatus(ticket.status ? true : false)
             setTicketData(<Ticket title={ticket.name} description={ticket.description} date={ticket.ticket_date} id={ticket.ticket_id} charityName={ticket.charity_name} />)
             setResponseData(ticket.res.map(message => <Response description={message.description} date={message.date} name={message.name} />))

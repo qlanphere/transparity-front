@@ -36,13 +36,11 @@ function CreatePost(props) {
 
     const handleImg = async e => {
         const file = e.target.files[0];
-        console.log(file)
         const base64 = await convertToBase64(file);
         setFormData(data => ({ ...data, "img": base64 }))
     }
 
     const handleChange = e => setFormData(data => ({ ...data, [e.target.name]: e.target.value }))
-    console.log(formData)
     const submit = async (e) => {
         const form = e.currentTarget
         if (form.checkValidity() === false) {
@@ -62,7 +60,6 @@ function CreatePost(props) {
                 mode: 'cors',
                 body: JSON.stringify(formData)
             }
-            console.log(formData)
             let data = await fetch(`${host}/charity/post/${charity_id}`, options)
             if (data.ok === true){
                 setPosted(true)

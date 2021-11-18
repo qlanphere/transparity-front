@@ -33,7 +33,6 @@ function CreateBio(props) {
 
     const handleImg = async e => {
         const file = e.target.files[0];
-        console.log(file)
         const base64 = await convertToBase64(file);
         setFormData(data => ({ ...data, "img": base64 }))
     }

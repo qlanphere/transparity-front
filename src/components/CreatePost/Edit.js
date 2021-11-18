@@ -36,7 +36,6 @@ const EditPost = (props) => {
 
     const handlePDF = async e => {
         const file = e.target.files[0];
-        console.log(file)
         const base64 = await convertToBase64(file);
         setFormData(data => ({ ...data, "pdf": base64 }))
     }
@@ -77,7 +76,6 @@ const EditPost = (props) => {
                 mode: 'cors',
                 body: JSON.stringify(formData)
             }
-            console.log(formData)
             let data = await fetch(`${host}/post/${postId}`, options)
             if (data.ok === true) {
                 props.onHide(); 
