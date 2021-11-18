@@ -46,6 +46,9 @@ const DispayRating = (props) => {
           let reviewLength  = reviewL.reduce((a,b)=>a+b)
           console.log(reviewLength)
 
+          let totReviews = reviewL.filter(a=>a>0)
+
+
           //calculates the reduced sum of the all the transparency array
           let reducedTrans = postArray.map(x => {
             if (x.length > 0) {
@@ -88,7 +91,7 @@ const DispayRating = (props) => {
               setTotalReviews(0)
 
             }
-            else setTotalReviews(reviewLength)
+            else setTotalReviews(totReviews.length)
           }
 
 
