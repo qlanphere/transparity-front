@@ -13,10 +13,12 @@ const PostButton = () => {
         Create Post
       </Button>
       <CreatePost show={modalShow}
-        onHide={() => setModalShow(false)} notify = {() => toast.success('Succesfully posted')}></CreatePost>
-        <ToastContainer />
+        onHide={() => setModalShow(false)} notify={() => toast.success('Succesfully posted')}></CreatePost>
+      <ToastContainer />
     </>
   )
 }
 
 export default PostButton
+
+

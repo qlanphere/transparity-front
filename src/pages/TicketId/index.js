@@ -79,7 +79,7 @@ const TicketId = () => {
             },
             mode: 'cors'
         }
-        
+
         const getTicket = async () => {
             const response = await fetch(`${host}/tickets/${id}`, options)
             const ticket = await response.json()
@@ -90,9 +90,9 @@ const TicketId = () => {
         }
 
         getTicket()
-        
+
         setNewResponse(false)
-        
+
 
     }, [status, newResponse])
 
@@ -100,16 +100,16 @@ const TicketId = () => {
         <div className="ticket-page">
             <h1 className="ticket-page-title">Ticket {id}</h1>
             {ticketData}
-            {status ? currentUser.sub.user == 'charity' ? <input type = "button" onClick = {handleCloseTicket} value = "Close Ticket"></input>: <></>: <></>}
+            {status ? currentUser.sub.user == 'charity' ? <input className="close-ticket-button" type="button" onClick={handleCloseTicket} value="Close Ticket"></input> : <></> : <></>}
             <div>
                 {responseData}
             </div>
-            { status ?
-            <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
-                <textarea type="text" name="description" value={responseFormData.description} onChange={handleInput} placeholder="Enter response" />
-                <input id="submit-ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
-            </form>: <></>}
-      <ToastContainer />
+            {status ?
+                <form className="new-ticket-form" onSubmit={(e) => handleSubmit(e)}>
+                    <textarea type="text" name="description" value={responseFormData.description} onChange={handleInput} placeholder="Enter response" />
+                    <input id="submit-ticket-button" type="submit" className={formIncomplete() ? 'disabled' : 'enabled'} disabled={formIncomplete()} />
+                </form> : <></>}
+            <ToastContainer />
         </div>
     )
 }

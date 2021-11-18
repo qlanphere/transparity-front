@@ -1,0 +1,9 @@
+.ticket-response{
+    border: 1px solid #9ACD32;
+    width: 600px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    justify-self:center;
+    align-self: center;
+    padding: 10px;
+}

@@ -9,3 +9,16 @@
 .ticket-title a:hover{
     color: #9ACD32;
 }
+
+.ticket-title a{
+    background-color: #9ACD32;
+    padding: 4px 8px; 
+    margin: 5px;
+    color: white;
+    font-size: 14px;
+}
+
+.ticket-title a:hover{
+    background-color: #424242;
+    color: #fff;
+}
