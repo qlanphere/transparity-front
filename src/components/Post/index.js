@@ -101,7 +101,7 @@ const Post = (props) => {
                     <h2 className="charity-name">{props.name}</h2>
                     <img className="card-img" src={props.image} width={150} />
                     <p className="card-description">{props.description}</p>
-                    <p><span className="green">$</span>{props.goal}</p>
+                    <p><span className="green">£</span>{props.goal}</p>
                     <p className="card-date">{props.date}</p>
                     <p className="card-date">{props.target_date}</p>
                     <EditPost show={modalShow} onHide={() => setModalShow(false)} postId={props.postId} />

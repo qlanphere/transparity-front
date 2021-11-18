@@ -19,7 +19,7 @@ const CharityPage = () => {
   const { charityName, setCharityName } = useCharityContext();
   const { currentUser } = useAuthContext();
   const { updatedBio, setUpdatedBio, posted, setPosted } = usePostContext()
-  const [bio, setBio] = useState({ avatar: '', bio: '' })
+  const [bio, setBio] = useState({ avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wwfca.org%2Fen%2Fcampaigns_main%2F&psig=AOvVaw3V1MuKeo-2yEtBkYHsNeim&ust=1637324685725000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMC6_fjzofQCFQAAAAAdAAAAABAV', bio: '' })
 
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const CharityPage = () => {
         let data = await response.json();
 
         setBio(({
-          avatar: data.avatar,
+          avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wwfca.org%2Fen%2Fcampaigns_main%2F&psig=AOvVaw3V1MuKeo-2yEtBkYHsNeim&ust=1637324685725000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMC6_fjzofQCFQAAAAAdAAAAABAV',
           bio: data.bio
         }))
         // need to sort posts by most recent
@@ -100,8 +100,8 @@ const CharityPage = () => {
     <div className="d-flex justify-content-center align-items-center flex-column">
       <h1 className="profile-page-title">{charityName}'s Profile Page</h1>
       <div id="bio" className='flex'>
-        <img src={bio.avatar} style={{ width: '300px', height: '300px' }} />
-        <h3>{bio.bio}</h3>
+        <img className="bio-img" src={bio.avatar} />
+        <h3 className="bio-description">{bio.bio}</h3>
       </div>
       <div className="d-flex justify-content-around align-items-center">
         <div className="mx-2">
