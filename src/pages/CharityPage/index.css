@@ -6,3 +6,9 @@
 .profile-page-title{
   padding-top: 3%;
 }
+
+.bio-description{
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
