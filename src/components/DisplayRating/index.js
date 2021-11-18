@@ -36,15 +36,24 @@ const DispayRating = (props) => {
           setAllPosts(postLength)
           //gives an array of all the transparency scores for all the reviews
           let postArray = data.posts.map(post => post.reviews.map(ele => ele.rating.transparency))
+          console.log(postArray)
           //gives an array of all the punctuality scores for all the reviews
           let punctualArray = data.posts.map(post => post.reviews.map(ele => ele.rating.punctuality))
+          console.log(punctualArray)
           //gives an array of all the retention scores for all the reviews
           let returnArray = data.posts.map(post => post.reviews.map(ele => ele.rating.comeback))
+          console.log((returnArray))
 
           //returning the array of how many reviws in the post
           let reviewL = data.posts.map(post => post.reviews.length)
           let reviewLength = reviewL.reduce((a, b) => a + b)
-          console.log(reviewLength)
+          // console.log("reviewL" , reviewL)
+          console.log("reviewLength" , reviewLength)
+
+          let totR = reviewL.filter(a=>a>0)
+          let totReviews = totR.reduce((a,b)=>a+b)
+          // console.log("totreviews", totReviews)
+
 
           //calculates the reduced sum of the all the transparency array
           let reducedTrans = postArray.map(x => {
@@ -88,7 +97,7 @@ const DispayRating = (props) => {
               setTotalReviews(0)
 
             }
-            else setTotalReviews(reviewLength)
+            else setTotalReviews(totReviews)
           }
 
 
