@@ -19,7 +19,7 @@ const Home = () => {
     const [posts, setPosts] = useState([])
     const { currentUser } = useAuthContext()
     const { posted, setPosted } = usePostContext()
-    const {theme} = useThemeContext()
+    const { theme } = useThemeContext()
 
     useEffect(() => {
 
@@ -94,7 +94,7 @@ const Home = () => {
                 {/* <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" />
                 <Post title ="stuff" description = "here is content" image = "https://iacharity.org/wp-content/uploads/2020/04/iac-charity-hero-vip-drive.jpg" /> */}
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }
